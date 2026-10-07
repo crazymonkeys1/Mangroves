@@ -7,6 +7,7 @@ import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
 import Icon from '../../atoms/Icon/Icon.astro';
 import CautionNote from '../../molecules/CautionNote/CautionNote.astro';
 import FactGrid from '../../molecules/FactGrid/FactGrid.astro';
+import FeatureList from '../../molecules/FeatureList/FeatureList.astro';
 import PriceLabel from '../../molecules/PriceLabel/PriceLabel.astro';
 import QuoteCard from '../../molecules/QuoteCard/QuoteCard.astro';
 import type { TourModel } from '../../../lib/site-page';
@@ -35,14 +36,7 @@ const t = Astro.props.tour;
 
   <div class="tour-card__section">
     <Eyebrow tone="secondary" as="h4">{t.whyLabel}</Eyebrow>
-    <ul class="tour-card__features">
-      {t.features.map((f) => (
-        <li class="tour-card__feature">
-          <span class="tour-card__feature-icon"><Icon name={f.icon} size="control" /></span>
-          <span class="tour-card__feature-text"><span class="text-body-strong">{f.title}</span><span class="text-caption">{f.text}</span></span>
-        </li>
-      ))}
-    </ul>
+    <FeatureList items={t.features} />
     {t.why && <p class="text-body">{t.why}</p>}
     <div class="tour-card__lists">
       <div class="tour-card__list tour-card__list--provided">
@@ -94,10 +88,6 @@ const t = Astro.props.tour;
   .tour-card__group { display: flex; flex-direction: column; gap: var(--space-3); }
   .tour-card__programme { margin: 0; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-1); }
   .tour-card__programme li::marker { color: var(--tour-color); }
-  .tour-card__features { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: var(--space-3); }
-  .tour-card__feature { display: flex; gap: var(--space-3); background: var(--color-surface-page); border-radius: var(--radius-container); padding: var(--space-3) var(--space-4); }
-  .tour-card__feature-icon { width: calc(var(--space-6) + var(--space-1)); height: calc(var(--space-6) + var(--space-1)); border-radius: var(--radius-control); background: var(--color-surface-card); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .tour-card__feature-text { display: flex; flex-direction: column; gap: var(--space-1); }
   .tour-card__lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--space-3); }
   .tour-card__list { background: var(--color-surface-page); border-radius: var(--radius-container); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
   .tour-card__list--provided { background: var(--color-surface-brand-soft); }

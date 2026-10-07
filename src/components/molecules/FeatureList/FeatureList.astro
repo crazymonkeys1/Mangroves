@@ -1,0 +1,25 @@
+---
+// Short benefits: icon tile + title + one line ("Pourquoi y aller avec…", a guide's tour).
+import Icon from '../../atoms/Icon/Icon.astro';
+interface Props { items: { icon: string; title: string; text: string }[]; surface?: 'page' | 'card' }
+const { items, surface = 'page' } = Astro.props;
+---
+<ul class:list={['feature-list', `feature-list--${surface}`]}>
+  {items.map((f) => (
+    <li class="feature-list__item">
+      <span class="feature-list__icon"><Icon name={f.icon} size="control" /></span>
+      <span class="feature-list__text"><span class="text-body-strong">{f.title}</span><span class="text-caption">{f.text}</span></span>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .feature-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: var(--space-3); }
+  .feature-list__item { display: flex; gap: var(--space-3); border-radius: var(--radius-container); padding: var(--space-3) var(--space-4); }
+  .feature-list--page .feature-list__item { background: var(--color-surface-page); }
+  .feature-list--card .feature-list__item { background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); }
+  .feature-list__icon { width: calc(var(--space-6) + var(--space-1)); height: calc(var(--space-6) + var(--space-1)); border-radius: var(--radius-control); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .feature-list--page .feature-list__icon { background: var(--color-surface-card); }
+  .feature-list--card .feature-list__icon { background: var(--color-surface-page); }
+  .feature-list__text { display: flex; flex-direction: column; gap: var(--space-1); }
+</style>

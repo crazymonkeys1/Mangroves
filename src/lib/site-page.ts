@@ -84,6 +84,14 @@ const bagIcon = (t: string) => (BAG_ICONS.find(([k]) => t.toLowerCase().includes
 const practical = (o: Operator, label: string) => o.practical.find((p) => p.label === label)?.value || null;
 const OFFER_FACT_ICONS: Record<string, string> = { 'Durée': 'clock', 'Départ': 'pin', 'Horaires': 'calendar', 'Âge minimum': 'user', 'Groupe': 'users' };
 
+/** The four facts of an operator's tour (site page tour card and guide profile). */
+export const tourFacts = (o: Operator): Fact[] => [
+  { icon: 'clock', label: 'Durée', value: o.durationShort },
+  { icon: 'user', label: 'Dès', value: o.minAge ? o.minAge + ' ans' : 'Tous âges' },
+  { icon: 'mountain', label: 'Niveau', value: o.about.level || 'Facile' },
+  { icon: 'anchor', label: 'Départ', value: o.departShort.replace(/^la base nautique de /, '') },
+];
+
 export function buildSitePage(site: Site, siteUrl: string) {
   const X = getSiteContent(site.slug);
   const both = site.servedBy === 'both';
@@ -238,12 +246,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
     price: o.price.replace(' ', ''),
     priceNote: 'par adulte',
     story: o.about.story || o.tagline,
-    progFacts: [
-      { icon: 'clock', label: 'Durée', value: o.durationShort },
-      { icon: 'user', label: 'Dès', value: o.minAge ? o.minAge + ' ans' : 'Tous âges' },
-      { icon: 'mountain', label: 'Niveau', value: o.about.level || 'Facile' },
-      { icon: 'anchor', label: 'Départ', value: o.departShort.replace(/^la base nautique de /, '') },
-    ],
+    progFacts: tourFacts(o),
     programme: o.programme,
     whyLabel: 'Pourquoi y aller avec ' + o.guide,
     features: o.features,

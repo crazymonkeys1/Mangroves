@@ -1,0 +1,67 @@
+---
+// Guide profile skeleton (docs/components.md → ProfileTemplate): header, About, Tour, Reviews, Places.
+import Button from '../components/atoms/Button/Button.astro';
+import AboutUsBand from '../components/organisms/AboutUsBand/AboutUsBand.astro';
+import Hero from '../components/organisms/Hero/Hero.astro';
+import SiteCard from '../components/organisms/SiteCard/SiteCard.astro';
+import FactGrid from '../components/molecules/FactGrid/FactGrid.astro';
+import FeatureList from '../components/molecules/FeatureList/FeatureList.astro';
+import QuoteCard from '../components/molecules/QuoteCard/QuoteCard.astro';
+import SectionHead from '../components/molecules/SectionHead/SectionHead.astro';
+import PageShell from './PageShell.astro';
+import type { ProfilePageModel } from '../lib/profile';
+import type { ShellData } from '../lib/shell';
+interface Props { page: ProfilePageModel; shell: ShellData }
+const { page, shell } = Astro.props;
+const h = page.header;
+---
+<PageShell title={page.title} description={page.description} canonical={page.canonical} ogImage={page.ogImage} jsonLd={page.jsonLd} shell={shell}>
+  <Hero variant="profile" operator={page.key} photo={h.photo} crumbs={h.crumbs} label={h.eyebrow} title={h.name} intro={h.role} slides={[]}>
+    <Fragment slot="actions">
+      <Button variant="primary" href={h.bookingUrl} external>{h.bookLabel}</Button>
+      <Button variant="secondary" size="sm" href={h.contactUrl} external>{h.contactLabel}</Button>
+    </Fragment>
+  </Hero>
+
+  <div class="profile">
+    <section class="profile__section" aria-labelledby="h-a-propos">
+      <SectionHead eyebrow="À propos" title={page.about.title} id="h-a-propos" />
+      <p class="text-quote">« {page.about.story} »</p>
+      <p class="text-body">{page.about.bio}</p>
+      <FactGrid items={page.about.facts} min="wide" label={page.about.title} />
+    </section>
+
+    <section class="profile__section" aria-labelledby="h-la-sortie">
+      <SectionHead eyebrow="La sortie" title={page.tour.title} id="h-la-sortie" />
+      <p class="text-body">{page.tour.summary}</p>
+      <FactGrid items={page.tour.facts} label="La sortie en bref" />
+      <p class="text-caption">Tarif relevé en {page.tour.priceDate}, à confirmer lors de la réservation.</p>
+      <FeatureList items={page.tour.features} surface="card" />
+    </section>
+
+    {page.quotes.items.length > 0 && (
+      <section class="profile__section" aria-labelledby="h-avis">
+        <SectionHead eyebrow="Avis" title={page.quotes.title} id="h-avis" />
+        <div class="profile__quotes">{page.quotes.items.map((q) => <QuoteCard quote={q.quote} author={q.author} />)}</div>
+      </section>
+    )}
+
+    {page.sites.cards.length > 0 && (
+      <section class="profile__section profile__section--wide" aria-labelledby="h-mangroves">
+        <SectionHead eyebrow="Où il vous emmène" title={page.sites.title} id="h-mangroves" />
+        <ul class="profile__sites">{page.sites.cards.map((c) => <li><SiteCard site={c} /></li>)}</ul>
+      </section>
+    )}
+  </div>
+  <AboutUsBand data={shell.aboutUs} />
+</PageShell>
+
+<style>
+  .profile { max-width: var(--container-page); margin: 0 auto; padding: 0 var(--page-gutter); display: flex; flex-direction: column; }
+  .profile__section { max-width: var(--container-content); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); }
+  .profile__section + .profile__section { border-top: var(--border-width) solid var(--color-border-default); }
+  .profile__section--wide { max-width: none; }
+  .profile__section p { margin: 0; }
+  .profile__quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-3); }
+  .profile__sites { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--space-4); }
+</style>

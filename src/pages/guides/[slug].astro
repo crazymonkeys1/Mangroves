@@ -1,0 +1,12 @@
+---
+// Route: /guides/<slug>, one profile per partner guide.
+import ProfileTemplate from '../../templates/ProfileTemplate.astro';
+import { buildProfilePage, getProfilePaths } from '../../lib/profile';
+import { shellData } from '../../lib/shell';
+
+export function getStaticPaths() {
+  return getProfilePaths().map((slug) => ({ params: { slug } }));
+}
+const page = buildProfilePage(Astro.params.slug!, Astro.site!.href);
+---
+<ProfileTemplate page={page} shell={shellData()} />
