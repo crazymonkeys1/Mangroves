@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Mangroves Gwada — design tokens v14                         (source of truth)
+   Three tiers. Components may ONLY use tier 2 (semantic) tokens.
+     Tier 1  --palette-*   raw values. Named by hue + step. Never used in components.
+     Tier 2  --color-*, --font-*, --space-*, --radius-*, --elevation-* …  named by ROLE.
+             Re-pointing a tier-2 token to another palette value restyles the whole site
+             without renaming anything.
+     Tier 3  component tokens (optional, local): --button-bg, --card-padding … defined in the
+             component's own CSS from tier-2 tokens. Never in this file.
+   Rules: docs/design-system.md · Component catalogue: docs/components.md
+   Load order: tokens.css → typography.css → component CSS.
+   ========================================================================== */
+
+:root {
+  /* ======================================================================
+     TIER 1 · PALETTE  (appearance names live here and only here)
+     ====================================================================== */
+  --palette-forest-900: #1E332B;   /* deepest green-black */
+  --palette-forest-700: #4B5D53;   /* mid grey-green */
+  --palette-green-600: #2F6B4F;    /* brand green */
+  --palette-green-200: #D9E4DC;    /* pale green for text on dark */
+  --palette-green-100: #EAF0EA;    /* tint */
+  --palette-cream-50: #FBF8F2;
+  --palette-cream-100: #F6F1E7;    /* page */
+  --palette-cream-200: #EFE6D6;
+  --palette-cream-300: #E4D9C4;    /* hairlines */
+  --palette-cream-400: #D8CDB4;    /* switch track off */
+  --palette-white: #FFFFFF;
+  --palette-terracotta-600: #C1512D;
+  --palette-red-600: #A33A1C;
+  --palette-red-800: #7A2914;
+  --palette-red-900: #5C2416;
+  --palette-red-100: #FCE9E3;
+  --palette-red-300: #EDB5A3;
+  --palette-amber-700: #956211;
+  --palette-amber-100: #FBEFD9;
+  --palette-navy-800: #1F4A63;     /* Blue Lagoon */
+  --palette-navy-100: #E6EEF3;
+  --palette-brown-800: #6E4A14;    /* Yalodé */
+  --palette-brown-100: #F4EBDD;
+  --palette-ink-rgb: 15 20 17;     /* neutral near-black for scrims; use as rgb(var(--palette-ink-rgb) / α) */
+  --palette-forest-rgb: 30 51 43;
+
+  /* ======================================================================
+     TIER 2 · SEMANTIC TOKENS  (use these)
+     ====================================================================== */
+
+  /* ---- Text colour. Contrast stated on the usual ground. ---- */
+  --color-text-primary: var(--palette-forest-900);      /* default text: titles, body, values. 11.9:1 on page. */
+  --color-text-secondary: var(--palette-forest-700);    /* meta, captions, legal, credits, labels, icons. 6.2:1. Never fake with opacity. */
+  --color-text-brand: var(--palette-green-600);         /* eyebrows on light grounds; success marks. 5.6:1. */
+  --color-text-inverse: var(--palette-white);           /* titles and values on dark grounds and photos. */
+  --color-text-inverse-secondary: var(--palette-green-200); /* secondary text and eyebrows on dark grounds. ≥ 6:1. */
+  --color-text-danger: var(--palette-red-800);          /* alert titles and lead-ins. 8.3:1 on danger surface. */
+  --color-text-danger-body: var(--palette-red-900);     /* alert body copy. 10.4:1. */
+  --color-text-caution: var(--palette-amber-700);       /* "à confirmer" notes. 4.6:1 on caution surface. */
+  --color-text-link: var(--color-text-primary);         /* links are primary text + action underline; never blue, never red. */
+
+  /* ---- Surfaces ---- */
+  --color-surface-page: var(--palette-cream-100);       /* page background. */
+  --color-surface-card: var(--palette-white);           /* cards, fields, sheets' controls. */
+  --color-surface-inset: var(--palette-cream-50);       /* tiles and quote cards sitting inside a card or on the page. */
+  --color-surface-sunken: var(--palette-cream-200);     /* footer, segmented-control track, hover wash. */
+  --color-surface-brand-soft: var(--palette-green-100); /* tips, info panels, "Fourni" panels, success. */
+  --color-surface-inverse: var(--palette-forest-900);   /* dark bands: lead capture, about-us, tour headers (default). */
+  --color-surface-danger: var(--palette-red-100);       /* alert boxes. */
+  --color-surface-caution: var(--palette-amber-100);    /* caution notes. */
+
+  /* ---- Borders ---- */
+  --color-border-default: var(--palette-cream-300);     /* container borders, section top rules, list dividers on the page. */
+  --color-border-subtle: var(--palette-cream-200);      /* dividers inside cards, chip borders. */
+  --color-border-danger: var(--palette-red-300);
+  --color-border-inverse: rgb(191 216 200 / .45);       /* outlines on dark grounds. */
+  --color-border-strong: var(--palette-forest-900);     /* outlined buttons, logo mark, focus ring core. */
+
+  /* ---- Actions ---- */
+  --color-action-primary: var(--palette-terracotta-600);   /* THE booking/conversion fill (one per viewport). White text 4.7:1. Also link underlines, bullets, quote rule. Never body-size text on page (4.16:1). */
+  --color-action-primary-text: var(--palette-white);
+  --color-action-neutral: var(--palette-forest-900);       /* neutral primary buttons (apply filters, open filters, "Voir la sortie"). */
+  --color-action-neutral-text: var(--palette-white);
+  --color-control-off: var(--palette-cream-400);           /* switch track when off. */
+  --color-control-on: var(--palette-forest-900);           /* switch track when on; selected chip fill. */
+
+  /* ---- Status ---- */
+  --color-status-danger: var(--palette-red-600);           /* "!" dots only. White on it 6.6:1. */
+  /* success = --color-text-brand on --color-surface-brand-soft. Do not add green. */
+
+  /* ---- Partners (one dark + one soft per operator; key = slug in data) ---- */
+  --color-operator-bluelagoon: var(--palette-navy-800);    /* tour header, kicker, "Avec X", badge. White on it 9.5:1. */
+  --color-operator-bluelagoon-soft: var(--palette-navy-100);
+  --color-operator-yalode: var(--palette-brown-800);       /* white on it 7.9:1. */
+  --color-operator-yalode-soft: var(--palette-brown-100);
+  /* New operator → add --color-operator-{slug} and -soft (dark ≥ 7:1 with white), nothing else. */
+
+  /* ---- Overlays and effects on photos ---- */
+  --color-overlay-modal: rgb(var(--palette-ink-rgb) / .5);
+  --color-overlay-lightbox: rgb(var(--palette-ink-rgb) / .92);
+  --color-overlay-chip: rgb(var(--palette-ink-rgb) / .7);          /* duration / play badges on thumbnails. */
+  --gradient-hero-scrim: linear-gradient(180deg, rgb(var(--palette-forest-rgb) / .78), rgb(var(--palette-forest-rgb) / .9));
+  --text-shadow-on-photo: 0 1px 3px rgb(0 0 0 / .45);              /* only on text sitting directly on a photo. */
+
+  /* ---- External brands (social badges only) ---- */
+  --color-social-instagram: #C13584;
+  --color-social-youtube: #C4302B;
+  --color-social-tiktok: #111111;
+  --color-social-facebook: #1877F2;
+
+  /* ---- Typography primitives (styles are in typography.css) ---- */
+  --font-family-editorial: 'Spectral', Georgia, serif;           /* voice: titles, quotes, prices. */
+  --font-family-ui: 'Work Sans', system-ui, sans-serif;          /* data, instructions, controls. */
+  --font-weight-regular: 400;
+  --font-weight-strong: 600;                                      /* 500 and 700 are retired. */
+  --font-size-1: 12px;                    /* eyebrow */
+  --font-size-2: 13px;                    /* legal */
+  --font-size-3: 14px;                    /* caption */
+  --font-size-4: 16px;                    /* body, controls, inputs (≥16 stops iOS zoom) */
+  --font-size-5: 18px;                    /* lead */
+  --font-size-6: clamp(22px, 2.4vw, 26px);   /* title, quote */
+  --font-size-7: clamp(28px, 3vw, 34px);     /* heading */
+  --font-size-8: clamp(36px, 5vw, 58px);     /* display */
+  --line-height-display: 1.05;
+  --line-height-heading: 1.15;
+  --line-height-ui: 1.4;
+  --line-height-small: 1.5;
+  --line-height-text: 1.6;
+  --letter-spacing-eyebrow: .1em;
+  --letter-spacing-display: -.01em;
+  --measure-text: 65ch;                   /* max paragraph width outside cards. */
+
+  /* ---- Space (ordinal: names stay valid if values change) ---- */
+  --space-1: 4px;    /* icon↔text, tight stacks */
+  --space-2: 8px;    /* chip gaps, label↔title */
+  --space-3: 12px;   /* control padding, tile gaps */
+  --space-4: 16px;   /* default gap, page gutter (mobile) */
+  --space-5: 24px;   /* card padding (desktop), group gaps */
+  --space-6: 32px;   /* between blocks in a section */
+  --space-7: 40px;   /* section padding-top */
+  --space-8: 56px;   /* hero and band vertical padding */
+  --page-gutter: 16px;            /* 20 from sm, 24 from md (below) */
+  --card-padding: 16px;           /* 24 from md (below) */
+  --section-padding-top: var(--space-7);
+  --section-padding-bottom: var(--space-2);
+  --tap-size-min: 44px;           /* every interactive element, both axes */
+
+  /* ---- Shape ---- */
+  --radius-control: 8px;          /* chips, tiles, buttons, inputs, thumbnails */
+  --radius-container: 14px;       /* cards, boxes, tables; sheets (top corners only) */
+  --radius-full: 999px;           /* pills, avatars, switches, circular buttons, filter-bar controls */
+  --radius-tick: 2px;             /* decorative 16×2 rule beside quote authors only */
+  --border-width: 1px;            /* all hairlines; 1.5px only on the logo mark and outlined nav pill */
+
+  /* ---- Elevation (flat by default: border, no shadow) ---- */
+  --elevation-overlap: 0 12px 32px rgb(var(--palette-forest-rgb) / .14);   /* fact strip, CTA tile, dropdowns, sticky card, menu panel */
+  --elevation-bar: 0 -6px 24px rgb(var(--palette-forest-rgb) / .08);        /* sticky bottom bar */
+  --elevation-thumb: 0 1px 4px rgb(var(--palette-forest-rgb) / .12);        /* selected segment */
+
+  /* ---- Layout ---- */
+  --container-page: 1180px;       /* header, footer, listing grids */
+  --container-content: 820px;     /* detail main column, article body */
+  --container-narrow: 720px;      /* hero subtitle, centred quotes */
+  --container-sheet: 600px;       /* modals, bottom sheets */
+  --hero-height: clamp(380px, 40vw, 460px);
+  /* Breakpoints (min-width). Custom properties cannot be used in @media: write these literals. */
+  --breakpoint-sm: 600px;         /* inline header nav; 2-col grids */
+  --breakpoint-md: 880px;         /* inline filter bar; 3-col listings; card padding 24 */
+  --breakpoint-lg: 1180px;        /* sticky guide card column; page container at max width */
+
+  /* ---- Stacking ---- */
+  --z-raised: 2;
+  --z-dropdown: 20;
+  --z-header: 20;                 /* header and its menu panel share a stacking context */
+  --z-bar: 80;                    /* sticky booking bar */
+  --z-sheet: 90;                  /* filter sheet, modals */
+  --z-lightbox: 100;
+
+  /* ---- Motion ---- */
+  --duration-fast: 150ms;         /* hover, press, switch, chevron, menu icon */
+  --duration-base: 250ms;         /* sheet, accordion */
+  --easing-standard: cubic-bezier(.2, .7, .2, 1);
+
+  /* ---- Focus ---- */
+  --focus-ring: 0 0 0 2px var(--color-surface-page), 0 0 0 4px var(--color-border-strong);
+}
+
+@media (min-width: 600px) { :root { --page-gutter: 20px; } }
+@media (min-width: 880px) { :root { --page-gutter: 24px; --card-padding: 24px; } }
+@media (prefers-reduced-motion: reduce) { :root { --duration-fast: 0ms; --duration-base: 0ms; } }
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--color-surface-page); color: var(--color-text-primary); font: var(--font-weight-regular) var(--font-size-4)/var(--line-height-text) var(--font-family-ui); }
+a { color: var(--color-text-link); text-decoration: underline; text-decoration-color: var(--color-action-primary); text-decoration-thickness: 2px; text-underline-offset: 4px; transition: text-decoration-color var(--duration-fast) var(--easing-standard); }
+a:hover { text-decoration-color: var(--color-text-primary); }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-control); }
+button, input, select, textarea { font: inherit; color: inherit; }
+summary { list-style: none; cursor: pointer; }
+summary::-webkit-details-marker { display: none; }
+img { max-width: 100%; display: block; }

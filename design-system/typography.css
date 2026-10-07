@@ -1,0 +1,42 @@
+/* ==========================================================================
+   Mangroves Gwada — text styles v14
+   Needs tokens.css. 11 styles, named by ROLE (a style can be resized or restyled
+   without being renamed). Never set font-size, weight, line-height, letter-spacing or
+   text colour by hand outside this file. Colour changes use the modifiers at the bottom.
+
+   FONT FILES (load exactly these; real italic, never synthesised):
+   Spectral 600 normal + 400 italic · Work Sans 400 + 600 · display=swap
+   https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,600;1,400&family=Work+Sans:wght@400;600&display=swap
+   Both families: SIL Open Font License 1.1 (confirm the files you ship).
+   ========================================================================== */
+
+/* Editorial voice (Spectral) — what a page is about */
+.text-display { font: var(--font-weight-strong) var(--font-size-8)/var(--line-height-display) var(--font-family-editorial); letter-spacing: var(--letter-spacing-display); color: var(--color-text-primary); text-wrap: balance; margin: 0; }  /* the page H1; once per page */
+.text-heading { font: var(--font-weight-strong) var(--font-size-7)/var(--line-height-heading) var(--font-family-editorial); color: var(--color-text-primary); text-wrap: balance; margin: 0; }  /* section titles (h2) */
+.text-title   { font: var(--font-weight-strong) var(--font-size-6)/var(--line-height-heading) var(--font-family-editorial); color: var(--color-text-primary); text-wrap: balance; margin: 0; }  /* object titles (h3): card, tour, guide name, price, wordmark, sheet title */
+.text-quote   { font: italic var(--font-weight-regular) var(--font-size-6)/var(--line-height-ui) var(--font-family-editorial); color: var(--color-text-primary); text-wrap: pretty; margin: 0; }          /* a person speaking: guide quotes, tips, hero subtitle. The ONLY italic. */
+
+/* Information voice (Work Sans) — what a visitor needs to know or do */
+.text-lead    { font: var(--font-weight-regular) var(--font-size-5)/var(--line-height-text) var(--font-family-ui); color: var(--color-text-primary); max-width: 60ch; text-wrap: pretty; margin: 0; }  /* first paragraph after a title */
+.text-body    { font: var(--font-weight-regular) var(--font-size-4)/var(--line-height-text) var(--font-family-ui); color: var(--color-text-primary); max-width: var(--measure-text); text-wrap: pretty; margin: 0; }  /* all running text */
+.text-body-strong { font: var(--font-weight-strong) var(--font-size-4)/var(--line-height-ui) var(--font-family-ui); color: var(--color-text-primary); }  /* values, questions, buttons, nav, field text */
+.text-caption { font: var(--font-weight-regular) var(--font-size-3)/var(--line-height-small) var(--font-family-ui); color: var(--color-text-secondary); }  /* captions, credits, bylines, stat labels, breadcrumbs, support text */
+.text-caption-strong { font: var(--font-weight-strong) var(--font-size-3)/var(--line-height-ui) var(--font-family-ui); color: var(--color-text-primary); }  /* chips, badges, tabs, segments, ratings, compact buttons */
+.text-legal   { font: var(--font-weight-regular) var(--font-size-2)/var(--line-height-text) var(--font-family-ui); color: var(--color-text-secondary); }  /* disclaimers and legal only, always inside a fold */
+.text-eyebrow { font: var(--font-weight-strong) var(--font-size-1)/var(--line-height-ui) var(--font-family-ui); letter-spacing: var(--letter-spacing-eyebrow); text-transform: uppercase; color: var(--color-text-brand); }  /* orientation labels; the only caps */
+
+/* Colour modifiers: the only allowed overrides */
+.on-inverse .text-display, .on-inverse .text-heading, .on-inverse .text-title, .on-inverse .text-quote, .on-inverse .text-lead, .on-inverse .text-body, .on-inverse .text-body-strong, .on-inverse .text-caption-strong { color: var(--color-text-inverse); }
+.on-inverse .text-caption, .on-inverse .text-legal, .on-inverse .text-eyebrow { color: var(--color-text-inverse-secondary); }
+.text-eyebrow.is-secondary { color: var(--color-text-secondary); }
+.text-eyebrow.is-danger, .text-caption-strong.is-danger { color: var(--color-text-danger); }
+.text-eyebrow.is-operator-bluelagoon { color: var(--color-operator-bluelagoon); }
+.text-eyebrow.is-operator-yalode { color: var(--color-operator-yalode); }
+.text-caption.is-caution { color: var(--color-text-caution); }
+
+/* Inline emphasis and links inside running text */
+.text-body strong, .text-lead strong { font-weight: var(--font-weight-strong); }
+.text-body a, .text-caption a, .text-legal a { color: inherit; }
+
+/* Fields never go below 16px */
+input, select, textarea { font-size: var(--font-size-4); }

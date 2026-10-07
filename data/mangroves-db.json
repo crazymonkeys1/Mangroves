@@ -1,0 +1,1650 @@
+{
+  "version": "2026-09-29d",
+  "schema": {
+    "slug": "string, URL id",
+    "name": "string",
+    "island": "Guadeloupe (Basse-Terre) | Guadeloupe (Grande-Terre) | Marie-Galante | Les Saintes | Désirade",
+    "commune": "string",
+    "zone": "Grand Cul-de-Sac Marin | Petit Cul-de-Sac Marin | Nord Grande-Terre | Côte sous le vent | Sud Grande-Terre | Marie-Galante",
+    "activities": "bateau | kayak | marche | pedalo | canot",
+    "difficulty": "Facile | Modérée",
+    "duration": "string or null",
+    "distanceKm": "number or null",
+    "access": "libre | guidé | payant",
+    "kidFriendly": "bool",
+    "birdwatching": "bool",
+    "photogenic": "bool",
+    "pmr": "bool",
+    "protection": "Réserve naturelle | Ramsar | Conservatoire du littoral | Réserve de biosphère UNESCO | Parc national",
+    "servedBy": "bluelagoon | yalode | both | null (discovery-only, no CTA)",
+    "gps": "[lat, lng] only when a source publishes it",
+    "confidence": "vérifié (2+ sources dont 1 officielle) | partiel (1 source) | à vérifier (aucune source trouvée)",
+    "sources": "[{label, url, type: officiel | office-tourisme | operateur | media}]",
+    "internalNote": "not for display",
+    "images": "[{url, thumb, caption, credit, license, rights: libre (CC) | autorisation requise | opérateur partenaire, sourceName, sourcePage, relevance: mangrove | contexte, note?}]"
+  },
+  "sites": [
+    {
+      "slug": "grand-cul-de-sac-marin",
+      "name": "Grand Cul-de-Sac Marin",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Sainte-Rose / Morne-à-l'Eau",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "bateau",
+        "kayak"
+      ],
+      "difficulty": "Facile",
+      "duration": "3 h à 1 journée",
+      "distanceKm": null,
+      "access": "guidé",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Réserve naturelle",
+        "Parc national",
+        "Réserve de biosphère UNESCO"
+      ],
+      "servedBy": "both",
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Plus grande mangrove des Petites Antilles",
+        "Baie de plus de 15 000 ha fermée par une barrière de corail",
+        "Réserve naturelle depuis 1987"
+      ],
+      "sources": [
+        {
+          "label": "Parc national de la Guadeloupe — Mangrove",
+          "url": "https://www.guadeloupe-parcnational.fr/fr/des-connaissances/patrimoines-naturels/les-milieux/milieux-humides/mangrove",
+          "type": "officiel"
+        },
+        {
+          "label": "Conservatoire du littoral — Grand Cul-de-Sac Marin",
+          "url": "https://www.conservatoire-du-littoral.fr/TPL_CODE/TPL_UNITELITTORAL/PAR_TPL_IDENTIFIANT/147/125-les-paysages-fiche.htm",
+          "type": "officiel"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/bluelagoonhome-scaled.jpg",
+          "thumb": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/bluelagoonhome-scaled.jpg",
+          "caption": "Lagon du Grand Cul-de-Sac Marin",
+          "credit": "Blue Lagoon",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.bluelagoon-gp.com/",
+          "sourceName": "Blue Lagoon",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nyctanassa_violacea_in_a_mangrove_of_Guadeloupe%2C_2.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Nyctanassa_violacea_in_a_mangrove_of_Guadeloupe%2C_2.jpg?width=400",
+          "caption": "Bihoreau violacé dans une mangrove de Guadeloupe",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Nyctanassa_violacea_in_a_mangrove_of_Guadeloupe%2C_2.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "mangrove",
+          "note": "Lieu exact non précisé"
+        },
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/kayak-mangrove-nature.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/kayak-mangrove-nature.jpg",
+          "caption": "Kayak dans la mangrove du Grand Cul-de-Sac Marin",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "La plus grande mangrove des Petites Antilles, entre Basse-Terre et Grande-Terre.",
+      "paragraphs": [
+        "Le Grand Cul-de-Sac Marin est une baie de plus de 15 000 ha fermée par une barrière de corail. Ses rives portent la plus grande mangrove des Petites Antilles, prolongée par des forêts marécageuses. La réserve naturelle y a été créée en 1987.",
+        "On la visite de deux façons : en bateau depuis Sainte-Rose avec Blue Lagoon, ou en kayak depuis Vieux-Bourg avec Yalodé."
+      ]
+    },
+    {
+      "slug": "riviere-salee",
+      "name": "Rivière Salée",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Baie-Mahault / Les Abymes",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "bateau"
+      ],
+      "difficulty": "Facile",
+      "duration": "Demi-journée",
+      "distanceKm": null,
+      "access": "guidé",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Parc national"
+      ],
+      "servedBy": "bluelagoon",
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Chenal navigable séparant Basse-Terre et Grande-Terre, bordé de mangrove",
+        "Longueur de 5 à 7,5 km selon les sources, largeur de 30 à 100 m",
+        "Deux ponts : la Gabarre (entrée sud) et l'Alliance",
+        "Relie le Grand Cul-de-Sac Marin au Petit Cul-de-Sac Marin"
+      ],
+      "sources": [
+        {
+          "label": "Wikipedia — Baie-Mahault",
+          "url": "https://en.wikipedia.org/wiki/Baie-Mahault",
+          "type": "media"
+        },
+        {
+          "label": "Blue Lagoon",
+          "url": "https://www.bluelagoon-gp.com/",
+          "type": "operateur"
+        },
+        {
+          "label": "Made in Guadeloupe — Promenade sur la Rivière Salée",
+          "url": "https://www.madeinguadeloupe.fr/2015/05/promenade-riviere-salee-guadeloupe-river-boat-madeinguadeloupe-blog.html",
+          "type": "media"
+        },
+        {
+          "label": "Zones humides — Mangrove de la Rivière Salée en kayak",
+          "url": "https://www.zones-humides.org/decouverte-de-la-mangrove-de-la-riviere-salee-en-kayak",
+          "type": "officiel"
+        },
+        {
+          "label": "Les Merveilles du Monde libre — La Rivière Salée",
+          "url": "https://ngandco.net/guadeloupe-la-riviere-salee",
+          "type": "media"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Rivi%C3%A8re_Sal%C3%A9e_01.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Rivi%C3%A8re_Sal%C3%A9e_01.jpg?width=400",
+          "caption": "La Rivière Salée",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:La_Rivi%C3%A8re_Sal%C3%A9e_01.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Rivi%C3%A8re_Sal%C3%A9e_02.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Rivi%C3%A8re_Sal%C3%A9e_02.jpg?width=400",
+          "caption": "La Rivière Salée",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:La_Rivi%C3%A8re_Sal%C3%A9e_02.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/paletuvier-enfant.jpg",
+          "thumb": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/paletuvier-enfant.jpg",
+          "caption": "Palétuviers en bateau",
+          "credit": "Blue Lagoon",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.bluelagoon-gp.com/",
+          "sourceName": "Blue Lagoon",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "Le chenal bordé de mangrove qui sépare Basse-Terre et Grande-Terre.",
+      "paragraphs": [
+        "La Rivière Salée est un bras de mer navigable de 30 à 100 m de large. Il sépare les deux îles principales de la Guadeloupe, Basse-Terre et Grande-Terre, et relie le Grand Cul-de-Sac Marin au Petit Cul-de-Sac Marin. Sa longueur est de 5 à 7,5 km selon les sources.",
+        "Ses rives sont bordées de palétuviers sur toute leur longueur. Environ 8 000 ha de mangrove couvrent la Guadeloupe, dont 80 % autour du Grand Cul-de-Sac Marin et de part et d'autre de la Rivière Salée. Cette mangrove protège les côtes de l'érosion, sert de nurserie à de nombreuses espèces marines et filtre l'eau avant qu'elle ne rejoigne le lagon.",
+        "Le chenal est aussi un raccourci pour les bateaux : il évite de contourner la Basse-Terre par le sud. Deux ponts l'enjambent, celui de la Gabarre à l'entrée sud et celui de l'Alliance. La zone fait partie du Parc national et d'un site Ramsar, reconnu pour ses lagunes côtières saumâtres.",
+        "On la découvre en bateau ou en kayak. Les sorties partent de la marina de Bas-du-Fort, de la base de kayak de Dolmare à Pointe-à-Pitre ou de La Friche à Baie-Mahault. On y observe les racines des palétuviers, des oiseaux, des crabes et des poissons, à quelques minutes de Pointe-à-Pitre."
+      ]
+    },
+    {
+      "slug": "ilet-blanc",
+      "name": "Îlet Blanc",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Sainte-Rose",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "bateau"
+      ],
+      "difficulty": "Facile",
+      "duration": "Halte",
+      "distanceKm": null,
+      "access": "guidé",
+      "kidFriendly": true,
+      "birdwatching": false,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Parc national"
+      ],
+      "servedBy": "bluelagoon",
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Étape classique des sorties bateau au départ du port de Sainte-Rose"
+      ],
+      "sources": [
+        {
+          "label": "Guadeloupe Excursion — Mangrove",
+          "url": "https://www.guadeloupe-excursion.com/excursion/mangrove",
+          "type": "media"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/bluelagoonhome-scaled.jpg",
+          "thumb": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/bluelagoonhome-scaled.jpg",
+          "caption": "Lagon, sortie Blue Lagoon",
+          "credit": "Blue Lagoon",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.bluelagoon-gp.com/",
+          "sourceName": "Blue Lagoon",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "Étape classique des sorties bateau au départ de Sainte-Rose.",
+      "paragraphs": [
+        "L'îlet Blanc fait partie des arrêts des sorties en bateau dans le Grand Cul-de-Sac Marin, au départ du port de Sainte-Rose.",
+        "L'approche se fait lentement, ce qui laisse le temps d'observer les oiseaux avant de rejoindre la barrière de corail."
+      ]
+    },
+    {
+      "slug": "ilet-a-fajou",
+      "name": "Îlet à Fajou",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Sainte-Rose",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "bateau"
+      ],
+      "difficulty": "Facile",
+      "duration": "Halte",
+      "distanceKm": null,
+      "access": "guidé",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Réserve naturelle",
+        "Parc national"
+      ],
+      "servedBy": "bluelagoon",
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Plus grand îlet du Grand Cul-de-Sac Marin",
+        "Constitué de mangrove, partie intégrante de la Réserve naturelle"
+      ],
+      "sources": [
+        {
+          "label": "Îlet Caret — Grand Cul-de-Sac Marin",
+          "url": "https://www.ilet-caret.com/grand-cul-de-sac-marin.html",
+          "type": "media"
+        }
+      ],
+      "internalNote": "Ajouter une source PNG officielle.",
+      "images": [
+        {
+          "url": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/paletuvier-enfant.jpg",
+          "thumb": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/paletuvier-enfant.jpg",
+          "caption": "Palétuviers, sortie Blue Lagoon",
+          "credit": "Blue Lagoon",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.bluelagoon-gp.com/",
+          "sourceName": "Blue Lagoon",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "Le plus grand îlet du Grand Cul-de-Sac Marin, couvert de mangrove.",
+      "paragraphs": [
+        "Fajou est le plus grand îlet du Grand Cul-de-Sac Marin. Il est constitué de mangrove et fait partie intégrante de la réserve naturelle.",
+        "Il sert de refuge à de nombreuses espèces protégées. On l'observe depuis le bateau."
+      ]
+    },
+    {
+      "slug": "lagon-vieux-bourg",
+      "name": "Mangrove de Vieux-Bourg",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Morne-à-l'Eau",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "kayak"
+      ],
+      "difficulty": "Facile",
+      "duration": "Demi-journée",
+      "distanceKm": null,
+      "access": "guidé",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Conservatoire du littoral",
+        "Réserve naturelle"
+      ],
+      "servedBy": "yalode",
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Site Conservatoire « Mangrove de Vieux-Bourg à Petit-Canal » : 2 209 ha",
+        "Départs kayak depuis le port de Vieux-Bourg"
+      ],
+      "sources": [
+        {
+          "label": "Conservatoire du littoral — Vieux-Bourg à Petit-Canal",
+          "url": "https://www.conservatoire-du-littoral.fr/siteLittoral/661/28-mangrove-de-vieux-bourg-a-petit-canal-971_guadeloupe.htm",
+          "type": "officiel"
+        },
+        {
+          "label": "Yalodé — Kayak Guadeloupe",
+          "url": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "type": "operateur"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83294/p1160943.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83294/p1160943.JPG.400x0_q85.jpg",
+          "caption": "Palétuviers rouges à racines échasses, Vieux-Bourg",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10068-Littoral-Vieux-Bourg--Babin",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/kayak-mangrove-nature.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/kayak-mangrove-nature.jpg",
+          "caption": "Kayak dans la mangrove",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/kayak-famille.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/kayak-famille.jpg",
+          "caption": "Sortie kayak en famille",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/0kayak.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/0kayak.jpg",
+          "caption": "Kayak dans le lagon",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "Le point de départ des sorties kayak dans la mangrove de Morne-à-l'Eau.",
+      "paragraphs": [
+        "La mangrove de Vieux-Bourg fait partie d'un ensemble de 2 209 ha protégé par le Conservatoire du littoral, de Vieux-Bourg à Petit-Canal.",
+        "C'est depuis le port de Vieux-Bourg que partent les sorties kayak de Yalodé vers la mangrove du Grand Cul-de-Sac Marin."
+      ]
+    },
+    {
+      "slug": "sentier-vieux-bourg-babin",
+      "name": "Sentier littoral Vieux-Bourg / Babin",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Morne-à-l'Eau",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": null,
+      "distanceKm": null,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Conservatoire du littoral"
+      ],
+      "servedBy": "yalode",
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Sentier « La case aux lamantins », balisage jaune, départ du port de pêche",
+        "Mène à la plage de Babin, seule « plage verte » de Guadeloupe"
+      ],
+      "sources": [
+        {
+          "label": "Rando Guadeloupe — Littoral Vieux-Bourg / Babin",
+          "url": "https://www.randoguadeloupe.gp/trek/10068-Littoral-Vieux-Bourg--Babin",
+          "type": "officiel"
+        },
+        {
+          "label": "Visorando — Port-Louis & environs",
+          "url": "https://www.visorando.com/randonnee-port-louis-guadeloupe.html",
+          "type": "media"
+        }
+      ],
+      "internalNote": "Même point de départ que Yalodé : bon candidat pour une CTA kayak « prolongez sur l'eau ».",
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/10068/p1110182.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/10068/p1110182.JPG.400x0_q85.jpg",
+          "caption": "Arrivée à Babin",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10068-Littoral-Vieux-Bourg--Babin",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83294/p1160943.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83294/p1160943.JPG.400x0_q85.jpg",
+          "caption": "Palétuviers rouges (échasses)",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10068-Littoral-Vieux-Bourg--Babin",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83308/20110810-_dsc8219_2018.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83308/20110810-_dsc8219_2018.JPG.400x0_q85.jpg",
+          "caption": "Crabe de terre",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10068-Littoral-Vieux-Bourg--Babin",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83306/12592577_10154021107887660_2930492930915423865_n.jpg",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83306/12592577_10154021107887660_2930492930915423865_n.jpg.400x0_q85.jpg",
+          "caption": "Paruline jaune",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10068-Littoral-Vieux-Bourg--Babin",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83304/p1170024.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/83304/p1170024.JPG.400x0_q85.jpg",
+          "caption": "Plage de Babin",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10068-Littoral-Vieux-Bourg--Babin",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plagr_babin.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Plagr_babin.jpg?width=400",
+          "caption": "Plage de Babin",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Plagr_babin.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "Un sentier balisé entre mangrove et prairie humide, jusqu'à la plage de Babin.",
+      "paragraphs": [
+        "Le sentier de « La case aux lamantins » part du port de pêche de Vieux-Bourg (balisage jaune) et serpente entre mangrove et prairie humide sur 5 km aller-retour, environ 2h30.",
+        "Il mène à Babin, l'unique « plage verte » de Guadeloupe, d'où l'on voit les îlets Fajou et Macou. En chemin : palétuviers rouges, crabes de terre et parulines jaunes."
+      ]
+    },
+    {
+      "slug": "beautiran",
+      "name": "Sentier de Beautiran",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Petit-Canal",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": "4 h",
+      "distanceKm": 11.5,
+      "access": "libre",
+      "kidFriendly": false,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Conservatoire du littoral"
+      ],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Ancien port d'expédition du sucre et du rhum de l'usine de Beauport",
+        "Départ depuis les « marches des esclaves » (changement déc. 2024)",
+        "Huîtres de palétuvier visibles sur les racines"
+      ],
+      "sources": [
+        {
+          "label": "Rando Guadeloupe — Sentier de Beautiran",
+          "url": "https://www.randoguadeloupe.gp/en/trek/4896-Sentier-de-Beautiran",
+          "type": "officiel"
+        },
+        {
+          "label": "Conservatoire du littoral — Petit-Canal à Port-Louis",
+          "url": "https://www.conservatoire-du-littoral.fr/siteLittoral/662/28-mangrove-de-petit-canal-a-port-louis-971_guadeloupe.htm",
+          "type": "officiel"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/4896/dsc02014.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/4896/dsc02014.JPG.400x0_q85.jpg",
+          "caption": "L'ancien port de Beautiran",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/4896-Sentier-de-Beautiran",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9208/p1070206.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9208/p1070206.JPG.400x0_q85.jpg",
+          "caption": "Mangrove le long du sentier",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/4896-Sentier-de-Beautiran",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9217/p1070180.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9217/p1070180.JPG.400x0_q85.jpg",
+          "caption": "Mangle médaille (Pterocarpus officinalis)",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/4896-Sentier-de-Beautiran",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9229/p1070241.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9229/p1070241.JPG.400x0_q85.jpg",
+          "caption": "Vue sur le Grand Cul-de-Sac Marin en sortie de mangrove",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/4896-Sentier-de-Beautiran",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mangrove%2C_Petit-Canal%2C_Grande-Terre%2C_Guadeloupe%2C_2010-03-28-.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Mangrove%2C_Petit-Canal%2C_Grande-Terre%2C_Guadeloupe%2C_2010-03-28-.jpg?width=400",
+          "caption": "Mangrove de Petit-Canal (panorama)",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Mangrove%2C_Petit-Canal%2C_Grande-Terre%2C_Guadeloupe%2C_2010-03-28-.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Moulin_envahi_-_Chemin_de_Beautiran.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Moulin_envahi_-_Chemin_de_Beautiran.jpg?width=400",
+          "caption": "Moulin envahi, chemin de Beautiran",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Moulin_envahi_-_Chemin_de_Beautiran.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "Une boucle entre champs de canne et mangrove, sur les traces de l'ancien port sucrier.",
+      "paragraphs": [
+        "Beautiran était le port d'expédition du sucre et du rhum de l'usine de Beauport. Le sentier de 11,5 km (environ 4 h) traverse champs de canne, mangrove et vestiges industriels.",
+        "En sortie de mangrove, un point de vue s'ouvre sur la baie du Grand Cul-de-Sac Marin. Depuis décembre 2024, le départ se fait depuis les « marches des esclaves » à Petit-Canal."
+      ]
+    },
+    {
+      "slug": "marais-port-louis",
+      "name": "Marais et sentier de la mangrove de Port-Louis",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Port-Louis",
+      "zone": "Nord Grande-Terre",
+      "activities": [
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": "20 min (caillebotis) à 3 h",
+      "distanceKm": 9,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Ramsar",
+        "Conservatoire du littoral"
+      ],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Zone Ramsar depuis 1993, sauvée d'un projet de raffinerie",
+        "Caillebotis du « Marais Rocheux » jusqu'au canal de la Pointe des Mangles",
+        "Départ parking du cimetière, derrière la plage du Souffleur",
+        "Rando Guadeloupe signale le caillebotis du chemin Kas Moustach comme endommagé, accès déconseillé"
+      ],
+      "sources": [
+        {
+          "label": "Conservatoire du littoral — Marais de Port-Louis",
+          "url": "https://www.conservatoire-du-littoral.fr/siteLittoral/571/28-marais-de-port-louis-971_guadeloupe.htm",
+          "type": "officiel"
+        },
+        {
+          "label": "OT Nord Grande-Terre — Sentier de la mangrove",
+          "url": "https://www.lenordguadeloupe.com/blog/parcourez-le-sentier-de-la-mangrove-de-port-louis-bngt/",
+          "type": "office-tourisme"
+        },
+        {
+          "label": "Akokit — Mangrove et marais de Port-Louis",
+          "url": "https://www.akokit.fr/A-la-decouverte-de-la-mangrove-et-du-marais-de-Port-Louis_a31.html",
+          "type": "media"
+        },
+        {
+          "label": "Rando Guadeloupe — Boucle du Nord Grande-Terre",
+          "url": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "type": "officiel"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8226/dsc00809.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8226/dsc00809.JPG.400x0_q85.jpg",
+          "caption": "Palétuviers rouges, chemin Kas Moustach",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8229/dsc00826.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8229/dsc00826.JPG.400x0_q85.jpg",
+          "caption": "Pointe des Mangles, vue sur le Grand Cul-de-Sac Marin",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8204/dsc00769.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8204/dsc00769.JPG.400x0_q85.jpg",
+          "caption": "Plage du Souffleur",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "La plus grande zone humide de l'archipel, traversée par un sentier sur caillebotis.",
+      "paragraphs": [
+        "Derrière la plage du Souffleur, le marais de Port-Louis s'étend sur plus de 400 ha de mangroves, étangs, vasières et prairies humides. Il est classé site Ramsar depuis 1993, après avoir échappé à un projet de raffinerie.",
+        "Un caillebotis traverse la mangrove jusqu'au canal de la Pointe des Mangles. Plus de 90 espèces d'oiseaux y sont observées, surtout des limicoles migrateurs.",
+        "À noter : Rando Guadeloupe déconseille actuellement l'accès au caillebotis du chemin Kas Moustach, endommagé. Renseignez-vous auprès de l'office de tourisme du Nord Grande-Terre avant de partir."
+      ]
+    },
+    {
+      "slug": "chemins-de-mangrove-anse-bertrand",
+      "name": "Chemins de mangrove, Anse-Bertrand → Port-Louis",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Anse-Bertrand",
+      "zone": "Nord Grande-Terre",
+      "activities": [
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": "2 à 3 h aller",
+      "distanceKm": null,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Littoral de caille puis zone humide jusqu'à la plage du Souffleur",
+        "Pause baignade possible à l'Anse Fontaine"
+      ],
+      "sources": [
+        {
+          "label": "Guadeloupe.fr — Chemins de mangrove",
+          "url": "https://www.guadeloupe.fr/activites-sur-terre/decouvertes-a-la-journee/chemins-de-mangrove/",
+          "type": "office-tourisme"
+        },
+        {
+          "label": "Gwadaplans — Chemins de mangrove",
+          "url": "https://gwadaplans.com/activites-loisirs-guadeloupe/littoral/chemins-de-mangrove/",
+          "type": "media"
+        },
+        {
+          "label": "Rando Guadeloupe — Boucle du Nord Grande-Terre",
+          "url": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "type": "officiel"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8226/dsc00809.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8226/dsc00809.JPG.400x0_q85.jpg",
+          "caption": "Palétuviers rouges près de la Pointe des Mangles",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8259/p1080102.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8259/p1080102.JPG.400x0_q85.jpg",
+          "caption": "Plage de la Chapelle, Anse-Bertrand",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8239/p1080067.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/8239/p1080067.JPG.400x0_q85.jpg",
+          "caption": "Vue sur l'Anse Colas",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/5969-North-of-Grande-Terre-loop",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "Une randonnée littorale facile entre plages et mangrove.",
+      "paragraphs": [
+        "Le chemin part du sud de la plage d'Anse-Bertrand sur un littoral de caille, passe par l'Anse Fontaine puis entre dans la zone humide jusqu'à la plage du Souffleur à Port-Louis.",
+        "Comptez 2 à 3 h aller, ou une promenade de 20 minutes pour la seule partie mangrove."
+      ]
+    },
+    {
+      "slug": "taonaba-belle-plaine",
+      "name": "Taonaba, Maison de la mangrove (Belle-Plaine)",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Les Abymes",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "marche",
+        "canot"
+      ],
+      "difficulty": "Facile",
+      "duration": "15 à 30 min",
+      "distanceKm": 1.5,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Conservatoire du littoral",
+        "Ramsar",
+        "Réserve de biosphère UNESCO"
+      ],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Forêt marécageuse de Belle-Plaine : la plus grande de Guadeloupe, 290 ha",
+        "Caillebotis gratuit en accès libre",
+        "Canal de Belle-Plaine, à quelques minutes de l'aéroport"
+      ],
+      "sources": [
+        {
+          "label": "Guadeloupe Tourisme — Maison de la mangrove",
+          "url": "https://fr.guadeloupe-tourisme.com/151/maison-de-la-mangrove-les-abymes/",
+          "type": "office-tourisme"
+        },
+        {
+          "label": "Petit Futé — Taonaba",
+          "url": "https://www.petitfute.co.uk/v36588-les-abymes-97139/c1173-visites-points-d-interet/c976-archeologie-artisanat-science-et-technique/c981-nature/1582028-taonaba-domaine-nature.html",
+          "type": "media"
+        },
+        {
+          "label": "Gwadaplans — Les Abymes",
+          "url": "https://gwadaplans.com/cartes-plans-guadeloupe/grande-terre/les-abymes/",
+          "type": "media"
+        }
+      ],
+      "internalNote": "Musée non ouvert selon Gwadaplans (2023) ; ne promettre que le caillebotis.",
+      "images": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Maison_de_la_mangrove%2C_Les_Abymes%2C_Guadeloupe.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Maison_de_la_mangrove%2C_Les_Abymes%2C_Guadeloupe.jpg?width=400",
+          "caption": "Caillebotis de la Maison de la mangrove",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA 4.0",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Maison_de_la_mangrove%2C_Les_Abymes%2C_Guadeloupe.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "Un caillebotis gratuit dans la plus grande forêt marécageuse de Guadeloupe.",
+      "paragraphs": [
+        "À Belle-Plaine, aux Abymes, le site de Taonaba protège 290 ha de forêt marécageuse et de mangrove, gérés par le Conservatoire du littoral.",
+        "Le caillebotis se parcourt en 15 à 30 minutes, en accès libre, à quelques minutes de l'aéroport."
+      ]
+    },
+    {
+      "slug": "jarry-foret-marecageuse",
+      "name": "Forêt marécageuse de Jarry (projet JA-RIV)",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Baie-Mahault",
+      "zone": "Petit Cul-de-Sac Marin",
+      "activities": [],
+      "difficulty": "Facile",
+      "duration": null,
+      "distanceKm": null,
+      "access": "libre",
+      "kidFriendly": false,
+      "birdwatching": false,
+      "photogenic": false,
+      "pmr": false,
+      "protection": [
+        "Conservatoire du littoral"
+      ],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Passée de 250 ha en 1950 à 183 ha en 2017",
+        "Programme de restauration JA-RIV, 4 ha déjà restaurés"
+      ],
+      "sources": [
+        {
+          "label": "Conservatoire du littoral — Projet JA-RIV",
+          "url": "https://www.conservatoire-du-littoral.fr/211-projet-ja-riv.htm",
+          "type": "officiel"
+        },
+        {
+          "label": "Îles de Guadeloupe — The Mangrove",
+          "url": "https://www.lesilesdeguadeloupe.com/en/explore/natural-wonders/the-mangrove/",
+          "type": "office-tourisme"
+        }
+      ],
+      "internalNote": "Contenu éditorial « conservation », pas une visite. Utile pour le SEO.",
+      "images": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Baie_de_Baie-Mahault.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Baie_de_Baie-Mahault.jpg?width=400",
+          "caption": "Baie de Baie-Mahault",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Baie_de_Baie-Mahault.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "mangrove",
+          "note": "Classé « Mangroves » sur Commons ; vérifier que la mangrove est visible"
+        }
+      ],
+      "blurb": "Une forêt marécageuse en cours de restauration, au cœur de la zone industrielle.",
+      "paragraphs": [
+        "La forêt marécageuse et la mangrove de Jarry sont passées de 250 ha en 1950 à 183 ha en 2017.",
+        "Le projet JA-RIV du Conservatoire du littoral vise à les protéger et les régénérer. Ce n'est pas un site de visite aménagé."
+      ]
+    },
+    {
+      "slug": "riviere-lezarde",
+      "name": "Embouchure de la Rivière Lézarde",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Petit-Bourg",
+      "zone": "Petit Cul-de-Sac Marin",
+      "activities": [
+        "kayak",
+        "bateau"
+      ],
+      "difficulty": "Facile",
+      "duration": null,
+      "distanceKm": null,
+      "access": "payant",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Porte d'entrée de la mangrove du Petit Cul-de-Sac Marin"
+      ],
+      "sources": [
+        {
+          "label": "Seatrip — Petit Cul-de-Sac",
+          "url": "https://www.seatripguadeloupe.com/excursion-petit-cul-de-sac/",
+          "type": "operateur"
+        }
+      ],
+      "internalNote": "Opérateurs tiers : Pell'i Canot, Seatrip. Ne pas afficher.",
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/4565/point-de-vue-pcsm.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/4565/point-de-vue-pcsm.JPG.400x0_q85.jpg",
+          "caption": "Le Petit Cul-de-Sac Marin depuis la Pointe à Bacchus, près de l’embouchure",
+          "credit": "Emilie Savy / PNG",
+          "license": "© Emilie Savy / PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/16704-Pointe-a-Bacchus",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        },
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%8Elet_%C3%A0_N%C3%A8gre_et_%C3%AElet_%C3%A0_Cabrit.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%8Elet_%C3%A0_N%C3%A8gre_et_%C3%AElet_%C3%A0_Cabrit.jpg?width=400",
+          "caption": "Îlets à Nègre et à Cabrit, Petit-Bourg",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:%C3%8Elet_%C3%A0_N%C3%A8gre_et_%C3%AElet_%C3%A0_Cabrit.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "L'une des portes d'entrée de la mangrove du Petit Cul-de-Sac Marin.",
+      "paragraphs": [
+        "L'embouchure de la Rivière Lézarde, à Petit-Bourg, donne accès à la mangrove du Petit Cul-de-Sac Marin, la baie de Pointe-à-Pitre.",
+        "La rivière se remonte en kayak ou en petit bateau."
+      ],
+      "imagesTodo": "Photos de contexte uniquement, pas de vue de la mangrove"
+    },
+    {
+      "slug": "riviere-moustique-goyave",
+      "name": "Mangrove de la Rivière Moustique",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Goyave",
+      "zone": "Petit Cul-de-Sac Marin",
+      "activities": [
+        "kayak"
+      ],
+      "difficulty": "Facile",
+      "duration": null,
+      "distanceKm": null,
+      "access": "payant",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "À moins d'1 km du port de pêche de Goyave, face à l'îlet Fortune"
+      ],
+      "sources": [
+        {
+          "label": "Icigo — Kayak Petit Cul-de-Sac Marin",
+          "url": "https://www.icigo.com/plus-disponible/randonnee-kayak-petit-cul-de-sac-marin",
+          "type": "media"
+        }
+      ],
+      "internalNote": "Source datée (2021, offre indisponible). À reconfirmer.",
+      "images": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plage_Sainte-Claire_%C3%A0_Goyave.JPG?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Plage_Sainte-Claire_%C3%A0_Goyave.JPG?width=400",
+          "caption": "Plage Sainte-Claire, Goyave",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Plage_Sainte-Claire_%C3%A0_Goyave.JPG",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "Une petite mangrove à moins d'1 km du port de Goyave.",
+      "paragraphs": [
+        "Depuis le port de pêche de Goyave, l'embouchure de la Rivière Moustique se rejoint en kayak en longeant la côte vers le nord.",
+        "L'îlet Fortune et un banc de sable se trouvent à proximité."
+      ],
+      "imagesTodo": "Photos de contexte uniquement, pas de vue de la mangrove"
+    },
+    {
+      "slug": "pointe-a-bacchus",
+      "name": "Pointe à Bacchus",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Petit-Bourg",
+      "zone": "Petit Cul-de-Sac Marin",
+      "activities": [
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": "2 h",
+      "distanceKm": 3.2,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": false,
+      "photogenic": false,
+      "pmr": false,
+      "protection": [
+        "Parc national"
+      ],
+      "servedBy": null,
+      "gps": [
+        16.20189,
+        -61.59031
+      ],
+      "confidence": "vérifié",
+      "facts": [
+        "Boucle très facile de 3,2 km, environ 2 h, départ du lycée des Droits de l’Homme",
+        "Longe la mangrove ; palétuviers blancs sur le parcours"
+      ],
+      "sources": [
+        {
+          "label": "Rando Guadeloupe — Pointe à Bacchus (PDF)",
+          "url": "https://geotrek.guadeloupe-parcnational.fr/api/fr/treks/16704/pointe-a-bacchus.pdf",
+          "type": "officiel"
+        },
+        {
+          "label": "Rando Guadeloupe — Pointe à Bacchus",
+          "url": "https://www.randoguadeloupe.gp/en/trek/16704-Pointe-a-Bacchus",
+          "type": "officiel"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/16707/dscf0462.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/16707/dscf0462.JPG.400x0_q85.jpg",
+          "caption": "Palétuvier blanc",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/16704-Pointe-a-Bacchus",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/16704/p1140681.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/16704/p1140681.JPG.400x0_q85.jpg",
+          "caption": "Sentier de la Pointe à Bacchus",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/16704-Pointe-a-Bacchus",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/4565/point-de-vue-pcsm.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/4565/point-de-vue-pcsm.JPG.400x0_q85.jpg",
+          "caption": "Point de vue sur le Petit Cul-de-Sac Marin",
+          "credit": "Emilie Savy / PNG",
+          "license": "© Emilie Savy / PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/en/trek/16704-Pointe-a-Bacchus",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "Une boucle balisée à Petit-Bourg qui longe la mangrove.",
+      "paragraphs": [
+        "Cette boucle très facile de 3,2 km (environ 2 h) part du lycée des Droits de l'Homme à Petit-Bourg. Elle alterne cultures, point de vue sur le Petit Cul-de-Sac Marin et passage le long de la mangrove, où l'on reconnaît le palétuvier blanc aux deux glandes à la base de ses feuilles."
+      ]
+    },
+    {
+      "slug": "saint-felix-gosier",
+      "name": "Sentier littoral de Saint-Félix",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Le Gosier",
+      "zone": "Sud Grande-Terre",
+      "activities": [
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": null,
+      "distanceKm": null,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "vérifié",
+      "facts": [
+        "Platelage vers une zone de palétuviers rouges en arrière-plage",
+        "Observatoire ornithologique sur le parcours"
+      ],
+      "sources": [
+        {
+          "label": "Rando Guadeloupe — Sentier littoral de Saint-Félix",
+          "url": "https://www.randoguadeloupe.gp/fr/trek/10709-Sentier-littoral-de-Saint-Felix",
+          "type": "officiel"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10749/dscn7592_1BvawL4.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10749/dscn7592_1BvawL4.JPG.400x0_q85.jpg",
+          "caption": "Peuplement de palétuviers rouges",
+          "credit": "CD 971",
+          "license": "© CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10709-Sentier-littoral-de-Saint-Felix",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10759/dscn7657_uMao3O4.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10759/dscn7657_uMao3O4.JPG.400x0_q85.jpg",
+          "caption": "Marais",
+          "credit": "CD 971",
+          "license": "© CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10709-Sentier-littoral-de-Saint-Felix",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10751/dscn7634_SUiFWiS.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10751/dscn7634_SUiFWiS.JPG.400x0_q85.jpg",
+          "caption": "Observatoire ornithologique",
+          "credit": "CD 971",
+          "license": "© CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10709-Sentier-littoral-de-Saint-Felix",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10945/dscn7645.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/10945/dscn7645.JPG.400x0_q85.jpg",
+          "caption": "Pélicans bruns au port de Saint-Félix",
+          "credit": "CD 971",
+          "license": "© CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10709-Sentier-littoral-de-Saint-Felix",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/10709/dscn7661_yI2qnVx.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/10709/dscn7661_yI2qnVx.JPG.400x0_q85.jpg",
+          "caption": "Vue sur le littoral",
+          "credit": "CD 971",
+          "license": "© CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/10709-Sentier-littoral-de-Saint-Felix",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "Un sentier côtier avec passerelle dans les palétuviers rouges et observatoire à oiseaux.",
+      "paragraphs": [
+        "De la plage de la Saline à la Pointe Canot, ce sentier de 7,5 km aller-retour (environ 2h30) alterne pâturages et plages.",
+        "Un platelage donne accès à une zone de palétuviers rouges en arrière-plage, et un observatoire ornithologique domine le marais."
+      ]
+    },
+    {
+      "slug": "mangrove-vieux-fort-marie-galante",
+      "name": "Mangrove de Vieux-Fort",
+      "island": "Marie-Galante",
+      "commune": "Saint-Louis",
+      "zone": "Marie-Galante",
+      "activities": [
+        "pedalo",
+        "canot",
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": "45 min (pédalo) / 3 h (sentier)",
+      "distanceKm": 9,
+      "access": "payant",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": true,
+      "protection": [
+        "Conservatoire du littoral"
+      ],
+      "servedBy": null,
+      "gps": [
+        15.981549,
+        -61.305473
+      ],
+      "confidence": "vérifié",
+      "facts": [
+        "Trois mangroves successives : bord de mer, arbustive, mangles médailles jusqu'à 20 m",
+        "Pédalo ou bateau électrique (PMR) avec l'association CISMAG, mardi–samedi",
+        "Sentier balisé de 9 km en boucle depuis l'Anse Canot"
+      ],
+      "sources": [
+        {
+          "label": "Conservatoire du littoral — Marais de la rivière du Vieux-Fort",
+          "url": "https://www.conservatoire-du-littoral.fr/siteLittoral/600/28-marais-de-la-riviere-du-vieux-fort-971_guadeloupe.htm",
+          "type": "officiel"
+        },
+        {
+          "label": "Rando Guadeloupe — Sentier de Vieux-Fort (M.G.)",
+          "url": "https://www.randoguadeloupe.gp/fr/trek/9012-Sentier-de-Vieux-Fort-(M.G.)",
+          "type": "officiel"
+        },
+        {
+          "label": "OT Marie-Galante — CISMAG",
+          "url": "https://www.ot-mariegalante.com/aaea-cismag-d%C3%A9couverte-de-la-mangrove-de-vieux-fort",
+          "type": "office-tourisme"
+        }
+      ],
+      "internalNote": "GPS = départ du sentier (Anse Canot), pas la mangrove. Tarifs publiés datent de 2018.",
+      "images": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_ponton_dans_la_mangrove.jpg?width=1600",
+          "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_ponton_dans_la_mangrove.jpg?width=400",
+          "caption": "Le ponton dans la mangrove",
+          "credit": "Auteur Wikimedia Commons (voir page)",
+          "license": "CC BY-SA — à confirmer sur la page",
+          "rights": "libre (CC)",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Le_ponton_dans_la_mangrove.jpg",
+          "sourceName": "Wikimedia Commons",
+          "relevance": "mangrove",
+          "note": "Classé Marie-Galante sur Commons ; probablement Vieux-Fort, à confirmer"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9020/dscn6859_pterocarpus-officinalis.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9020/dscn6859_pterocarpus-officinalis.JPG.400x0_q85.jpg",
+          "caption": "Mangle médaille « sang dragon »",
+          "credit": "F. Frederic - CD 971",
+          "license": "© F. Frederic - CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/9012-Sentier-de-Vieux-Fort-(M.G.)",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9022/dscn6855_fougere-doree.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9022/dscn6855_fougere-doree.JPG.400x0_q85.jpg",
+          "caption": "Fougère dorée",
+          "credit": "F. Frederic - CD 971",
+          "license": "© F. Frederic - CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/9012-Sentier-de-Vieux-Fort-(M.G.)",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/9012/copie-de-dsc03571.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_trek/9012/copie-de-dsc03571.JPG.400x0_q85.jpg",
+          "caption": "L'îlet de Vieux-Fort",
+          "credit": "PNG",
+          "license": "© PNG — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/9012-Sentier-de-Vieux-Fort-(M.G.)",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        }
+      ],
+      "blurb": "La mangrove de Marie-Galante, à explorer en pédalo ou par le sentier de Vieux-Fort.",
+      "paragraphs": [
+        "La rivière du Vieux-Fort traverse trois types de mangrove : palétuviers rouges en bord de mer, mangrove arbustive, puis mangles médailles pouvant atteindre 20 m.",
+        "L'association CISMAG propose des balades de 45 minutes en pédalo ou en bateau électrique, accessible aux personnes à mobilité réduite, du mardi au samedi. Le sentier balisé de 9 km en boucle part de l'Anse Canot."
+      ]
+    },
+    {
+      "slug": "folle-anse-marie-galante",
+      "name": "Folle Anse",
+      "island": "Marie-Galante",
+      "commune": "Grand-Bourg",
+      "zone": "Marie-Galante",
+      "activities": [],
+      "difficulty": "Facile",
+      "duration": null,
+      "distanceKm": null,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": false,
+      "pmr": false,
+      "protection": [
+        "Conservatoire du littoral"
+      ],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Marais ouverts, forêts inondées et mangroves à l'embouchure d'un petit bassin versant"
+      ],
+      "sources": [
+        {
+          "label": "Conservatoire du littoral — Sites de Guadeloupe",
+          "url": "https://www.conservatoire-du-littoral.fr/sites-du-littoral/SIL_SYCLAD_DEPARTEMENT/971_GUADELOUPE/Find/1/5-les-sites-du-littoral.htm",
+          "type": "officiel"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9018/dscn6840_vue-sur-le-port-de-folle-anse-et-les-saintes.JPG",
+          "thumb": "https://geotrek.guadeloupe-parcnational.fr/media/paperclip/trekking_poi/9018/dscn6840_vue-sur-le-port-de-folle-anse-et-les-saintes.JPG.400x0_q85.jpg",
+          "caption": "Port de Folle Anse, les Saintes au loin",
+          "credit": "F. Frederic - CD 971",
+          "license": "© F. Frederic - CD 971 — tous droits réservés",
+          "rights": "autorisation requise",
+          "sourcePage": "https://www.randoguadeloupe.gp/fr/trek/9012-Sentier-de-Vieux-Fort-(M.G.)",
+          "sourceName": "Rando Guadeloupe (Geotrek PNG)",
+          "relevance": "contexte"
+        }
+      ],
+      "imagesTodo": "Aucune photo de mangrove trouvée",
+      "blurb": "Une mosaïque de marais, forêts inondées et mangroves à Grand-Bourg.",
+      "paragraphs": [
+        "Folle Anse, à l'embouchure d'un petit bassin versant, réunit marais ouverts, forêts inondées et mangroves. Le site est protégé par le Conservatoire du littoral."
+      ]
+    },
+    {
+      "slug": "labyrinthe-morne-a-leau",
+      "name": "Labyrinthe de palétuviers de Morne-à-l'Eau",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Morne-à-l'Eau",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "kayak"
+      ],
+      "difficulty": "Modérée",
+      "duration": "Demi-journée",
+      "distanceKm": null,
+      "access": "guidé",
+      "kidFriendly": true,
+      "birdwatching": true,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Réserve naturelle"
+      ],
+      "servedBy": "yalode",
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Chenaux accessibles uniquement en kayak"
+      ],
+      "sources": [
+        {
+          "label": "Yalodé — Kayak Guadeloupe",
+          "url": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "type": "operateur"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/kayak-mangrove-nature.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/kayak-mangrove-nature.jpg",
+          "caption": "Kayak dans la mangrove",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/1kayak.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/1kayak.jpg",
+          "caption": "Kayak Yalodé",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/2kayak.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/2kayak.jpg",
+          "caption": "Kayak Yalodé",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "Des chenaux de palétuviers accessibles uniquement en kayak.",
+      "paragraphs": [
+        "Au cœur de la sortie kayak de Yalodé, le guide emmène de petits groupes dans des chenaux de mangrove inaccessibles autrement qu'en kayak.",
+        "Le rythme est lent, avec des pauses pour découvrir la faune et la flore."
+      ]
+    },
+    {
+      "slug": "ilet-corallien-morne-a-leau",
+      "name": "Îlet corallien de la baie de Morne-à-l'Eau",
+      "island": "Guadeloupe (Grande-Terre)",
+      "commune": "Morne-à-l'Eau",
+      "zone": "Grand Cul-de-Sac Marin",
+      "activities": [
+        "kayak"
+      ],
+      "difficulty": "Facile",
+      "duration": "Halte",
+      "distanceKm": null,
+      "access": "guidé",
+      "kidFriendly": true,
+      "birdwatching": false,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [
+        "Réserve naturelle"
+      ],
+      "servedBy": "yalode",
+      "gps": null,
+      "confidence": "partiel",
+      "facts": [
+        "Halte baignade sur un îlet corallien pendant la sortie kayak, selon les conditions"
+      ],
+      "sources": [
+        {
+          "label": "Yalodé — Kayak Guadeloupe",
+          "url": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "type": "operateur"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/5kayak.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/5kayak.jpg",
+          "caption": "Kayak Yalodé",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        },
+        {
+          "url": "https://www.kayak-guadeloupe.fr/images/6kayak.jpg",
+          "thumb": "https://www.kayak-guadeloupe.fr/images/6kayak.jpg",
+          "caption": "Kayak Yalodé",
+          "credit": "Yalodé",
+          "license": "Photo opérateur",
+          "rights": "opérateur partenaire",
+          "sourcePage": "https://www.kayak-guadeloupe.fr/yalode.html",
+          "sourceName": "Yalodé",
+          "relevance": "mangrove"
+        }
+      ],
+      "blurb": "Halte baignade sur un îlet corallien pendant la sortie kayak.",
+      "paragraphs": [
+        "Selon les conditions, la sortie kayak de Yalodé fait une halte sur un îlet corallien, avec baignade et visite possibles."
+      ]
+    },
+    {
+      "slug": "mangrove-desirade",
+      "name": "Mangrove de la Désirade",
+      "island": "Désirade",
+      "commune": "La Désirade",
+      "zone": "Désirade",
+      "activities": [],
+      "difficulty": "Modérée",
+      "duration": null,
+      "distanceKm": null,
+      "access": "libre",
+      "kidFriendly": false,
+      "birdwatching": false,
+      "photogenic": false,
+      "pmr": false,
+      "protection": [],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "à vérifier",
+      "facts": [],
+      "sources": [],
+      "internalNote": "Aucune source trouvée. Retirer ou sourcer avant mise en ligne.",
+      "images": [],
+      "imagesTodo": "Aucune photo de mangrove trouvée",
+      "blurb": "",
+      "paragraphs": []
+    },
+    {
+      "slug": "anse-a-la-barque",
+      "name": "Anse à la Barque",
+      "island": "Guadeloupe (Basse-Terre)",
+      "commune": "Vieux-Habitants / Bouillante",
+      "zone": "Côte sous le vent",
+      "activities": [
+        "marche"
+      ],
+      "difficulty": "Facile",
+      "duration": null,
+      "distanceKm": null,
+      "access": "libre",
+      "kidFriendly": true,
+      "birdwatching": false,
+      "photogenic": true,
+      "pmr": false,
+      "protection": [],
+      "servedBy": null,
+      "gps": null,
+      "confidence": "à vérifier",
+      "facts": [],
+      "sources": [],
+      "internalNote": "Aucune source trouvée cette passe.",
+      "images": [],
+      "imagesTodo": "Aucune photo de mangrove trouvée",
+      "blurb": "",
+      "paragraphs": []
+    }
+  ],
+  "rejected": [
+    {
+      "name": "« Réserve naturelle de la mangrove de Pointe-Noire »",
+      "reason": "Cité par un seul blog, aucune trace officielle."
+    },
+    {
+      "name": "« Mangrove de Plessis-Bénard, Sainte-Anne »",
+      "reason": "Cité par un seul blog, aucune trace officielle."
+    },
+    {
+      "name": "Mangrove des Saintes",
+      "reason": "N'existe pas (confirmé par l'équipe, 29/09/2026)."
+    }
+  ],
+  "sourceHierarchy": [
+    {
+      "rank": 1,
+      "name": "Conservatoire du littoral",
+      "url": "https://www.conservatoire-du-littoral.fr/sites-du-littoral/SIL_SYCLAD_DEPARTEMENT/971_GUADELOUPE/Find/1/5-les-sites-du-littoral.htm",
+      "use": "Liste officielle des sites protégés, surfaces, statut"
+    },
+    {
+      "rank": 2,
+      "name": "Rando Guadeloupe (Département + Parc national, Geotrek)",
+      "url": "https://www.randoguadeloupe.gp/",
+      "use": "Sentiers : durée, distance, difficulté, GPS, GPX/KML, état des sentiers"
+    },
+    {
+      "rank": 3,
+      "name": "Parc national de la Guadeloupe",
+      "url": "https://www.guadeloupe-parcnational.fr/",
+      "use": "Contenu écologique, zonage cœur de parc / réserve"
+    },
+    {
+      "rank": 4,
+      "name": "Offices de tourisme (Îles de Guadeloupe, Nord Grande-Terre, Marie-Galante)",
+      "url": "https://www.lesilesdeguadeloupe.com/",
+      "use": "Accès, horaires, prestataires"
+    },
+    {
+      "rank": 5,
+      "name": "Blue Lagoon, Yalodé",
+      "url": "https://www.kayak-guadeloupe.fr/yalode.html",
+      "use": "Itinéraires réels des sorties servies"
+    }
+  ],
+  "imageSources": [
+    {
+      "name": "Rando Guadeloupe / Geotrek PNG",
+      "url": "https://geotrek.guadeloupe-parcnational.fr/",
+      "use": "Photos officielles par sentier et point d’intérêt, crédit PNG ou CD 971. Pas de licence ouverte affichée : demander une autorisation écrite au Parc national (05 90 41 55 55)."
+    },
+    {
+      "name": "Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/Category:Rivi%C3%A8re_Sal%C3%A9e_(Guadeloupe)",
+      "use": "Licence CC : réutilisation commerciale autorisée avec crédit auteur + lien licence. Vérifier la licence de chaque fichier."
+    },
+    {
+      "name": "Blue Lagoon, Yalodé",
+      "url": "https://www.bluelagoon-gp.com/",
+      "use": "Photos opérateurs : à privilégier pour les sites servis."
+    },
+    {
+      "name": "Yalodé (kayak-guadeloupe.fr)",
+      "url": "https://www.kayak-guadeloupe.fr/yalode.html",
+      "use": "Photos de la sortie kayak, à confirmer avec Yalodé."
+    }
+  ],
+  "publishRule": "Afficher uniquement les sites dont confidence ≠ 'à vérifier'."
+}

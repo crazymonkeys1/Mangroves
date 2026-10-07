@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #F6F1E7; font-family: 'Work Sans', sans-serif; color: #1E332B; }
+  a { color: #2C5F7C; text-decoration: none; }
+  a:hover { color: #1E332B; }
+</style>
+</helmet>
+<div style="background:#fff;border:1px solid #E4D9C4;border-radius:14px;box-shadow:0 12px 32px rgba(30,51,43,.12);padding:22px;display:flex;flex-direction:column;gap:18px;font-family:'Work Sans',sans-serif;color:#1E332B;">
+  <sc-if value="{{ hasOptions }}" hint-placeholder-val="{{ false }}">
+    <div role="tablist" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#F1EBDD;border-radius:8px;padding:4px;">
+      <sc-for list="{{ optionItems }}" as="o" hint-placeholder-count="2">
+        <button role="tab" onClick="{{ o.select }}" style="padding:9px 10px;border:none;border-radius:8px;background:{{ o.bg }};color:#1E332B;font:600 14.5px 'Work Sans',sans-serif;cursor:pointer;box-shadow:{{ o.shadow }};">{{ o.label }}</button>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;">
+    <div style="display:flex;flex-direction:column;gap:4px;min-width:0;">
+      <div style="display:flex;align-items:baseline;gap:6px;white-space:nowrap;">
+        <span style="font-size:14px;color:#4B5D53;">dès</span>
+        <span style="font-family:'Spectral',serif;font-size:28px;line-height:1;color:#1E332B;">{{ price }}</span>
+        <span style="font-size:14px;color:#4B5D53;">{{ priceUnit }}</span>
+      </div>
+      <sc-if value="{{ priceExtra }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:#4B5D53;">{{ priceExtra }}</span></sc-if>
+    </div>
+    <sc-if value="{{ rating }}" hint-placeholder-val="{{ false }}">
+      <span style="font-size:14px;font-weight:600;color:#1E332B;white-space:nowrap;">★ {{ rating }}</span>
+    </sc-if>
+  </div>
+
+  <div style="display:flex;gap:12px;align-items:center;padding:12px;background:#F6F1E7;border-radius:14px;">
+    <div role="img" aria-label="{{ guideName }}, {{ operatorName }}" style="width:48px;height:48px;border-radius:999px;flex-shrink:0;background-color:#E4D9C4;background-image:url({{ guidePhoto }});background-size:cover;background-position:center;"></div>
+    <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+      <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6B776F;">Sortie guidée · {{ operatorName }}</span>
+      <span style="font-size:16px;font-weight:600;color:#1E332B;">Avec {{ guideName }}</span>
+      <span style="font-size:14px;line-height:1.35;color:#4B5D53;">{{ credential }}</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:6px;">
+    <span style="font-family:'Spectral',serif;font-size:clamp(22px,2.4vw,26px);line-height:1.2;color:#1E332B;">{{ tourName }}</span>
+    <p style="font-size:14px;line-height:1.55;color:#4B5D53;margin:0;text-wrap:pretty;">{{ tourSummary }}</p>
+  </div>
+
+  <sc-if value="{{ hasFacts }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;">
+      <sc-for list="{{ factItems }}" as="f" hint-placeholder-count="3">
+        <div style="grid-column:{{ f.span }};background:#F6F1E7;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0;">
+          <span style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#4B5D53;"><span aria-hidden="true" style="width:14px;height:14px;background:url({{ f.img }}) center/contain no-repeat;display:{{ f.imgDisplay }};flex-shrink:0;"></span>{{ f.glyph }}{{ f.label }}</span>
+          <span style="font-size:14px;font-weight:600;line-height:1.35;color:#1E332B;">{{ f.value }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <a href="{{ ctaUrl }}" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;padding:14px 18px;border-radius:8px;background:{{ accentBg }};color:{{ accentFg }};font-size:16px;font-weight:600;">{{ ctaLabel }}</a>
+    <sc-if value="{{ hasDetail }}" hint-placeholder-val="{{ true }}">
+      <button onClick="{{ onDetail }}" style="padding:11px 18px;border-radius:8px;border:1px solid #E4D9C4;background:#fff;color:#1E332B;font:600 14.5px 'Work Sans',sans-serif;cursor:pointer;">{{ detailLabel }}</button>
+    </sc-if>
+    <span style="font-size:14px;line-height:1.4;color:#6B776F;text-align:center;">{{ footnote }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:640},&quot;price&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;38 €&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;priceNote&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;par adulte&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rating&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;4,9 · +1 880 avis&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;guideName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pascal&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;guidePhoto&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://randomuser.me/api/portraits/men/46.jpg&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;operatorName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Yalodé&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;credential&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Guide brevet d’État&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tourName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Kayak mangrove&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;tourSummary&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Environ 3 h de kayak dans la réserve du Grand Cul-de-Sac Marin.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;facts&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{icon:string,label:string,value:string}[]&quot;},&quot;options&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label:string,active:boolean,select:()=&gt;void}[]&quot;},&quot;ctaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.kayak-guadeloupe.fr/yalode.html&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Réserver sur Yalodé&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#FF6B5B&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accentText&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ffffff&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onDetail&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;()=&gt;void&quot;},&quot;detailLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Voir le détail de la sortie&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;footnote&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Réservation directement auprès de Yalodé&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const options = p.options || [];
+    const facts = (p.facts || []).filter(f => f && f.value);
+    return {
+      hasOptions: options.length > 1,
+      optionItems: options.map(o => ({ label: o.label, select: o.select, bg: o.active ? '#fff' : 'transparent', shadow: o.active ? '0 1px 4px rgba(30,51,43,.12)' : 'none' })),
+      price: p.price ?? '38 €', priceNote: p.priceNote ?? 'par adulte', priceUnit: (p.priceNote ?? 'par adulte').split(/ · |, /)[0], priceExtra: (p.priceNote ?? '').split(/ · |, /).slice(1).join(' · '), rating: p.rating || false,
+      guideName: p.guideName ?? 'Pascal', guidePhoto: p.guidePhoto ?? '', operatorName: p.operatorName ?? 'Yalodé', credential: p.credential ?? '',
+      tourName: p.tourName ?? '', tourSummary: p.tourSummary ?? '',
+      factItems: facts.map(f => { const isImg = typeof f.icon === 'string' && f.icon.startsWith('data:'); return { ...f, img: isImg ? f.icon : '', imgDisplay: isImg ? 'block' : 'none', glyph: isImg ? '' : (f.icon ? f.icon + ' ' : ''), span: String(f.value).length > 22 ? '1 / -1' : 'auto' }; }), hasFacts: facts.length > 0,
+      ctaUrl: p.ctaUrl ?? '#', ctaLabel: p.ctaLabel ?? 'Réserver',
+      accentBg: p.accent ?? '#FF6B5B', accentFg: p.accentText ?? '#fff',
+      onDetail: p.onDetail || (() => {}), hasDetail: !!p.onDetail, detailLabel: p.detailLabel ?? 'Voir le détail de la sortie',
+      footnote: p.footnote ?? ''
+    };
+  }
+}
+</script>
+</body>
+</html>
