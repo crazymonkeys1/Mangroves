@@ -3,6 +3,7 @@
 // No dependencies: regex-level parsing is enough for our own generated HTML.
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 
 const dist = path.resolve(process.argv[2] || 'dist');
 if (!fs.existsSync(dist)) { console.error(`No ${dist}: run the build first.`); process.exit(2); }
@@ -80,12 +81,14 @@ for (const need of ['robots.txt', 'sitemap-index.xml|sitemap.xml', '404.html', '
   if (!need.split('|').some((n) => fs.existsSync(path.join(dist, n)))) issues.push({ file: '(site)', level: 'P2', msg: `missing ${need}` });
 }
 
-// Page weight: JavaScript and CSS shipped per page (inline + linked).
+// Page weight: JavaScript and CSS shipped per page (inline + linked), gzipped = what is transferred.
+const gz = (buf) => zlib.gzipSync(buf).length;
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
-  const inlineJs = [...html.matchAll(/<script(?![^>]*application\/(ld\+)?json)[^>]*>([\s\S]*?)<\/script>/g)].reduce((n, m) => n + m[2].length, 0);
-  const linked = [...html.matchAll(/(?:src|href)="(\/_astro\/[^"]+\.(?:js|css))"/g)].reduce((n, m) => n + (fs.existsSync(path.join(dist, m[1])) ? fs.statSync(path.join(dist, m[1])).size : 0), 0);
-  if (inlineJs + linked > 60_000) add(file, 'P2', `JS+CSS ${(inlineJs + linked) / 1000 | 0} kB (budget 60 kB)`);
+  const inlineJs = [...html.matchAll(/<script(?![^>]*application\/(ld\+)?json)[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[2]).join('');
+  const linked = [...html.matchAll(/(?:src|href)="(\/_astro\/[^"]+\.(?:js|css))"/g)].map((m) => path.join(dist, m[1])).filter((f) => fs.existsSync(f));
+  const total = gz(Buffer.from(inlineJs)) + linked.reduce((n, f) => n + gz(fs.readFileSync(f)), 0);
+  if (total > 50_000) add(file, 'P2', `JS+CSS ${total / 1000 | 0} kB gzipped (budget 50 kB)`);
 }
 
 const order = { P0: 0, P1: 1, P2: 2, info: 3 };

@@ -76,9 +76,4 @@ Mobile header menu (`NavMenu`), one-line `FilterBar` + `FilterSheet`, folded `Al
 
 ## 6. What I need from you before the build starts
 
-1. **Stack and rendering: deferred to Claude Code.** Constraint: real URLs and HTML without JavaScript (SEO audit). Data stays as is (`data/mangroves-db.json`); Airtable comes later. See `project.md` §6.
-2. **Confirm or change** R1–R5 and the adopted defaults in R6.
-3. **Lead capture: intent documented, not implemented** (`project.md` §6). Provider, consent wording and legal review still to decide before launch.
-4. **Fonts: DECIDED**, Google Fonts.
-5. **Screens I could only read from code**, not review visually at 375 px: home below the fold, listing, profile, article, privacy, comparison. Send screenshots or confirm the system rules should be applied blind.
-6. **Content gates** listed in `project.md` §4 (guide approvals, estimated figures, photos, permissions).
+Resolved or moved (7 Oct 2026): stack and fonts are decided, R1–R6 defaults were kept, and the remaining items (lead capture, unreviewed screens, content gates) are tracked in `OPEN_LOOPS.md`.

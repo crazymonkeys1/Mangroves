@@ -16,7 +16,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `Badge` | Non-interactive label on cards/photos | `tone` (neutral, operator, status), `operator?` | `text-caption-strong`; on photos `surface-card` 94 % |
 | `Eyebrow` | Orientation label | `tone` (brand, secondary, danger, inverse, operator) | `text-eyebrow` |
 | `Field` | Text input | `label` (required), `type`, `inputmode`, `autocomplete`, `required`, `error?` | 52 high (48 in toolbars), 16 px, radius-control, visible label above in `text-caption` |
-| `Switch` | Boolean control | `checked`, `label` | 40×24 track `control-off/on`, 18 thumb, `elevation-thumb` |
+| `Switch` | Boolean control | `checked`, `label` | 40×24 track `control-off/on`, 16 thumb (`--space-4`, nearest token to the 18 of the design), `elevation-thumb` |
 | `Avatar` | Person photo | `src`, `size` (22/36/48/64/72), `ring?` | circle; fallback `surface-sunken` |
 | `Rule` | Divider | `weight` (default, subtle) | 1px `border-*` |
 

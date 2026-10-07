@@ -264,13 +264,12 @@ export function buildSitePage(site: Site, siteUrl: string) {
   }));
 
   const offers: GuideOfferModel[] = ops.map((o) => {
-    const [priceUnit, ...extra] = 'par adulte'.split(/ · |, /);
     return {
       key: o.key,
       optionLabel: o.key === 'yalode' ? 'Kayak' : 'Bateau',
       price: o.price,
-      priceUnit,
-      priceExtra: extra.join(' · '),
+      priceUnit: 'par adulte',
+      priceExtra: '',
       rating: o.rating || '',
       guide: o.guide,
       photo: o.photo,

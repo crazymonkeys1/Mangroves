@@ -41,7 +41,7 @@ The look must be changeable without renames: edit palette values or re-point sem
 - Component registered/updated in `docs/components.md`; deviations noted in your reply.
 
 ## Content and data
-Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in `airtable/README.md`). Slugs/keys are permanent. Some editorial content is still embedded in the prototype's logic class and must be moved into data (`docs/project.md` §3). Estimated figures are listed in `docs/project.md` §4; show them as unverified.
+Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in `airtable/README.md`). Editorial content moved out of the prototype lives in `data/content/` (operators, per-site content with `estimated` fields, vocabularies). Only `src/lib/data.ts` reads `data/`. Slugs/keys are permanent. Article, compare, tips and privacy content is still in the prototype's logic class and must move into data before those pages are built. Estimated figures are listed in `docs/project.md` §4; show them as unverified.
 
 ## Decided
 - **Working mode:** all work continues in Claude Code from these docs.
@@ -53,6 +53,19 @@ Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in
 
 ## Things to ask the user rather than decide
 Further URL scheme changes, new colours or sizes, renaming existing components or tokens, anything in `docs/review-final.md` §3 and §6, legal copy, partner claims (authorisations, prices, ratings).
+
+## Open loops and reviews
+Deferred work and pending decisions live in `OPEN_LOOPS.md` (one tracker; don't start another). After each big step, run `/step-review` (`.claude/skills/step-review/`): it checks the built HTML and the source mechanically, then stops at a fix plan for approval.
+
+## Lessons from previous steps
+- Judge SEO on the built HTML (`dist/`), not the source: missing routes, duplicate titles and missing metadata only show there.
+- Never link to a route that isn't built; build the target first, or render the label without a link until it exists.
+- A build prompt must state the routes in scope, the production origin (`SITE_URL`), and the crawl files expected (robots, sitemap, llms.txt, 404).
+- When copying content from the prototype, cross-check every date, price or rule stated in two places; keep each fact in one data field (see OL-01).
+- Text styles set `text-wrap`, which overrides an inherited `white-space: nowrap`: keep "38 €" together with a non-breaking space in data, not with CSS.
+- `.on-inverse` recolours every text style inside it: put it on the text block, never on a container holding white badges or chips.
+- The page's opening answer (meta description, JSON-LD `description`) must also be visible in the body, where an assistant can quote it.
+- Screenshots in the cloud sandbox: pass `HTTPS_PROXY` to Chromium; some image hosts stay blocked, which is not a site bug.
 
 ## Style of work
 Be concise. Prefer small targeted changes; don't refactor unrelated code. State what you changed and any proposed additions at the end of your reply.

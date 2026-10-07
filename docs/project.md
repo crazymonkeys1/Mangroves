@@ -102,9 +102,4 @@ From `docs/seo-audit-detail-page.md` (still valid; implementation not started):
 
 ## 9. Open items
 
-1. ~~Choose the production stack~~ (done: Astro + Cloudflare Pages). Built so far: directory `/` and site pages `/mangrove/<slug>`. Still to build: articles `/idees/<slug>` and `/idees`, guide profiles `/guides/<slug>`, listings (`/ile`, `/commune`, `/activite`), comparison, privacy.
-2. Content for site pages moved into `data/content/` (V9, OPERATORS, OP_ABOUT, SOCIAL, VIDEOS, RISK). Still in the prototype: full article content (FILTER_PAGES, ARTICLE), TIPS, compare rows, privacy. Add Airtable columns.
-3. Verify the estimated figures (§4); get guide approvals; real photos and permissions.
-4. Rebuild the comparison page with tokens; legal review of privacy page.
-5. English version; zone pages; SEO monitoring.
-6. Close the conformance backlog in `docs/review-final.md` §4 while building.
+Moved to `OPEN_LOOPS.md` (repo root), the single tracker for deferred work and pending decisions.
