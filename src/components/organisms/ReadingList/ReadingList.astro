@@ -1,0 +1,17 @@
+---
+// "Ils en parlent": folded section of external reads.
+import Disclosure from '../../molecules/Disclosure/Disclosure.astro';
+import LinkRow from '../../molecules/LinkRow/LinkRow.astro';
+interface Props { items: { title: string; publisher: string; url: string }[] }
+const { items } = Astro.props;
+---
+<section class="reading-list" id="ils-en-parlent" aria-labelledby="h-ils-en-parlent">
+  <Disclosure variant="section" eyebrow="Ils en parlent" summary="Pour aller plus loin" headingId="h-ils-en-parlent">
+    <div class="reading-list__rows">{items.map((r) => <LinkRow href={r.url} title={r.title} meta={r.publisher} />)}</div>
+  </Disclosure>
+</section>
+
+<style>
+  .reading-list { border-top: var(--border-width) solid var(--color-border-default); padding: var(--space-5) 0 var(--section-padding-bottom); min-width: 0; }
+  .reading-list__rows { display: flex; flex-direction: column; max-height: 300px; overflow-y: auto; }
+</style>

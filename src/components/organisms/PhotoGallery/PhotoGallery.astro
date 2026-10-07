@@ -1,0 +1,50 @@
+---
+// Photos grouped (site / with the guide). Each thumbnail opens the Lightbox.
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+import type { Photo } from '../../../lib/site-page';
+interface Props { title: string; groups: { label: string; caption: string; items: Photo[] }[] }
+const { title, groups } = Astro.props;
+---
+<section class="photo-gallery" id="photos" aria-labelledby="h-photos">
+  <SectionHead eyebrow="Photos" title={title} id="h-photos" />
+  {groups.map((g) => (
+    <div class="photo-gallery__group">
+      <p class="photo-gallery__group-head"><Eyebrow tone="secondary">{g.label}</Eyebrow>{g.caption && <span class="text-caption">{g.caption}</span>}</p>
+      <ul class="photo-gallery__grid">
+        {g.items.map((ph) => (
+          <li>
+            <button type="button" class="photo-gallery__item" data-lightbox-index={ph.index} aria-label={`Agrandir : ${ph.caption}`}>
+              <img src={ph.thumb} alt={ph.alt} loading="lazy" decoding="async" />
+              <span class="photo-gallery__credit text-caption">Photo : {ph.credit}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+  <p class="text-legal">Photos issues des sites cités dans nos sources, tous droits réservés à leurs auteurs. <a href="#sources" data-open-details>Voir les sources</a></p>
+</section>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-lightbox-index]');
+    if (btn) document.dispatchEvent(new CustomEvent('lightbox:open', { detail: { index: Number(btn.dataset.lightboxIndex) } }));
+  });
+</script>
+
+<style>
+  .photo-gallery { border-top: var(--border-width) solid var(--color-border-default); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+  .photo-gallery__group { display: flex; flex-direction: column; gap: var(--space-3); }
+  .photo-gallery__group-head { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3); }
+  .photo-gallery__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+  @media (min-width: 600px) { .photo-gallery__grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr)); gap: var(--space-3); } }
+  .photo-gallery__item { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; border: 0; border-radius: var(--radius-container); overflow: hidden; background: var(--color-surface-sunken); cursor: zoom-in; }
+  .photo-gallery__item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .photo-gallery__credit {
+    position: absolute; left: var(--space-2); bottom: var(--space-2); max-width: calc(100% - var(--space-4));
+    padding: 0 var(--space-2); border-radius: var(--radius-full); background: var(--color-overlay-chip); color: var(--color-text-inverse);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .photo-gallery > .text-legal { margin: 0; }
+</style>

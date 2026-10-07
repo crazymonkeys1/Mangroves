@@ -1,0 +1,26 @@
+---
+// Result count, "Tout effacer", grid/list view switch.
+import Icon from '../../atoms/Icon/Icon.astro';
+interface Props { count: number }
+const { count } = Astro.props;
+---
+<div class="result-toolbar">
+  <p class="text-body" data-result-count aria-live="polite">{count} mangroves trouvées</p>
+  <div class="result-toolbar__actions">
+    <button type="button" class="result-toolbar__clear text-body-strong" data-clear-filters hidden>Tout effacer</button>
+    <div class="result-toolbar__views" role="group" aria-label="Affichage">
+      <button type="button" class="result-toolbar__view" data-view-button="grid" aria-pressed="true" aria-label="Grille"><Icon name="grid" /></button>
+      <button type="button" class="result-toolbar__view" data-view-button="list" aria-pressed="false" aria-label="Liste"><Icon name="list" /></button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .result-toolbar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+  .result-toolbar p { margin: 0; color: var(--color-text-secondary); }
+  .result-toolbar__actions { display: flex; align-items: center; gap: var(--space-3); }
+  .result-toolbar__clear { min-height: var(--tap-size-min); border: 0; background: none; cursor: pointer; text-decoration: underline; text-decoration-color: var(--color-action-primary); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .result-toolbar__views { display: flex; gap: var(--space-1); padding: var(--space-1); background: var(--color-surface-sunken); border-radius: var(--radius-control); }
+  .result-toolbar__view { width: var(--tap-size-min); height: var(--tap-size-min); border: 0; border-radius: var(--radius-control); background: transparent; color: var(--color-text-primary); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .result-toolbar__view[aria-pressed='true'] { background: var(--color-surface-card); box-shadow: var(--elevation-thumb); }
+</style>

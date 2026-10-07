@@ -1,0 +1,41 @@
+---
+// Persistent booking bar below lg, shown once the reader has passed "Aperçu" (#essentiel).
+import Button from '../../atoms/Button/Button.astro';
+interface Props { price: string; sub: string; cta: string; href: string; external: boolean }
+const { price, sub, cta, href, external } = Astro.props;
+---
+<div class="sticky-booking" data-sticky-booking data-state="hidden">
+  <div class="sticky-booking__inner">
+    <div class="sticky-booking__text">
+      <span class="text-title">{price}</span>
+      <span class="sticky-booking__sub text-caption">{sub}</span>
+    </div>
+    <Button variant="primary" size="sm" href={href} external={external}>{cta}</Button>
+  </div>
+</div>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-sticky-booking]');
+  const anchor = document.getElementById('essentiel');
+  if (bar && anchor && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      const past = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      bar.dataset.state = past ? 'visible' : 'hidden';
+    }).observe(anchor);
+  }
+</script>
+
+<style>
+  .sticky-booking {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-bar);
+    background: var(--color-surface-card); border-top: var(--border-width) solid var(--color-border-default); box-shadow: var(--elevation-bar);
+    padding-bottom: env(safe-area-inset-bottom);
+    transition: transform var(--duration-base) var(--easing-standard);
+  }
+  .sticky-booking[data-state='hidden'] { transform: translateY(100%); visibility: hidden; }
+  .sticky-booking__inner { max-width: var(--container-page); margin: 0 auto; padding: var(--space-3) var(--page-gutter); display: flex; align-items: center; gap: var(--space-3); }
+  .sticky-booking__text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .sticky-booking__sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* From lg the guide card is a sticky column: the bar is not needed. */
+  @media (min-width: 1180px) { .sticky-booking { display: none; } }
+</style>

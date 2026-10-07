@@ -1,0 +1,7 @@
+---
+// Orientation label (the only caps).
+interface Props { tone?: 'brand' | 'secondary' | 'danger' | 'inverse' | 'operator-yalode' | 'operator-bluelagoon'; as?: 'span' | 'p' | 'div' | 'h2' | 'h3' | 'h4' | 'h5'; class?: string }
+const { tone = 'brand', as: Tag = 'span', class: className } = Astro.props;
+const toneClass = tone === 'brand' || tone === 'inverse' ? null : `is-${tone}`;
+---
+<Tag class:list={['text-eyebrow', toneClass, className]}><slot /></Tag>

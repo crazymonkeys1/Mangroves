@@ -1,0 +1,15 @@
+/* Global entry: the design system as shipped (single source of truth), plus a few
+   document-level rules. Component CSS lives in each component. */
+@import '../../design-system/tokens.css';
+@import '../../design-system/typography.css';
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+/* Anchored sections land below the sticky header. */
+html { scroll-padding-top: calc(var(--tap-size-min) + var(--space-6)); }
+
+/* Visually hidden but read by screen readers. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+[hidden] { display: none !important; }

@@ -1,0 +1,18 @@
+---
+// Person photo, circular. Decorative by default (the name is always next to it).
+interface Props { src?: string; alt?: string; size?: 22 | 36 | 48 | 64 | 72; ring?: boolean; class?: string }
+const { src, alt = '', size = 48, ring = false, class: className } = Astro.props;
+---
+{src
+  ? <img class:list={['avatar', `avatar--${size}`, ring && 'avatar--ring', className]} src={src} alt={alt} width={size} height={size} loading="lazy" decoding="async" />
+  : <span class:list={['avatar', `avatar--${size}`, ring && 'avatar--ring', className]} aria-hidden="true"></span>}
+
+<style>
+  /* Tier-3: avatar diameters from docs/components.md (proposed tokens: --avatar-size-*). */
+  .avatar { --avatar-size: 48px; width: var(--avatar-size); height: var(--avatar-size); flex-shrink: 0; border-radius: var(--radius-full); object-fit: cover; background: var(--color-surface-sunken); display: block; }
+  .avatar--22 { --avatar-size: 22px; }
+  .avatar--36 { --avatar-size: 36px; }
+  .avatar--64 { --avatar-size: 64px; }
+  .avatar--72 { --avatar-size: 72px; }
+  .avatar--ring { box-shadow: 0 0 0 var(--space-1) var(--avatar-ring, var(--color-surface-card)); }
+</style>

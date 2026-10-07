@@ -1,0 +1,21 @@
+---
+// Subtle pick one of 2–3 on dark grounds (lead channel). Radio inputs; the parent reacts with :has().
+interface Props { name: string; label: string; options: { value: string; label: string; checked?: boolean }[] }
+const { name, label, options } = Astro.props;
+---
+<fieldset class="tab-toggle">
+  <legend class="sr-only">{label}</legend>
+  {options.map((o, i) => (
+    <label class="tab-toggle__option text-caption">
+      <input class="sr-only" type="radio" name={name} value={o.value} checked={o.checked ?? i === 0} />
+      <span>{o.label}</span>
+    </label>
+  ))}
+</fieldset>
+
+<style>
+  .tab-toggle { margin: 0; padding: 0; border: 0; display: flex; gap: var(--space-5); }
+  .tab-toggle__option { min-height: var(--tap-size-min); display: flex; align-items: center; cursor: pointer; border-bottom: 2px solid transparent; color: var(--color-text-inverse-secondary); }
+  .tab-toggle__option:has(input:checked) { color: var(--color-text-inverse); font-weight: var(--font-weight-strong); border-bottom-color: var(--color-text-inverse); }
+  .tab-toggle__option:has(input:focus-visible) { box-shadow: var(--focus-ring); }
+</style>

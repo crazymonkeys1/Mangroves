@@ -1,0 +1,15 @@
+---
+// "Explorer aussi": links to the outing ideas (articles).
+import Chip from '../../atoms/Chip/Chip.astro';
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+interface Props { links: { href: string; label: string; icon: string }[] }
+---
+<section class="explore-links" id="explorer" aria-labelledby="h-explorer">
+  <SectionHead eyebrow="Explorer aussi" title="Idées de sorties en Guadeloupe" id="h-explorer" />
+  <ul class="explore-links__list">{Astro.props.links.map((l) => <li><Chip kind="link" href={l.href} icon={l.icon}>{l.label} <span aria-hidden="true">→</span></Chip></li>)}</ul>
+</section>
+
+<style>
+  .explore-links { --chip-radius: var(--radius-full); border-top: var(--border-width) solid var(--color-border-default); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); }
+  .explore-links__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+</style>

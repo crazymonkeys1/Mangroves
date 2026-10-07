@@ -1,0 +1,81 @@
+---
+// Booking summary for the guide(s) of a site. With two operators, a segmented control switches the offer
+// (radio inputs + :has(), no JavaScript). Sticky column from lg; below lg the StickyBookingBar takes over.
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+import Button from '../../atoms/Button/Button.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import SegmentedControl from '../../molecules/SegmentedControl/SegmentedControl.astro';
+import type { GuideOfferModel } from '../../../lib/site-page';
+interface Props { offers: GuideOfferModel[] }
+const { offers } = Astro.props;
+---
+<div class="guide-offer">
+  {offers.length > 1 && (
+    <SegmentedControl name="guide-offer" label="Choisir la sortie" options={offers.map((o) => ({ value: o.key, label: o.optionLabel }))} class="guide-offer__options" />
+  )}
+  {offers.map((o) => (
+    <div class="guide-offer__panel" data-offer={o.key}>
+      <div class="guide-offer__price-row">
+        <div class="guide-offer__price">
+          <span class="guide-offer__price-line"><span class="text-caption">dès</span><span class="text-title">{o.price}</span><span class="text-caption">{o.priceUnit}</span></span>
+          {o.priceExtra && <span class="text-caption">{o.priceExtra}</span>}
+        </div>
+        {o.rating && <span class="guide-offer__rating text-caption-strong"><Icon name="star" />{o.rating}</span>}
+      </div>
+      <div class="guide-offer__guide">
+        <Avatar src={o.photo} size={48} alt={`${o.guide}, ${o.operatorName}`} />
+        <div class="guide-offer__guide-text">
+          <span class="text-eyebrow is-secondary">Sortie guidée · {o.operatorName}</span>
+          <span class="text-body-strong">Avec {o.guide}</span>
+          <span class="text-caption">{o.credential}</span>
+        </div>
+      </div>
+      <div class="guide-offer__tour">
+        <p class="text-title">{o.tourName}</p>
+        <p class="text-caption">{o.tourSummary}</p>
+      </div>
+      {o.facts.length > 0 && (
+        <dl class="guide-offer__facts">
+          {o.facts.map((f) => (
+            <div class:list={['guide-offer__fact', f.value.length > 22 && 'guide-offer__fact--wide']}>
+              <dt class="text-caption"><Icon name={f.icon} tone="secondary" />{f.label}</dt>
+              <dd class="text-caption-strong">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      <div class="guide-offer__actions">
+        <Button variant="primary" href={o.ctaUrl} external fullWidth>{o.ctaLabel}</Button>
+        <Button variant="secondary" size="sm" href={o.contactUrl} external fullWidth>{o.contactLabel}</Button>
+        <p class="guide-offer__footnote text-caption">{o.footnote}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .guide-offer {
+    background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container);
+    box-shadow: var(--elevation-overlap); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-4);
+  }
+  .guide-offer p { margin: 0; }
+  .guide-offer__panel { display: flex; flex-direction: column; gap: var(--space-4); }
+  /* With two offers, show the one whose radio is checked. */
+  .guide-offer:has(.guide-offer__options) .guide-offer__panel { display: none; }
+  .guide-offer:has(input[value='yalode']:checked) .guide-offer__panel[data-offer='yalode'],
+  .guide-offer:has(input[value='bluelagoon']:checked) .guide-offer__panel[data-offer='bluelagoon'] { display: flex; }
+  .guide-offer__price-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
+  .guide-offer__price { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
+  .guide-offer__price-line { display: flex; align-items: baseline; gap: var(--space-2); white-space: nowrap; }
+  .guide-offer__rating { display: inline-flex; align-items: center; gap: var(--space-1); white-space: nowrap; }
+  .guide-offer__guide { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-3); background: var(--color-surface-page); border-radius: var(--radius-container); }
+  .guide-offer__guide-text { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
+  .guide-offer__tour { display: flex; flex-direction: column; gap: var(--space-2); }
+  .guide-offer__facts { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+  .guide-offer__fact { background: var(--color-surface-page); border-radius: var(--radius-control); padding: var(--space-2) var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
+  .guide-offer__fact--wide { grid-column: 1 / -1; }
+  .guide-offer__fact dt { display: flex; align-items: center; gap: var(--space-2); }
+  .guide-offer__fact dd { margin: 0; }
+  .guide-offer__actions { display: flex; flex-direction: column; gap: var(--space-2); }
+  .guide-offer__footnote { text-align: center; }
+</style>

@@ -1,0 +1,59 @@
+---
+// Document shell: head (title, description, canonical, Open Graph, JSON-LD, fonts), header, main, footer.
+import '../styles/global.css';
+import SiteHeader from '../components/organisms/SiteHeader/SiteHeader.astro';
+import SiteFooter from '../components/organisms/SiteFooter/SiteFooter.astro';
+import type { ShellData } from '../lib/shell';
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  jsonLd?: object[];
+  shell: ShellData;
+}
+const { title, description, canonical, ogImage, jsonLd = [], shell } = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Mangroves Gwada" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,600;1,400&family=Work+Sans:wght@400;600&display=swap" />
+    {jsonLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
+  </head>
+  <body>
+    <SiteHeader links={shell.nav} />
+    <main id="contenu"><slot /></main>
+    <SiteFooter columns={shell.footer} />
+    <slot name="after" />
+    <script>
+      // In-page links to a folded section (#alerte, #sources, #avertissement) open it first.
+      const openTarget = (hash: string) => {
+        const el = hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+        const details = el?.closest('details') ?? (el instanceof HTMLDetailsElement ? el : null);
+        if (details) details.open = true;
+      };
+      document.addEventListener('click', (e) => {
+        const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+        if (a) openTarget(a.getAttribute('href') || '');
+        // The mobile menu closes when one of its links is used.
+        const menuLink = (e.target as HTMLElement).closest('[data-nav-menu] a');
+        if (menuLink) menuLink.closest('details')?.removeAttribute('open');
+      });
+      if (location.hash) openTarget(location.hash);
+    </script>
+  </body>
+</html>

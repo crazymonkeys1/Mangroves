@@ -1,0 +1,171 @@
+---
+// Page opening on a photo. `site` variant: carousel, back link, type badge, alert dot, H1, commune line, lead.
+// `directory` variant: centred title, subtitle and the partner guides.
+import Badge from '../../atoms/Badge/Badge.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import IconButton from '../../atoms/IconButton/IconButton.astro';
+import PhotoCredit from '../../molecules/PhotoCredit/PhotoCredit.astro';
+import OperatorChip from '../../molecules/OperatorChip/OperatorChip.astro';
+
+interface Slide { src: string; alt: string; caption: string; credit: string }
+interface Props {
+  variant: 'site' | 'directory';
+  title: string;
+  lead?: string;
+  eyebrow?: string;
+  slides: Slide[];
+  typeLabel?: string;
+  typeIcon?: string;
+  alertShort?: string;
+  /** Leaves room for the fact strip that overlaps the hero from md. */
+  overlapBelow?: boolean;
+  backHref?: string;
+  label?: string;
+  guides?: { href: string; photo: string; name: string; rating?: string }[];
+}
+const { variant, title, lead, eyebrow, slides, typeLabel, typeIcon = 'leaf', alertShort, overlapBelow = false, backHref = '/', label, guides = [] } = Astro.props;
+const multi = slides.length > 1;
+---
+<section class:list={['hero', `hero--${variant}`, overlapBelow && 'hero--overlap']} data-hero aria-label={variant === 'site' ? undefined : label}>
+  <div class="hero__media">
+    {slides.map((s, i) => (
+      <img class="hero__image" src={s.src} alt={s.alt} data-hero-slide={i} data-credit={`Photo : ${s.caption} · ${s.credit}`}
+        hidden={i > 0 ? true : undefined} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} decoding="async" />
+    ))}
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  {variant === 'site' && slides.length > 0 && (
+    <button type="button" class="hero__zoom" data-hero-zoom aria-label="Agrandir la photo"></button>
+  )}
+
+  {variant === 'site' && (
+    <div class="hero__top">
+      <a class="hero__back text-caption-strong" href={backHref}><span aria-hidden="true">←</span> Tous les résultats</a>
+      {slides.length > 0 && <PhotoCredit class="hero__credit" text={`Photo : ${slides[0].caption} · ${slides[0].credit}`} data-hero-credit />}
+    </div>
+  )}
+
+  <div class="hero__content">
+    {variant === 'site' ? (
+      <>
+        <div class="hero__badges">
+          <Badge onPhoto><Icon name={typeIcon} />{typeLabel}</Badge>
+          {alertShort && <a class="hero__alert" href="#alerte" data-open-details aria-label={alertShort} title={alertShort}><Badge tone="status">!</Badge></a>}
+        </div>
+        <div class="hero__text on-inverse">
+          <h1 class="text-display hero__title">{title}</h1>
+          {eyebrow && <p class="hero__eyebrow text-eyebrow"><Icon name="pin" />{eyebrow}</p>}
+          {lead && <p class="hero__lead text-quote">{lead}</p>}
+        </div>
+      </>
+    ) : (
+      <div class="hero__text on-inverse">
+        {label && <p class="hero__label text-caption-strong">{label}</p>}
+        <h1 class="text-display hero__title">{title}</h1>
+        {lead && <p class="hero__lead text-quote">{lead}</p>}
+        {guides.length > 0 && (
+          <div class="hero__guides">
+            <p class="text-eyebrow">Sorties guidées proposées par</p>
+            <div class="hero__guide-list">{guides.map((g) => <OperatorChip {...g} />)}</div>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+
+  {variant === 'site' && multi && (
+    <div class="hero__carousel">
+      <IconButton glyph="‹" label="Image précédente" tone="inverse" data-hero-prev />
+      <div class="hero__dots" aria-hidden="true">{slides.map((_, i) => <span class="hero__dot" data-hero-dot={i} data-state={i === 0 ? 'active' : undefined}></span>)}</div>
+      <IconButton glyph="›" label="Image suivante" tone="inverse" data-hero-next />
+      <span class="sr-only" aria-live="polite" data-hero-status>Image 1 sur {slides.length}</span>
+    </div>
+  )}
+  {variant === 'directory' && slides[0] && <PhotoCredit class="hero__credit-corner" text={`Photo : ${slides[0].credit}`} />}
+</section>
+
+<script>
+  for (const hero of document.querySelectorAll<HTMLElement>('[data-hero]')) {
+    const slides = [...hero.querySelectorAll<HTMLImageElement>('[data-hero-slide]')];
+    const dots = [...hero.querySelectorAll<HTMLElement>('[data-hero-dot]')];
+    const credit = hero.querySelector<HTMLElement>('[data-hero-credit]');
+    const status = hero.querySelector<HTMLElement>('[data-hero-status]');
+    let index = 0;
+    const show = (next: number) => {
+      index = (next + slides.length) % slides.length;
+      slides.forEach((img, i) => { img.hidden = i !== index; });
+      dots.forEach((d, i) => { if (i === index) d.dataset.state = 'active'; else delete d.dataset.state; });
+      if (credit) credit.textContent = slides[index].dataset.credit || '';
+      if (status) status.textContent = `Image ${index + 1} sur ${slides.length}`;
+    };
+    hero.querySelector('[data-hero-prev]')?.addEventListener('click', () => show(index - 1));
+    hero.querySelector('[data-hero-next]')?.addEventListener('click', () => show(index + 1));
+    hero.querySelector('[data-hero-zoom]')?.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('lightbox:open', { detail: { index } }));
+    });
+  }
+</script>
+
+<style>
+  .hero { position: relative; overflow: hidden; background: var(--color-surface-inverse); min-height: var(--hero-height); display: flex; flex-direction: column; justify-content: flex-end; }
+  .hero__media, .hero__scrim, .hero__zoom { position: absolute; inset: 0; }
+  .hero__image { width: 100%; height: 100%; object-fit: cover; }
+  .hero__zoom { border: 0; padding: 0; background: transparent; cursor: zoom-in; border-radius: 0; }
+
+  /* Site hero: light top for the back link, dark bottom for the title (composed from overlay tokens). */
+  .hero--site { min-height: calc(var(--hero-height) + var(--space-6)); }
+  .hero--site .hero__scrim {
+    background: linear-gradient(180deg, var(--color-overlay-modal) 0%, transparent 28%, transparent 45%, var(--color-overlay-chip) 100%);
+    pointer-events: none;
+  }
+  .hero--directory { justify-content: center; }
+  .hero--directory .hero__scrim { background: var(--gradient-hero-scrim); }
+
+  .hero__top {
+    position: absolute; top: var(--space-4); left: 0; right: 0; z-index: var(--z-raised);
+    max-width: var(--container-page); margin: 0 auto; padding: 0 var(--page-gutter);
+    display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3);
+    pointer-events: none;
+  }
+  .hero__back {
+    pointer-events: auto; display: inline-flex; align-items: center; gap: var(--space-2); white-space: nowrap;
+    min-height: var(--tap-size-min); padding: 0 var(--space-4); border-radius: var(--radius-full);
+    background: var(--color-surface-card); color: var(--color-text-primary); text-decoration: none;
+  }
+  .hero__credit { display: none; max-width: 50%; text-align: right; padding-top: var(--space-3); }
+  @media (min-width: 600px) { .hero__credit { display: block; } }
+
+  .hero__content {
+    position: relative; z-index: var(--z-raised); pointer-events: none;
+    width: 100%; max-width: var(--container-page); margin: 0 auto;
+    padding: var(--space-8) var(--page-gutter) var(--space-6);
+    display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2);
+  }
+  .hero--site.hero--overlap .hero__content { padding-bottom: var(--space-7); }
+  @media (min-width: 880px) { .hero--site.hero--overlap .hero__content { padding-bottom: calc(var(--space-8) + var(--space-5)); } }
+  .hero__content a { pointer-events: auto; }
+  .hero__text { display: flex; flex-direction: column; align-items: inherit; gap: inherit; }
+  .hero__badges { display: flex; align-items: center; gap: var(--space-2); }
+  .hero__alert { display: inline-flex; align-items: center; justify-content: center; min-width: var(--tap-size-min); min-height: var(--tap-size-min); margin: calc(-1 * var(--space-2)) 0; text-decoration: none; }
+  .hero__title, .hero__eyebrow, .hero__lead, .hero__label { text-shadow: var(--text-shadow-on-photo); }
+  .hero__title { max-width: var(--container-content); }
+  .hero__eyebrow { margin: 0; display: flex; align-items: center; gap: var(--space-2); color: var(--color-text-inverse); }
+  .hero__lead { max-width: var(--container-narrow); margin-top: var(--space-1); }
+
+  .hero--directory .hero__content { align-items: center; text-align: center; gap: var(--space-4); padding-top: var(--space-7); padding-bottom: var(--space-7); }
+  .hero__label { margin: 0; padding: var(--space-2) var(--space-4); border: var(--border-width) solid var(--color-border-inverse); border-radius: var(--radius-full); text-wrap: balance; }
+  .hero__guides { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin-top: var(--space-1); pointer-events: auto; }
+  .hero__guides p { margin: 0; }
+  .hero__guide-list { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; }
+  .hero__credit-corner { position: absolute; right: var(--space-3); bottom: var(--space-2); }
+
+  .hero__carousel {
+    position: absolute; right: max(var(--page-gutter), calc((100% - var(--container-page)) / 2 + var(--page-gutter))); top: calc(var(--space-4) + var(--tap-size-min) + var(--space-3)); z-index: var(--z-raised);
+    display: flex; align-items: center; gap: var(--space-1); padding: 0 var(--space-1); border-radius: var(--radius-full); background: var(--color-overlay-chip);
+  }
+  @media (min-width: 880px) { .hero__carousel { top: auto; bottom: calc(var(--space-8) + var(--space-3)); } }
+  .hero__dots { display: flex; gap: var(--space-1); }
+  .hero__dot { width: var(--space-2); height: var(--space-2); border-radius: var(--radius-full); background: var(--color-text-inverse-secondary); opacity: .6; }
+  .hero__dot[data-state='active'] { background: var(--color-text-inverse); opacity: 1; }
+</style>

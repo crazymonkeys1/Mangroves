@@ -1,0 +1,10 @@
+---
+// Image attribution sitting on a photo.
+interface Props { text: string; class?: string; [key: string]: unknown }
+const { text, class: className, ...rest } = Astro.props;
+---
+<span class:list={['photo-credit', 'text-caption', className]} {...rest}>{text}</span>
+
+<style>
+  .photo-credit { color: var(--color-text-inverse-secondary); text-shadow: var(--text-shadow-on-photo); }
+</style>

@@ -1,0 +1,26 @@
+---
+// Key facts in a bordered grid. 2 per row on phones. `elevated` when it overlaps the hero.
+import FactCell from '../FactCell/FactCell.astro';
+interface Props { items: { icon?: string; label: string; value: string }[]; min?: 'fact' | 'wide'; elevated?: boolean; label?: string; class?: string }
+const { items, min = 'fact', elevated = false, label, class: className } = Astro.props;
+---
+<div class:list={['fact-grid', `fact-grid--${min}`, elevated && 'fact-grid--elevated', className]}>
+  <dl class="fact-grid__list" aria-label={label}>
+    {items.map((f) => <FactCell icon={f.icon} label={f.label} value={f.value} />)}
+  </dl>
+</div>
+
+<style>
+  /* Tier-3: column minimums from docs/design-system.md §5 (facts ≥ 140). */
+  .fact-grid { --fact-grid-min: 140px; background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); overflow: hidden; }
+  .fact-grid--wide { --fact-grid-min: 220px; }
+  .fact-grid--elevated { box-shadow: var(--elevation-overlap); }
+  /* Cells draw their right/bottom rules; the grid is pulled 1px out so the outer ones hide under the frame. */
+  .fact-grid__list {
+    margin: 0 calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width: 600px) {
+    .fact-grid__list { grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--fact-grid-min)), 1fr)); }
+  }
+</style>

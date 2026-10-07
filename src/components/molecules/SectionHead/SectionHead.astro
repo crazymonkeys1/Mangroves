@@ -1,0 +1,14 @@
+---
+// Opens a section: eyebrow + h2.
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+interface Props { eyebrow?: string; title: string; id?: string; level?: 'h2' | 'h3' }
+const { eyebrow, title, id, level: H = 'h2' } = Astro.props;
+---
+<div class="section-head">
+  {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+  <H class="text-heading" id={id}>{title}</H>
+</div>
+
+<style>
+  .section-head { display: flex; flex-direction: column; gap: var(--space-2); }
+</style>

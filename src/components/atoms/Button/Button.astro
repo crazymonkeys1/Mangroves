@@ -1,0 +1,43 @@
+---
+// Perform an action. One `primary` (booking fill) per viewport.
+interface Props {
+  variant?: 'primary' | 'neutral' | 'secondary' | 'quiet';
+  size?: 'md' | 'sm';
+  fullWidth?: boolean;
+  href?: string;
+  external?: boolean;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+const { variant = 'neutral', size = 'md', fullWidth = false, href, external = false, type = 'button', disabled = false, class: className, ...rest } = Astro.props;
+const classes = ['button', 'text-body-strong', `button--${variant}`, `button--${size}`, fullWidth && 'button--full', className];
+---
+{href ? (
+  <a href={href} class:list={classes} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} {...rest}><slot /></a>
+) : (
+  <button type={type} class:list={classes} disabled={disabled} aria-disabled={disabled ? 'true' : undefined} {...rest}><slot /></button>
+)}
+
+<style>
+  .button {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+    min-height: var(--tap-size-min); padding: 0 var(--space-5);
+    border-radius: var(--radius-control); border: var(--border-width) solid transparent;
+    text-decoration: none; text-align: center; cursor: pointer;
+    transition: background-color var(--duration-fast) var(--easing-standard), border-color var(--duration-fast) var(--easing-standard);
+  }
+  .button--md { min-height: calc(var(--tap-size-min) + var(--space-2)); }
+  .button--full { display: flex; width: 100%; }
+  .button--primary { background: var(--color-action-primary); color: var(--color-action-primary-text); }
+  .button--neutral { background: var(--color-action-neutral); color: var(--color-action-neutral-text); }
+  .button--secondary { background: var(--color-surface-card); color: var(--color-text-primary); border-color: var(--color-border-default); }
+  .button--quiet { background: transparent; color: var(--color-text-primary); text-decoration: underline; text-decoration-color: var(--color-action-primary); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .button:active { filter: brightness(.92); }
+  .button[disabled] { background: var(--color-surface-sunken); color: var(--color-text-secondary); border-color: transparent; cursor: not-allowed; }
+  @media (hover: hover) {
+    .button--secondary:hover, .button--quiet:hover { background: var(--color-surface-sunken); }
+    .button--primary:hover, .button--neutral:hover { filter: brightness(1.08); }
+  }
+</style>

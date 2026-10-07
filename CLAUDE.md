@@ -44,14 +44,15 @@ The look must be changeable without renames: edit palette values or re-point sem
 Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in `airtable/README.md`). Slugs/keys are permanent. Some editorial content is still embedded in the prototype's logic class and must be moved into data (`docs/project.md` §3). Estimated figures are listed in `docs/project.md` §4; show them as unverified.
 
 ## Decided
-- **Working mode:** all work continues in Claude Code from these docs. Stack/hosting not chosen yet: propose options, wait for approval; must give real URLs and HTML without JavaScript.
+- **Working mode:** all work continues in Claude Code from these docs.
+- **Stack (decided 7 Oct 2026):** Astro, static output (one HTML file per route, JavaScript only for small interactions). Hosting: Cloudflare Pages. Code in `src/` (see `README.md`).
 - **Data:** keep `data/mangroves-db.json` as is for now; Airtable comes later (tables in `airtable/`, articles live in `Articles`, `Article Sections`, `Article FAQ`).
 - **URLs:** articles `/idees/<slug>` (not linked to a guide), guide profiles `/guides/<slug>`, sites `/mangrove/<slug>`.
 - **Lead capture:** intent only (`docs/project.md` §6); do not wire or imply sending.
 - **Fonts:** Google Fonts (Spectral 600 + 400 italic, Work Sans 400 + 600).
 
 ## Things to ask the user rather than decide
-Stack/rendering, further URL scheme changes, new colours or sizes, renaming existing components or tokens, anything in `docs/review-final.md` §3 and §6, legal copy, partner claims (authorisations, prices, ratings).
+Further URL scheme changes, new colours or sizes, renaming existing components or tokens, anything in `docs/review-final.md` §3 and §6, legal copy, partner claims (authorisations, prices, ratings).
 
 ## Style of work
 Be concise. Prefer small targeted changes; don't refactor unrelated code. State what you changed and any proposed additions at the end of your reply.

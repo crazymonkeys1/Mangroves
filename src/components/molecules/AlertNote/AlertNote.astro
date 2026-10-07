@@ -1,0 +1,31 @@
+---
+// Safety/danger notice. Folded by default on every width (design-system rule 8).
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+interface Props { eyebrow?: string; headline: string; id?: string; class?: string }
+const { eyebrow = 'Attention', headline, id, class: className } = Astro.props;
+---
+<details class:list={['alert-note', className]} id={id}>
+  <summary class="alert-note__summary">
+    <span class="alert-note__dot text-caption-strong" aria-hidden="true">!</span>
+    <span class="alert-note__headline text-caption-strong is-danger"><Eyebrow tone="danger" class="alert-note__eyebrow">{eyebrow}</Eyebrow> {headline}</span>
+    <span class="alert-note__toggle text-caption" aria-hidden="true">Détails <span class="alert-note__chevron">▾</span></span>
+  </summary>
+  <div class="alert-note__body text-caption"><slot /></div>
+</details>
+
+<style>
+  .alert-note { background: var(--color-surface-danger); border: var(--border-width) solid var(--color-border-danger); border-radius: var(--radius-container); }
+  .alert-note__summary { display: flex; align-items: center; gap: var(--space-3); min-height: calc(var(--tap-size-min) + var(--space-1)); padding: var(--space-2) var(--space-4); border-radius: var(--radius-container); }
+  .alert-note__dot {
+    width: var(--space-5); height: var(--space-5); flex-shrink: 0; border-radius: var(--radius-full);
+    display: flex; align-items: center; justify-content: center; background: var(--color-status-danger); color: var(--color-text-inverse);
+  }
+  .alert-note__headline { flex: 1; min-width: 0; }
+  .alert-note__eyebrow { margin-right: var(--space-2); }
+  .alert-note__toggle, .alert-note__body { color: var(--color-text-danger-body); }
+  .alert-note__toggle { flex-shrink: 0; }
+  .alert-note__chevron { display: inline-block; transition: transform var(--duration-fast) var(--easing-standard); }
+  .alert-note[open] .alert-note__chevron { transform: rotate(180deg); }
+  .alert-note__body { padding: 0 var(--space-4) var(--space-4) calc(var(--space-4) + var(--space-5) + var(--space-3)); display: flex; flex-direction: column; gap: var(--space-2); }
+  .alert-note__body :global(p) { margin: 0; }
+</style>

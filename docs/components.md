@@ -75,6 +75,15 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `PickList` | Numbered ideas | number (`text-heading` secondary), photo, `text-title`, facts, link | |
 | `CompareTable` | Boat vs kayak | rows of `text-body`, operator headers | to rebuild with tokens |
 
+### Added while building (7 Oct 2026)
+
+| Name | Level | Purpose | Notes |
+|---|---|---|---|
+| `Lightbox` | organism | Full-screen photo viewer for `PhotoGallery` and the site hero | native `<dialog>`, `overlay-lightbox`, Esc / arrows / swipe, caption with credit |
+| `PageShell` | template | Document head (title, meta, canonical, Open Graph, JSON-LD, fonts), `SiteHeader`, main, `SiteFooter` | also opens a folded `<details>` when an in-page link targets it (`#alerte`, `#sources`, `#avertissement`) |
+
+Implementation: `src/components/{atoms,molecules,organisms}/{Name}/{Name}.astro`, templates in `src/templates/`. Tier-3 local values (not yet tokens): icon sizes 15/17/24, avatar diameters 22–72, grid column minimums (140/190/220/240/260/280/300 px). See "Proposed additions" in the build notes.
+
 ## Templates
 
 `PageShell` (SiteHeader, main slot, AboutUsBand? optional, SiteFooter) · `DirectoryTemplate` (Hero directory, FilterBar, AlertNote, ResultToolbar, grid of SiteCard, LeadCaptureBand, AboutUsBand) · `SiteDetailTemplate` (Hero site, FactStrip, SiteSummary, PhotoGallery, AccessPanel, SafetyPanel, GuidedTourCard*, SocialVideoGrid*, ReadingList*, FaqList, NearbySites, ExploreLinks, SourcesBar, GuideOfferCard/StickyBookingBar; * conditional) · `ArticleTemplate` · `ListingTemplate` (Hero listing, SiteCards, FaqList, ExploreLinks) · `ProfileTemplate` · `CompareTemplate` · `IdeasTemplate` · `ProseTemplate` (privacy).

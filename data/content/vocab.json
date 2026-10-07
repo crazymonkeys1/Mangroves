@@ -1,0 +1,111 @@
+{
+  "_note": "Controlled vocabularies used by the site pages. Moved from the v12 prototype (RISK, BAG_WATER, BAG_WALK).",
+  "risks": {
+    "moustiques": {
+      "icon": "bug",
+      "label": "Moustiques au crépuscule"
+    },
+    "soleil": {
+      "icon": "sun",
+      "label": "Soleil et réverbération"
+    },
+    "glissant": {
+      "icon": "footprints",
+      "label": "Passerelle glissante"
+    },
+    "vase": {
+      "icon": "waves",
+      "label": "Vase et sol instable"
+    },
+    "hautsfonds": {
+      "icon": "waves",
+      "label": "Hauts-fonds à marée basse"
+    },
+    "vent": {
+      "icon": "compass",
+      "label": "Vent et clapot sur le lagon"
+    },
+    "oursins": {
+      "icon": "fish",
+      "label": "Oursins et coraux"
+    },
+    "degrade": {
+      "icon": "ban",
+      "label": "Passage endommagé"
+    },
+    "chaleur": {
+      "icon": "thermo",
+      "label": "Chaleur, peu d'ombre"
+    },
+    "reseau": {
+      "icon": "map",
+      "label": "Peu de réseau"
+    },
+    "parking": {
+      "icon": "signpost",
+      "label": "Parking non surveillé"
+    },
+    "bateaux": {
+      "icon": "boat",
+      "label": "Passage de bateaux"
+    }
+  },
+  "bags": {
+    "water": [
+      "Chapeau et lunettes de soleil",
+      "Crème solaire résistante à l’eau",
+      "Anti-moustique",
+      "Bouteille d'eau",
+      "Maillot de bain"
+    ],
+    "walk": [
+      "Chaussures qui tiennent au pied",
+      "Chapeau et lunettes de soleil",
+      "Bouteille d'eau",
+      "Anti-moustique",
+      "Jumelles"
+    ]
+  },
+  "zones": {
+    "Grand Cul-de-Sac Marin": {
+      "safetyTitle": "Les règles du Parc national",
+      "safetyText": "Le Grand Cul-de-Sac Marin est en cœur de Parc national. Les guides référencés appliquent ces règles pour vous.",
+      "rules": [
+        {
+          "icon": "anchor",
+          "text": "Mouillage interdit, bouées uniquement"
+        },
+        {
+          "icon": "ban",
+          "text": "Pas de débarquement : îlets Caret et Tête à l'Anglais"
+        },
+        {
+          "icon": "bird",
+          "text": "Îlet Blanc fermé du 15/04 au 30/09 (sternes)"
+        },
+        {
+          "icon": "fish",
+          "text": "Pêche, jet-ski et drone interdits"
+        },
+        {
+          "icon": "leaf",
+          "text": "Ne rien toucher ni déranger"
+        }
+      ],
+      "rulesLink": {
+        "label": "Réglementation et prestataires autorisés (Parc national)",
+        "url": "https://www.guadeloupe-parcnational.fr/fr/le-parc-national-de-la-guadeloupe/reglementation/reglementation-dans-le-grand-cul-de-sac-marin"
+      }
+    }
+  },
+  "defaultSafety": {
+    "safetyTitle": "Les règles en mangrove",
+    "safetyText": "Restez sur les sentiers et les passerelles, ne prélevez ni plantes ni animaux, et ne marchez pas sur les racines. Sur l'eau, pas d'ancre ni d'hélice près des palétuviers."
+  },
+  "sourceTypes": {
+    "officiel": "Officiel",
+    "office-tourisme": "Office de tourisme",
+    "operateur": "Opérateur",
+    "media": "Média"
+  }
+}

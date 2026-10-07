@@ -1,0 +1,35 @@
+{
+  "_note": "Activity listings (/activite/<slug>). Moved from the v12 prototype (ACTIVITY_PAGES).",
+  "activities": [
+    {
+      "slug": "sortie-guidee",
+      "label": "Sorties guidées",
+      "h1": "Sorties guidées dans la mangrove de Guadeloupe",
+      "icon": "compass"
+    },
+    {
+      "slug": "bateau",
+      "label": "En bateau",
+      "h1": "La mangrove de Guadeloupe en bateau",
+      "icon": "boat"
+    },
+    {
+      "slug": "kayak",
+      "label": "En kayak",
+      "h1": "La mangrove de Guadeloupe en kayak",
+      "icon": "waves"
+    },
+    {
+      "slug": "a-pied",
+      "label": "À pied",
+      "h1": "La mangrove de Guadeloupe à pied",
+      "icon": "footprints"
+    },
+    {
+      "slug": "pedalo-canot",
+      "label": "En pédalo ou canot",
+      "h1": "La mangrove en pédalo ou en canot",
+      "icon": "boat"
+    }
+  ]
+}

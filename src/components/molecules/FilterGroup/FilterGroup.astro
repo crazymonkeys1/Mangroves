@@ -1,0 +1,17 @@
+---
+// One filter dimension in the sheet: eyebrow + toggle chips (slot).
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+interface Props { title: string; icon?: string }
+const { title, icon } = Astro.props;
+---
+<div class="filter-group" role="group" aria-label={title}>
+  <Eyebrow tone="secondary" class="filter-group__title">{icon && <Icon name={icon} />}{title}</Eyebrow>
+  <div class="filter-group__options"><slot /></div>
+</div>
+
+<style>
+  .filter-group { display: flex; flex-direction: column; gap: var(--space-3); }
+  .filter-group :global(.filter-group__title) { display: flex; align-items: center; gap: var(--space-2); }
+  .filter-group__options { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+</style>

@@ -1,0 +1,45 @@
+{
+  "_note": "Index of SEO articles (/idees/<slug>). Only the fields the site pages need for now; the full article content is still in the prototype (FILTER_PAGES, ARTICLE) and moves here when the article template is built.",
+  "articles": [
+    {
+      "slug": "mangrove-guadeloupe-en-famille",
+      "nav": "En famille, avec enfants",
+      "title": "Mangrove en Guadeloupe en famille : les meilleures sorties avec enfants",
+      "heroImg": "https://www.kayak-guadeloupe.fr/images/kayak-famille.jpg",
+      "heroCredit": "Photo : Yalodé",
+      "icon": "users"
+    },
+    {
+      "slug": "excursion-mangrove-bateau-guadeloupe",
+      "nav": "En bateau",
+      "title": "Excursion en bateau dans la mangrove en Guadeloupe",
+      "heroImg": "https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/bluelagoonhome-scaled.jpg",
+      "heroCredit": "Photo : Blue Lagoon",
+      "icon": "boat"
+    },
+    {
+      "slug": "kayak-mangrove-guadeloupe",
+      "nav": "En kayak",
+      "title": "Kayak dans la mangrove en Guadeloupe",
+      "heroImg": "https://www.kayak-guadeloupe.fr/images/kayak-mangrove-nature.jpg",
+      "heroCredit": "Photo : Yalodé",
+      "icon": "waves"
+    },
+    {
+      "slug": "sentier-mangrove-guadeloupe-a-pied",
+      "nav": "À pied, sentiers et passerelles",
+      "title": "Visiter la mangrove à pied en Guadeloupe : sentiers et passerelles",
+      "heroImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Maison_de_la_mangrove%2C_Les_Abymes%2C_Guadeloupe.jpg?width=1800",
+      "heroCredit": "Photo : Wikimedia Commons, CC BY-SA 4.0",
+      "icon": "footprints"
+    },
+    {
+      "slug": "observer-oiseaux-mangrove-guadeloupe",
+      "nav": "Observer les oiseaux",
+      "title": "Où observer les oiseaux dans la mangrove en Guadeloupe",
+      "heroImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Nyctanassa_violacea_in_a_mangrove_of_Guadeloupe%2C_2.jpg?width=1800",
+      "heroCredit": "Photo : Wikimedia Commons",
+      "icon": "bird"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+---
+// Non-interactive label on cards and photos.
+interface Props { tone?: 'neutral' | 'status'; onPhoto?: boolean; class?: string }
+const { tone = 'neutral', onPhoto = false, class: className } = Astro.props;
+---
+<span class:list={['badge', 'text-caption-strong', `badge--${tone}`, onPhoto && 'badge--on-photo', className]}><slot /></span>
+
+<style>
+  .badge {
+    display: inline-flex; align-items: center; gap: var(--space-2); white-space: nowrap;
+    padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+    background: var(--color-surface-inset); color: var(--color-text-primary);
+  }
+  .badge--on-photo { background: var(--color-surface-card); }
+  .badge--status {
+    width: calc(var(--space-5) + var(--space-1)); height: calc(var(--space-5) + var(--space-1)); padding: 0; justify-content: center;
+    background: var(--color-status-danger); color: var(--color-text-inverse);
+  }
+</style>

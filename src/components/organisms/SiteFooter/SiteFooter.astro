@@ -1,0 +1,50 @@
+---
+// Site map and the full warning (#avertissement), folded.
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+interface Props { columns: { title: string; links: { href: string; label: string }[] }[] }
+const { columns } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__columns">
+      {columns.map((c) => (
+        <nav class="site-footer__column" aria-label={c.title}>
+          <Eyebrow tone="secondary" as="p">{c.title}</Eyebrow>
+          <ul class="site-footer__links">
+            {c.links.map((l) => <li><a class="site-footer__link text-caption" href={l.href}>{l.label}</a></li>)}
+          </ul>
+        </nav>
+      ))}
+    </div>
+    <details class="site-footer__warning" id="avertissement">
+      <summary class="site-footer__warning-summary">
+        <Eyebrow tone="secondary">Avertissement</Eyebrow>
+        <span class="text-legal" aria-hidden="true">Afficher <span class="site-footer__chevron">▾</span></span>
+      </summary>
+      <div class="site-footer__warning-body">
+        <p class="text-legal">Ce site a d'abord pour but de faire connaître les mangroves de Guadeloupe, avec les informations utiles pour chacun, que vous partiez seul ou accompagné. Les guides qui l'animent proposent aussi des sorties encadrées, pour ceux qui souhaitent découvrir ces lieux avec un professionnel.</p>
+        <p class="text-legal">Les informations publiées (accès, durées, tarifs, règles, fermetures) sont indicatives. Elles peuvent être incomplètes ou devenir inexactes. Les règles du Parc national et les arrêtés de fermeture évoluent : vérifiez-les avant toute sortie.</p>
+        <p class="text-legal">Toute activité en milieu naturel se pratique sous votre propre responsabilité. Les sorties guidées relèvent de la responsabilité de l'opérateur qui les organise.</p>
+        <p class="text-legal">Prototype indépendant référençant Yalodé (kayak-guadeloupe.fr) et Blue Lagoon (bluelagoon-gp.com). Tarifs relevés en septembre 2026 ; temps de route, conseils et risques sont des estimations à valider avec eux.</p>
+      </div>
+    </details>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--color-surface-sunken); border-top: var(--border-width) solid var(--color-border-default); }
+  .site-footer__inner { max-width: var(--container-page); margin: 0 auto; padding: var(--space-7) var(--page-gutter) var(--space-6); }
+  .site-footer__columns { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+  @media (min-width: 600px) { .site-footer__columns { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 880px) { .site-footer__columns { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .site-footer__column { display: flex; flex-direction: column; gap: var(--space-2); }
+  .site-footer__links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .site-footer__link { display: flex; align-items: center; min-height: var(--tap-size-min); color: var(--color-text-primary); text-decoration: none; }
+  @media (hover: hover) { .site-footer__link:hover { text-decoration: underline; text-decoration-color: var(--color-action-primary); text-underline-offset: 4px; } }
+  .site-footer__warning { max-width: var(--container-content); margin: var(--space-6) auto 0; border-top: var(--border-width) solid var(--color-border-default); }
+  .site-footer__warning-summary { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); min-height: calc(var(--tap-size-min) + var(--space-1)); }
+  .site-footer__chevron { display: inline-block; transition: transform var(--duration-fast) var(--easing-standard); }
+  .site-footer__warning[open] .site-footer__chevron { transform: rotate(180deg); }
+  .site-footer__warning-body { display: flex; flex-direction: column; gap: var(--space-2); padding-bottom: var(--space-2); }
+  .site-footer__warning-body p { margin: 0; }
+</style>

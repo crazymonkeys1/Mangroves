@@ -1,0 +1,109 @@
+---
+// One operator's guided tour: operator header, guide story, programme, why go with the guide,
+// provided / to bring, visitor quotes, about the guide, contact and booking.
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+import Button from '../../atoms/Button/Button.astro';
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import CautionNote from '../../molecules/CautionNote/CautionNote.astro';
+import FactGrid from '../../molecules/FactGrid/FactGrid.astro';
+import PriceLabel from '../../molecules/PriceLabel/PriceLabel.astro';
+import QuoteCard from '../../molecules/QuoteCard/QuoteCard.astro';
+import type { TourModel } from '../../../lib/site-page';
+interface Props { tour: TourModel }
+const t = Astro.props.tour;
+---
+<article class:list={['tour-card', `tour-card--${t.key}`]} id={t.anchor} aria-labelledby={`${t.anchor}-title`}>
+  <header class="tour-card__header on-inverse">
+    <Avatar src={t.photo} size={72} class="tour-card__photo" alt={`${t.fullName}, ${t.operatorName}`} />
+    <div class="tour-card__titles">
+      <h3 class="text-title" id={`${t.anchor}-title`}>{t.tourName}</h3>
+      <p class="text-body-strong">{t.withLine}</p>
+      <p class="text-caption">{t.meta}</p>
+    </div>
+    <PriceLabel amount={t.price} unit={t.priceNote} tone="inverse" align="end" class="tour-card__price" />
+  </header>
+
+  <div class="tour-card__section">
+    <p class="tour-card__story text-quote">« {t.story} »</p>
+    <div class="tour-card__group">
+      <Eyebrow tone="secondary" as="h4">Programme</Eyebrow>
+      <FactGrid items={t.progFacts} label="La sortie en bref" />
+      <ul class="tour-card__programme text-body">{t.programme.map((step) => <li>{step}</li>)}</ul>
+    </div>
+  </div>
+
+  <div class="tour-card__section">
+    <Eyebrow tone="secondary" as="h4">{t.whyLabel}</Eyebrow>
+    <ul class="tour-card__features">
+      {t.features.map((f) => (
+        <li class="tour-card__feature">
+          <span class="tour-card__feature-icon"><Icon name={f.icon} size="control" /></span>
+          <span class="tour-card__feature-text"><span class="text-body-strong">{f.title}</span><span class="text-caption">{f.text}</span></span>
+        </li>
+      ))}
+    </ul>
+    {t.why && <p class="text-body">{t.why}</p>}
+    <div class="tour-card__lists">
+      <div class="tour-card__list tour-card__list--provided">
+        <Eyebrow tone="secondary" as="h5">Fourni par le guide</Eyebrow>
+        <ul>{t.included.map((it) => <li class="text-body"><Icon name={it.icon} tone="secondary" />{it.text}</li>)}</ul>
+      </div>
+      <div class="tour-card__list">
+        <Eyebrow tone="secondary" as="h5">À prévoir</Eyebrow>
+        <ul>{t.bring.map((it) => <li class="text-body"><Icon name={it.icon} tone="secondary" />{it.text}</li>)}</ul>
+      </div>
+    </div>
+    {t.listsEstimated && <CautionNote>Listes à confirmer avec {t.operatorName}</CautionNote>}
+  </div>
+
+  {t.quotes.length > 0 && (
+    <div class="tour-card__section">
+      <Eyebrow tone="secondary" as="h4">Avis des visiteurs</Eyebrow>
+      <div class="tour-card__quotes">{t.quotes.map((q) => <QuoteCard quote={q.quote} author={q.author} />)}</div>
+    </div>
+  )}
+
+  <div class="tour-card__section">
+    <Eyebrow tone="secondary" as="h4">{t.aboutLabel}</Eyebrow>
+    <div class="tour-card__guide">
+      <Avatar src={t.photo} size={64} />
+      <div><p class="text-title">{t.fullName}</p><p class="text-caption">{t.role}</p></div>
+    </div>
+    <p class="text-body">{t.bio}</p>
+    <FactGrid items={t.aboutFacts} min="wide" label={t.aboutLabel} />
+  </div>
+
+  <footer class="tour-card__footer">
+    <Button variant="quiet" size="sm" href={t.contactUrl} external>{t.contactLabel}</Button>
+    <Button variant="primary" size="sm" href={t.bookingUrl} external>{t.bookLabel}</Button>
+  </footer>
+</article>
+
+<style>
+  .tour-card { --tour-color: var(--color-surface-inverse); background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); overflow: hidden; }
+  .tour-card--yalode { --tour-color: var(--color-operator-yalode); }
+  .tour-card--bluelagoon { --tour-color: var(--color-operator-bluelagoon); }
+  .tour-card p, .tour-card h3, .tour-card h4, .tour-card h5 { margin: 0; }
+  .tour-card__header { background: var(--tour-color); padding: var(--space-5) var(--card-padding); display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+  .tour-card__header :global(.tour-card__photo) { --avatar-ring: var(--color-border-inverse); box-shadow: 0 0 0 var(--space-1) var(--color-border-inverse); }
+  .tour-card__titles { flex: 1 1 200px; display: flex; flex-direction: column; gap: var(--space-1); }
+  .tour-card__section { padding: var(--space-5) var(--card-padding); display: flex; flex-direction: column; gap: var(--space-4); }
+  .tour-card__section + .tour-card__section { border-top: var(--border-width) solid var(--color-border-subtle); }
+  .tour-card__story { max-width: 40ch; margin: 0 auto; text-align: center; text-wrap: balance; }
+  .tour-card__group { display: flex; flex-direction: column; gap: var(--space-3); }
+  .tour-card__programme { margin: 0; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-1); }
+  .tour-card__programme li::marker { color: var(--tour-color); }
+  .tour-card__features { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: var(--space-3); }
+  .tour-card__feature { display: flex; gap: var(--space-3); background: var(--color-surface-page); border-radius: var(--radius-container); padding: var(--space-3) var(--space-4); }
+  .tour-card__feature-icon { width: calc(var(--space-6) + var(--space-1)); height: calc(var(--space-6) + var(--space-1)); border-radius: var(--radius-control); background: var(--color-surface-card); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tour-card__feature-text { display: flex; flex-direction: column; gap: var(--space-1); }
+  .tour-card__lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--space-3); }
+  .tour-card__list { background: var(--color-surface-page); border-radius: var(--radius-container); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+  .tour-card__list--provided { background: var(--color-surface-brand-soft); }
+  .tour-card__list ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .tour-card__list li { display: flex; gap: var(--space-2); align-items: center; }
+  .tour-card__quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-3); }
+  .tour-card__guide { display: flex; align-items: center; gap: var(--space-4); }
+  .tour-card__footer { background: var(--color-surface-page); padding: var(--space-3) var(--card-padding); display: flex; justify-content: flex-end; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+</style>

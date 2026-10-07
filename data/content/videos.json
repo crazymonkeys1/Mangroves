@@ -1,0 +1,39 @@
+{
+  "_note": "Social video searches per site. Accounts are still to be filled in (\"compte à renseigner\"); the links are platform searches. Moved from the v12 prototype (VIDEOS).",
+  "sites": {
+    "grand-cul-de-sac-marin": [
+      {
+        "platform": "YouTube",
+        "author": "compte à renseigner",
+        "title": "Le Grand Cul-de-Sac Marin en kayak",
+        "q": "Grand Cul-de-Sac Marin kayak mangrove"
+      },
+      {
+        "platform": "Instagram",
+        "author": "compte à renseigner",
+        "title": "Îlet de sable et lagon turquoise",
+        "q": "grandculdesacmarin"
+      },
+      {
+        "platform": "TikTok",
+        "author": "compte à renseigner",
+        "title": "Dans la mangrove de Guadeloupe",
+        "q": "mangrove guadeloupe"
+      }
+    ],
+    "taonaba-belle-plaine": [
+      {
+        "platform": "YouTube",
+        "author": "compte à renseigner",
+        "title": "Le caillebotis de Taonaba",
+        "q": "Taonaba mangrove Abymes"
+      },
+      {
+        "platform": "Instagram",
+        "author": "compte à renseigner",
+        "title": "Crabes violonistes à Belle-Plaine",
+        "q": "taonaba"
+      }
+    ]
+  }
+}

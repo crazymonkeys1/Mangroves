@@ -1,0 +1,288 @@
+{
+  "_note": "Partner operators (businesses) and their guide (person). Moved from the v12 prototype (OPERATORS + OP_ABOUT). Prices read in September 2026. `estimated` lists fields to confirm with the operator. Guide photos are randomuser.me placeholders to replace.",
+  "operators": [
+    {
+      "key": "bluelagoon",
+      "name": "Blue Lagoon",
+      "guide": "Jean-Eudes",
+      "guideSlug": "jean-eudes",
+      "photo": "https://randomuser.me/api/portraits/men/75.jpg",
+      "kind": "bateau",
+      "mode": "En bateau",
+      "credential": "Capitaine · prestataire autorisé du Parc national",
+      "tagline": "Le lagon en bateau : mangrove, îlets et récif en une demi-journée.",
+      "priceEur": 52,
+      "price": "52 €",
+      "priceNote": "par adulte, tarif indicatif",
+      "priceDate": "septembre 2026",
+      "tourName": "4 h 30 dans le lagon",
+      "tourSummary": "Mangrove, rivière, baignade sur un îlet de sable blanc et snorkeling sur le récif, au départ de Sainte-Rose.",
+      "blurb": "Le capitaine Jean-Eudes et son équipe emmènent jusqu'à 12 personnes en bateau depuis Sainte-Rose, pour un circuit de 4h30 dans le lagon : mangrove, rivière, baignade sur un îlot de sable blanc et snorkeling sur le récif.",
+      "features": [
+        {
+          "icon": "boat",
+          "title": "Petit bateau",
+          "text": "Jusqu'à 12 passagers à bord."
+        },
+        {
+          "icon": "fish",
+          "title": "Snorkeling au programme",
+          "text": "Arrêt sur le récif du Grand Cul-de-Sac Marin."
+        },
+        {
+          "icon": "users",
+          "title": "Pour tous les niveaux",
+          "text": "Aucune condition physique requise."
+        }
+      ],
+      "programme": [
+        "Départ du port de Sainte-Rose",
+        "Traversée de la mangrove et de la rivière",
+        "Baignade sur un îlet de sable blanc",
+        "Snorkeling sur la barrière de corail",
+        "Retour au port"
+      ],
+      "included": [
+        "Embarcation et gilet de sauvetage",
+        "Commentaires du capitaine",
+        "Masque et tuba pour le snorkeling"
+      ],
+      "bring": [
+        "Maillot de bain",
+        "Serviette",
+        "Crème solaire résistante à l’eau",
+        "Bouteille d'eau"
+      ],
+      "practical": [
+        {
+          "label": "Départ",
+          "value": "Port de Sainte-Rose"
+        },
+        {
+          "label": "Durée",
+          "value": "4 h 30"
+        },
+        {
+          "label": "Groupe",
+          "value": "Jusqu'à 12 personnes"
+        },
+        {
+          "label": "Tarif",
+          "value": "≈ 52 € par adulte (indicatif)"
+        },
+        {
+          "label": "Horaires",
+          "value": null
+        },
+        {
+          "label": "Âge minimum",
+          "value": null
+        }
+      ],
+      "rating": null,
+      "quotes": [
+        {
+          "quote": "Superbe excursion en famille. Visite encadrée et ludique. Des paysages et des endroits à couper le souffle, dépaysement garanti.",
+          "author": "Sandra, avis Google"
+        },
+        {
+          "quote": "Une 1/2 journée en mer très enrichissante, on comprend mieux après le fonctionnement et l'intérêt des mangroves.",
+          "author": "Harry, avis Google"
+        }
+      ],
+      "bookingUrl": "https://www.bluelagoon-gp.com/4h30-dexperience-dans-le-lagon-en-bateau-entre-mangrove-ilets/",
+      "contactUrl": "https://www.bluelagoon-gp.com/",
+      "homeSiteSlug": "riviere-salee",
+      "durationShort": "4 h 30",
+      "minAge": null,
+      "departShort": "Sainte-Rose",
+      "forWho": [
+        "Tous les âges, sans effort physique",
+        "Familles et groupes",
+        "Voir mangrove, îlet et récif en une sortie"
+      ],
+      "notIf": [
+        "Vous cherchez le calme au ras de l'eau : préférez le kayak",
+        "Vous préférez une sortie courte"
+      ],
+      "about": {
+        "fullName": "Jean-Eudes",
+        "role": "Capitaine, fondateur de Blue Lagoon",
+        "bio": "Jean-Eudes a créé Blue Lagoon à Sainte-Rose avec son épouse Anne-Laure. Depuis le port de Sainte-Rose, il emmène ses passagers dans le Grand Cul-de-Sac Marin, entre mangrove, îlets de sable et barrière de corail.",
+        "facts": [
+          {
+            "icon": "anchor",
+            "label": "Rôle",
+            "value": "Capitaine"
+          },
+          {
+            "icon": "shield",
+            "label": "Agrément",
+            "value": "Prestataire autorisé du Parc national"
+          },
+          {
+            "icon": "pin",
+            "label": "Base",
+            "value": "Port de Sainte-Rose"
+          },
+          {
+            "icon": "boat",
+            "label": "Blue Lagoon",
+            "value": "Depuis 2010"
+          }
+        ],
+        "story": "Le lagon change de couleur toutes les dix minutes. En une matinée, on passe de la mangrove au récif sans jamais forcer.",
+        "why": "Seul, il faut un bateau, un permis et la carte des zones du Parc. Avec Jean-Eudes, on enchaîne mangrove, îlet et récif en une matinée, uniquement là où le mouillage est autorisé.",
+        "pitch": "Le lagon en bateau : mangrove, îlet de sable et snorkeling sur le récif, sans effort.",
+        "level": "Très facile",
+        "website": "https://www.bluelagoon-gp.com/",
+        "domain": "bluelagoon-gp.com"
+      },
+      "estimated": [
+        "included",
+        "bring"
+      ]
+    },
+    {
+      "key": "yalode",
+      "name": "Yalodé",
+      "guide": "Pascal",
+      "guideSlug": "pascal",
+      "photo": "https://randomuser.me/api/portraits/men/46.jpg",
+      "kind": "kayak",
+      "mode": "En kayak",
+      "credential": "Guide brevet d’État · 4,9 ★ · +1 880 avis",
+      "tagline": "La mangrove en kayak, au ras de l'eau, en petit groupe.",
+      "priceEur": 38,
+      "price": "38 €",
+      "priceNote": "par adulte · 22 € enfant de -10 ans non rameur",
+      "priceDate": "septembre 2026",
+      "tourName": "Kayak mangrove",
+      "tourSummary": "Environ 3 h de kayak dans la réserve du Grand Cul-de-Sac Marin, avec halte possible sur un îlet corallien.",
+      "blurb": "Pascal Proust et son équipe font glisser de petits groupes en kayak depuis Vieux-Bourg, au cœur de chenaux de palétuviers trop étroits pour un bateau. Une immersion plus lente, avec pauses botaniques et légendes locales.",
+      "features": [
+        {
+          "icon": "backpack",
+          "title": "Équipement fourni",
+          "text": "Kayak à dossier ergonomique, pagaie, gilet de sauvetage, bidon."
+        },
+        {
+          "icon": "users",
+          "title": "Petit groupe",
+          "text": "Des groupes réduits, loin des foules."
+        },
+        {
+          "icon": "grad",
+          "title": "Guide diplômé d'État",
+          "text": "Plus de 15 ans d'expérience."
+        }
+      ],
+      "programme": [
+        "Accueil à la base nautique de Vieux-Bourg, 15 min avant le départ",
+        "Mise à l'eau à l'abri de la barrière de corail et des îlets",
+        "Navigation dans la mangrove, inaccessible autrement qu'en kayak",
+        "Halte sur un îlet corallien, baignade selon les conditions",
+        "Retour et verre de l'amitié"
+      ],
+      "included": [
+        "Kayak à dossier ergonomique",
+        "Pagaie et gilet de sauvetage",
+        "Bidon étanche",
+        "Éco-dégustation et verre de l’amitié"
+      ],
+      "bring": [
+        "Chapeau et lunettes de soleil",
+        "Bouteille d'eau",
+        "T-shirt à manches longues",
+        "Maillot de bain",
+        "Chaussures"
+      ],
+      "practical": [
+        {
+          "label": "Départ",
+          "value": "Base nautique, rue Achille Labuthie, Vieux-Bourg (Morne-à-l’Eau)"
+        },
+        {
+          "label": "Horaires",
+          "value": "8 h 45 (matinée) · 14 h 30 (coucher de soleil)"
+        },
+        {
+          "label": "Durée",
+          "value": "≈ 3 h + 1 h de préparation et verre de l’amitié"
+        },
+        {
+          "label": "Âge minimum",
+          "value": "Dès 3 ans"
+        },
+        {
+          "label": "Tarif",
+          "value": "38 € adulte · 22 € enfant -10 ans non rameur"
+        },
+        {
+          "label": "Annulation",
+          "value": "Gratuite jusqu’à 48 h avant"
+        }
+      ],
+      "rating": "4,9 · +1 880 avis",
+      "quotes": [
+        {
+          "quote": "Toute la famille est unanime, ce fut l'un de nos meilleurs moments en Guadeloupe. Merci à Pascal Proust pour sa bonne humeur.",
+          "author": "Avis voyageur, Tripadvisor"
+        },
+        {
+          "quote": "We went with two children (ages 10 and 11) and while the trip was a challenge at times it wasn't dangerous and was certainly do-able for them.",
+          "author": "Avis voyageur, Tripadvisor"
+        }
+      ],
+      "bookingUrl": "https://www.kayak-guadeloupe.fr/yalode.html",
+      "contactUrl": "https://www.kayak-guadeloupe.fr/contact.html",
+      "homeSiteSlug": "lagon-vieux-bourg",
+      "durationShort": "≈ 3 h",
+      "minAge": 3,
+      "departShort": "la base nautique de Vieux-Bourg",
+      "forWho": [
+        "Familles",
+        "Amateurs de nature et de calme",
+        "Petits groupes"
+      ],
+      "notIf": [
+        "Vous ne voulez pas pagayer environ 3 h",
+        "Vous voulez surtout du snorkeling sur le récif : préférez le bateau"
+      ],
+      "about": {
+        "fullName": "Pascal Proust",
+        "role": "Fondateur de Yalodé · 4,9 ★",
+        "bio": "Pascal Proust a fondé Yalodé en 2012. Guide nature, il fait découvrir en petits groupes la mangrove du Grand Cul-de-Sac Marin et les rivières des Mamelles, avec une approche qui mêle aventure, botanique et contemplation.",
+        "facts": [
+          {
+            "icon": "grad",
+            "label": "Diplôme",
+            "value": "Brevet d'État"
+          },
+          {
+            "icon": "compass",
+            "label": "Expérience",
+            "value": "Plus de 15 ans de guidage"
+          },
+          {
+            "icon": "leaf",
+            "label": "Certification",
+            "value": "INFOM, bain de forêt"
+          },
+          {
+            "icon": "anchor",
+            "label": "Yalodé",
+            "value": "Depuis 2012"
+          }
+        ],
+        "story": "Dans les chenaux, on coupe la conversation et on écoute : les crabes, les oiseaux, la mangrove qui craque. C'est là que tout le monde se tait, même les enfants.",
+        "why": "Seul, on loue un kayak sans savoir quels chenaux passent à cette marée ni où le Parc interdit de débarquer. Avec Pascal, on entre dans les passages étroits au bon moment, on sait ce qu'on regarde, et on revient sans s'être perdu.",
+        "pitch": "La mangrove en kayak, au ras de l'eau : chenaux étroits, petits groupes, dès 3 ans.",
+        "level": "Facile",
+        "website": "https://www.kayak-guadeloupe.fr/",
+        "domain": "kayak-guadeloupe.fr"
+      },
+      "estimated": []
+    }
+  ]
+}

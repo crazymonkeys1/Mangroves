@@ -1,0 +1,101 @@
+---
+// A site in lists. `grid` (cover + facts), `list` (row) and `nearby` (compact row).
+// In the directory, grid/list switch at runtime through [data-view] on the results list.
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+import Badge from '../../atoms/Badge/Badge.astro';
+import Chip from '../../atoms/Chip/Chip.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import type { SiteCardModel } from '../../../lib/site-card';
+interface Props { site: SiteCardModel; variant?: 'grid' | 'nearby'; headingLevel?: 'h2' | 'h3' }
+const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
+---
+{variant === 'nearby' ? (
+  <a class="site-card site-card--nearby" href={s.href}>
+    <span class="site-card__thumb">{s.image && <img src={s.image.src} alt="" loading="lazy" decoding="async" />}</span>
+    <span class="site-card__nearby-text">
+      <span class="text-caption-strong site-card__kicker">{s.activity.label} · {s.commune}</span>
+      <span class="text-title">{s.name}</span>
+    </span>
+  </a>
+) : (
+  <a class="site-card site-card--grid" href={s.href}>
+    <span class="site-card__media">
+      {s.image ? <img src={s.image.src} alt={s.image.alt} loading="lazy" decoding="async" /> : (
+        <span class="site-card__placeholder text-caption-strong"><Icon name="leaf" size="nav" />Photos à venir</span>
+      )}
+      <span class="site-card__badges">
+        {s.guide && <Badge onPhoto class="site-card__guide"><Avatar src={s.guide.photo} size={22} />{s.guide.label}</Badge>}
+        <Badge onPhoto class="site-card__activity"><Icon name={s.activity.icon} />{s.activity.label}</Badge>
+      </span>
+    </span>
+    <span class="site-card__body">
+      <H class="site-card__title text-title">{s.name}</H>
+      <span class="site-card__location text-caption"><Icon name="pin" tone="brand" />{s.commune}</span>
+      <span class="site-card__list-meta text-caption">
+        <span><Icon name={s.activity.icon} tone="secondary" />{s.activity.label}</span>
+        <span><Icon name="mountain" tone="secondary" />{s.level}</span>
+      </span>
+      <span class="site-card__blurb text-body">{s.blurb}</span>
+      {s.tags.length > 0 && <span class="site-card__tags">{s.tags.map((t) => <Chip icon={t.icon}>{t.label}</Chip>)}</span>}
+      {s.stats.length > 0 && (
+        <span class="site-card__stats">
+          {s.stats.map((st) => <span class="site-card__stat"><span class="text-caption">{st.label}</span><span class="text-caption-strong">{st.value}</span></span>)}
+        </span>
+      )}
+      <span class="site-card__footer">
+        <span class="site-card__price"><span class="text-title">{s.price.amount}</span>{s.price.unit && <span class="text-caption">{s.price.unit}</span>}</span>
+        <span class="site-card__cta text-caption-strong">{s.cta}</span>
+        <span class="site-card__row-side text-caption-strong">{s.rowSide}</span>
+      </span>
+    </span>
+  </a>
+)}
+
+<style>
+  .site-card { display: flex; background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); overflow: hidden; text-decoration: none; color: var(--color-text-primary); min-width: 0; height: 100%; transition: border-color var(--duration-fast) var(--easing-standard); }
+  @media (hover: hover) { .site-card:hover { border-color: var(--color-border-strong); } }
+
+  /* ---- grid (default) ---- */
+  .site-card--grid { flex-direction: column; }
+  .site-card__media { position: relative; display: block; aspect-ratio: 4 / 3; background: var(--color-surface-inverse); }
+  .site-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .site-card__placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); color: var(--color-text-inverse); }
+  .site-card__badges { position: absolute; top: var(--space-3); left: var(--space-3); right: var(--space-3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-2); }
+  .site-card__badges :global(.site-card__guide) { padding-left: var(--space-1); }
+  .site-card__badges :global(.site-card__activity) { margin-left: auto; }
+  .site-card__body { padding: var(--card-padding); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+  .site-card__title { margin: 0; }
+  .site-card__location { display: flex; align-items: center; gap: var(--space-1); margin-top: calc(-1 * var(--space-2)); }
+  .site-card__list-meta, .site-card__row-side { display: none; }
+  .site-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .site-card__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
+  .site-card__stat { background: var(--color-surface-page); border-radius: var(--radius-control); padding: var(--space-2) var(--space-3); display: flex; flex-direction: column; min-width: 0; }
+  .site-card__stat .text-caption-strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .site-card__footer { margin-top: auto; padding-top: var(--space-1); display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+  .site-card__price { display: flex; align-items: baseline; gap: var(--space-2); }
+  .site-card__cta { padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); background: var(--color-action-neutral); color: var(--color-action-neutral-text); white-space: nowrap; }
+
+  /* ---- list (directory view switch) ---- */
+  :global([data-view='list']) .site-card--grid { flex-direction: row; min-height: 112px; }
+  :global([data-view='list']) .site-card__media { aspect-ratio: auto; width: clamp(96px, 18vw, 160px); flex-shrink: 0; }
+  :global([data-view='list']) .site-card__badges,
+  :global([data-view='list']) .site-card__location,
+  :global([data-view='list']) .site-card__blurb,
+  :global([data-view='list']) .site-card__tags,
+  :global([data-view='list']) .site-card__stats,
+  :global([data-view='list']) .site-card__cta,
+  :global([data-view='list']) .site-card__placeholder { display: none; }
+  :global([data-view='list']) .site-card__list-meta { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); }
+  :global([data-view='list']) .site-card__list-meta span { display: inline-flex; align-items: center; gap: var(--space-1); }
+  :global([data-view='list']) .site-card__body { gap: var(--space-2); justify-content: center; padding: var(--space-3) var(--space-4); }
+  :global([data-view='list']) .site-card__footer { flex-wrap: wrap; }
+  :global([data-view='list']) .site-card__row-side { display: inline; color: var(--color-text-secondary); }
+  :global([data-view='list']) .site-card__price { order: 2; }
+
+  /* ---- nearby ---- */
+  .site-card--nearby { align-items: stretch; min-height: 96px; }
+  .site-card__thumb { width: 104px; flex-shrink: 0; background: var(--color-surface-sunken); position: relative; }
+  .site-card__thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .site-card__nearby-text { padding: var(--space-3) var(--space-4); display: flex; flex-direction: column; justify-content: center; gap: var(--space-1); min-width: 0; }
+  .site-card__kicker { color: var(--color-text-secondary); }
+</style>

@@ -1,0 +1,63 @@
+---
+// "Sécurité" (#preparer, #regles): rules, risks, bag, folded disclaimer, and the nearest guided outing when there is no partner.
+import Chip from '../../atoms/Chip/Chip.astro';
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import CautionNote from '../../molecules/CautionNote/CautionNote.astro';
+import DisclaimerFold from '../../molecules/DisclaimerFold/DisclaimerFold.astro';
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+import type { SitePageModel } from '../../../lib/site-page';
+interface Props { data: SitePageModel['safety'] }
+const { title, text, icon, rules, rulesLink, risks, bag, estimated, noGuide } = Astro.props.data;
+---
+<section class="safety-panel" id="preparer" aria-labelledby="h-preparer">
+  <SectionHead eyebrow="Sécurité" title="Avant de partir : sécurité et équipement" id="h-preparer" />
+  <div class="safety-panel__rules" id="regles">
+    <div class="safety-panel__rules-head">
+      <span class="safety-panel__rules-icon"><Icon name={icon} size="control" tone="brand" /></span>
+      <h3 class="text-body-strong">{title}</h3>
+    </div>
+    <p class="text-body">{text}</p>
+    {rules.length > 0 && (
+      <ul class="safety-panel__rule-list">
+        {rules.map((r) => <li class="safety-panel__rule text-body"><span class="safety-panel__rule-icon"><Icon name={r.icon} /></span><span>{r.text}</span></li>)}
+      </ul>
+    )}
+    {rulesLink && <a class="safety-panel__link text-caption" href={rulesLink.url} target="_blank" rel="noopener">{rulesLink.label} ↗</a>}
+  </div>
+
+  {risks.length > 0 && (
+    <div class="safety-panel__group">
+      <Eyebrow tone="secondary" as="h3">Risques signalés sur ce site</Eyebrow>
+      <ul class="safety-panel__chips">{risks.map((r) => <li><Chip icon={r.icon}>{r.label}</Chip></li>)}</ul>
+    </div>
+  )}
+  <div class="safety-panel__group">
+    <Eyebrow tone="secondary" as="h3">Dans le sac</Eyebrow>
+    <ul class="safety-panel__chips">{bag.map((b) => <li><Chip icon={b.icon}>{b.label}</Chip></li>)}</ul>
+  </div>
+  {estimated && <CautionNote>Risques et liste du sac estimés selon le type de visite, à confirmer</CautionNote>}
+
+  <DisclaimerFold summary="Annuaire informatif : vérifiez avant de partir.">
+    Ce site est un annuaire informatif. Il ne remplace ni vos propres vérifications, ni l'avis d'un professionnel, ni les règles en vigueur sur place. Vous restez seul responsable de vos choix et de votre sécurité.
+  </DisclaimerFold>
+
+  {noGuide && (
+    <p class="text-body safety-panel__no-guide">Aucun guide partenaire ne propose ce site pour l'instant. <a class="text-body-strong" href={noGuide.href}>{noGuide.label}</a></p>
+  )}
+</section>
+
+<style>
+  .safety-panel { border-top: var(--border-width) solid var(--color-border-default); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+  .safety-panel p, .safety-panel h3 { margin: 0; }
+  .safety-panel__rules { background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); padding: var(--card-padding); display: flex; flex-direction: column; gap: var(--space-3); }
+  .safety-panel__rules-head { display: flex; gap: var(--space-3); align-items: center; }
+  .safety-panel__rules-icon { width: calc(var(--space-6) + var(--space-1)); height: calc(var(--space-6) + var(--space-1)); border-radius: var(--radius-full); background: var(--color-surface-brand-soft); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .safety-panel__rule-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .safety-panel__rule { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-3) 0; border-top: var(--border-width) solid var(--color-border-subtle); }
+  .safety-panel__rule-icon { width: calc(var(--space-6) - var(--space-1)); height: calc(var(--space-6) - var(--space-1)); border-radius: var(--radius-control); background: var(--color-surface-inset); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .safety-panel__link { align-self: flex-start; display: inline-flex; align-items: center; min-height: var(--tap-size-min); }
+  .safety-panel__group { display: flex; flex-direction: column; gap: var(--space-3); }
+  .safety-panel__chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .safety-panel__no-guide a { display: inline-flex; min-height: var(--tap-size-min); align-items: center; }
+</style>

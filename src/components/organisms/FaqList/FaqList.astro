@@ -1,0 +1,18 @@
+---
+// Questions and answers (native <details>; answers stay in the DOM for crawlers).
+import Disclosure from '../../molecules/Disclosure/Disclosure.astro';
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+interface Props { title: string; items: { q: string; a: string }[] }
+const { title, items } = Astro.props;
+---
+<section class="faq-list" id="faq" aria-labelledby="h-faq">
+  <SectionHead eyebrow="FAQ" title={title} id="h-faq" />
+  <div class="faq-list__items">
+    {items.map((f, i) => <Disclosure variant="faq" summary={f.q} open={i === 0}><p class="text-body">{f.a}</p></Disclosure>)}
+  </div>
+</section>
+
+<style>
+  .faq-list { border-top: var(--border-width) solid var(--color-border-default); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+  .faq-list__items { display: flex; flex-direction: column; }
+</style>

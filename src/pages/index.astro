@@ -1,0 +1,8 @@
+---
+// Route: / (directory of all published sites).
+import DirectoryTemplate from '../templates/DirectoryTemplate.astro';
+import { buildDirectoryPage } from '../lib/directory';
+import { shellData } from '../lib/shell';
+const page = buildDirectoryPage(Astro.site!.href);
+---
+<DirectoryTemplate page={page} shell={shellData()} />

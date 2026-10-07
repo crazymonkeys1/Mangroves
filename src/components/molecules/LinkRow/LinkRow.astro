@@ -1,0 +1,20 @@
+---
+// One row in a reading list: title + meta + ↗.
+interface Props { href: string; title: string; meta: string }
+const { href, title, meta } = Astro.props;
+---
+<a class="link-row" href={href} target="_blank" rel="noopener">
+  <span class="link-row__title text-body">{title}</span>
+  <span class="link-row__meta text-caption">{meta} <span aria-hidden="true">↗</span></span>
+</a>
+
+<style>
+  .link-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+    min-height: var(--tap-size-min); padding: var(--space-3) 0; border-top: var(--border-width) solid var(--color-border-default);
+    text-decoration: none;
+  }
+  .link-row__title { min-width: 0; }
+  .link-row__meta { flex-shrink: 0; }
+  @media (hover: hover) { .link-row:hover .link-row__title { text-decoration: underline; text-decoration-color: var(--color-action-primary); text-underline-offset: 4px; } }
+</style>

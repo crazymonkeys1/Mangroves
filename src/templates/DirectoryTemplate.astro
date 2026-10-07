@@ -1,0 +1,70 @@
+---
+// Directory (home) skeleton: Hero, FilterBar, AlertNote, ResultToolbar, SiteCard grid with LeadCaptureBand, AboutUsBand.
+import AboutUsBand from '../components/organisms/AboutUsBand/AboutUsBand.astro';
+import FilterBar from '../components/organisms/FilterBar/FilterBar.astro';
+import FilterSheet from '../components/organisms/FilterSheet/FilterSheet.astro';
+import Hero from '../components/organisms/Hero/Hero.astro';
+import LeadCaptureBand from '../components/organisms/LeadCaptureBand/LeadCaptureBand.astro';
+import ResultToolbar from '../components/organisms/ResultToolbar/ResultToolbar.astro';
+import SiteCard from '../components/organisms/SiteCard/SiteCard.astro';
+import Button from '../components/atoms/Button/Button.astro';
+import AlertNote from '../components/molecules/AlertNote/AlertNote.astro';
+import PageShell from './PageShell.astro';
+import type { DirectoryPageModel } from '../lib/directory';
+import type { ShellData } from '../lib/shell';
+interface Props { page: DirectoryPageModel; shell: ShellData }
+const { page, shell } = Astro.props;
+---
+<PageShell title={page.title} description={page.description} canonical={page.canonical} ogImage={page.hero.image.src} jsonLd={page.jsonLd} shell={shell}>
+  <div class="directory" data-directory>
+    <Hero variant="directory" label={page.hero.label} title={page.hero.title} lead={page.hero.lead} slides={[page.hero.image]} guides={page.hero.guides} />
+    <FilterBar filters={page.filters} />
+
+    <div class="directory__body">
+      <AlertNote headline="Sur l'eau, le soleil et le vent changent vite.">
+        <p>La réverbération brûle même par temps couvert et le clapot se lève en quelques minutes. Dans le cœur du Parc national, certaines zones sont interdites : renseignez-vous avant de partir seul.</p>
+      </AlertNote>
+      <ResultToolbar count={page.cards.length} />
+
+      <ul class="directory__results" data-results data-view="grid">
+        {page.cards.map((c, i) => (
+          <>
+            <li class="directory__item" data-site data-order={i} data-search={c.filter.search} data-island={c.filter.island} data-activities={c.filter.activities}
+              data-difficulty={c.filter.difficulty} data-kids={String(c.filter.kids)} data-served={String(c.filter.served)} data-birds={String(c.filter.birds)} data-photo={String(c.filter.photo)}>
+              <SiteCard site={c} headingLevel="h2" />
+            </li>
+            {i === 2 && <li class="directory__lead" data-lead><LeadCaptureBand /></li>}
+          </>
+        ))}
+      </ul>
+
+      <div class="directory__empty" data-empty hidden>
+        <p class="text-title">Aucune mangrove ne correspond</p>
+        <p class="text-body">Assouplissez un critère, ou dites-nous ce que vous cherchez.</p>
+        <div class="directory__empty-actions">
+          <Button variant="secondary" data-clear-filters>Réinitialiser</Button>
+          {page.contacts.map((c) => <Button variant="neutral" href={c.url} external>Demander conseil à {c.guide}</Button>)}
+        </div>
+      </div>
+    </div>
+
+    <AboutUsBand data={shell.aboutUs} />
+    <FilterSheet filters={page.filters} />
+  </div>
+</PageShell>
+
+<script>
+  import { initDirectoryFilters } from '../scripts/directory-filters';
+  const root = document.querySelector<HTMLElement>('[data-directory]');
+  if (root) initDirectoryFilters(root);
+</script>
+
+<style>
+  .directory__body { max-width: var(--container-page); margin: 0 auto; padding: var(--space-4) var(--page-gutter) 0; display: flex; flex-direction: column; gap: var(--space-4); }
+  .directory__results { list-style: none; margin: 0; padding: var(--space-1) 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-4); }
+  .directory__results[data-view='list'] { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+  .directory__lead { grid-column: 1 / -1; }
+  .directory__empty { background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); padding: var(--space-6); display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); }
+  .directory__empty p { margin: 0; }
+  .directory__empty-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+</style>

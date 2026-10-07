@@ -1,0 +1,13 @@
+---
+// Legal fine print, folded. Its link opens the full notice in the footer (#avertissement).
+import Disclosure from '../Disclosure/Disclosure.astro';
+interface Props { summary: string }
+---
+<Disclosure variant="fold" summary={Astro.props.summary} toggleLabel="Lire" class="disclaimer-fold">
+  <p class="text-legal"><slot /> <a href="#avertissement" data-open-details>Lire l'avertissement</a></p>
+</Disclosure>
+
+<style>
+  .disclaimer-fold { border-top: var(--border-width) solid var(--color-border-default); }
+  .disclaimer-fold p { padding-bottom: var(--space-3); }
+</style>

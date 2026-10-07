@@ -1,0 +1,28 @@
+---
+// Pick one of 2–3 when the choice is the main action. Radio inputs: works without JavaScript.
+// Each option's panel is matched by CSS in the parent via [data-segment] + :has().
+interface Props { name: string; label: string; options: { value: string; label: string; checked?: boolean }[]; class?: string }
+const { name, label, options, class: className } = Astro.props;
+---
+<fieldset class:list={['segmented-control', className]}>
+  <legend class="sr-only">{label}</legend>
+  {options.map((o, i) => (
+    <label class="segmented-control__option text-caption-strong">
+      <input class="sr-only" type="radio" name={name} value={o.value} checked={o.checked ?? i === 0} />
+      <span>{o.label}</span>
+    </label>
+  ))}
+</fieldset>
+
+<style>
+  .segmented-control {
+    margin: 0; border: 0; padding: var(--space-1); display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: var(--space-1);
+    background: var(--color-surface-sunken); border-radius: var(--radius-control);
+  }
+  .segmented-control__option {
+    min-height: var(--tap-size-min); display: flex; align-items: center; justify-content: center;
+    border-radius: var(--radius-control); cursor: pointer; transition: background-color var(--duration-fast) var(--easing-standard);
+  }
+  .segmented-control__option:has(input:checked) { background: var(--color-surface-card); box-shadow: var(--elevation-thumb); }
+  .segmented-control__option:has(input:focus-visible) { box-shadow: var(--focus-ring); }
+</style>

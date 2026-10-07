@@ -1,0 +1,30 @@
+---
+// "Top 5" capture, intent only (docs/project.md §6): nothing is sent or stored yet, so the form
+// cannot be submitted and says so. Wire a provider + consent logging before enabling it.
+import Button from '../../atoms/Button/Button.astro';
+import Field from '../../atoms/Field/Field.astro';
+import TabToggle from '../../molecules/TabToggle/TabToggle.astro';
+---
+<section class="lead-capture on-inverse" aria-labelledby="lead-title">
+  <span class="text-eyebrow">Le top 5, par message</span>
+  <h2 class="text-title" id="lead-title">Notre top 5 des journées en mangrove, avec une petite surprise</h2>
+  <p class="text-body">On vous l'envoie par e-mail ou par SMS, une seule fois.</p>
+  <form class="lead-capture__form" onsubmit="return false" aria-describedby="lead-status">
+    <TabToggle name="lead-channel" label="Canal d'envoi" options={[{ value: 'sms', label: 'Par SMS' }, { value: 'email', label: 'Par e-mail' }]} />
+    <Field class="lead-capture__field lead-capture__field--sms" label="Votre numéro de téléphone" name="phone" type="tel" inputmode="tel" autocomplete="tel" tone="inverse" />
+    <Field class="lead-capture__field lead-capture__field--email" label="Votre email" name="email" type="email" inputmode="email" autocomplete="email" tone="inverse" />
+    <Button variant="primary" type="submit" fullWidth disabled>Recevoir mon top 5</Button>
+    <p class="text-caption" id="lead-status">Envoi bientôt disponible.</p>
+  </form>
+  <p class="text-caption">Désinscription en un clic. <a href="/confidentialite">Politique de confidentialité</a></p>
+</section>
+
+<style>
+  .lead-capture { background: var(--color-surface-inverse); border-radius: var(--radius-container); padding: var(--space-5) var(--card-padding); display: flex; flex-direction: column; gap: var(--space-4); }
+  @media (min-width: 880px) { .lead-capture { padding: var(--space-6) var(--space-7); } }
+  .lead-capture p, .lead-capture h2 { margin: 0; }
+  .lead-capture a { color: var(--color-text-inverse); }
+  .lead-capture__form { display: flex; flex-direction: column; gap: var(--space-3); max-width: 560px; }
+  .lead-capture__form:has(input[value='sms']:checked) :global(.lead-capture__field--email),
+  .lead-capture__form:has(input[value='email']:checked) :global(.lead-capture__field--sms) { display: none; }
+</style>

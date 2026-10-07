@@ -1,0 +1,489 @@
+{
+  "_note": "Per-site editorial content moved from the v12 prototype (V9). Keys = site slugs in mangroves-db.json. `estimated` lists fields shown with a CautionNote until verified (docs/project.md §4). `bag` is \"water\", \"walk\" or an explicit list; absent = chosen from the site activities.",
+  "sites": {
+    "grand-cul-de-sac-marin": {
+      "h2": "Grand Cul-de-Sac Marin, le lagon de mangrove du nord de la Guadeloupe",
+      "sig": "Le seul endroit de l’archipel où l’on passe en une sortie de la mangrove aux îlets de sable et à la barrière de corail.",
+      "tip": "Partez le matin : le lagon est plus calme et les oiseaux sont sur les palétuviers avant la chaleur. Gardez le maillot sous les vêtements, la baignade arrive vite.",
+      "tipBy": "yalode",
+      "aka": [
+        "GCSM",
+        "Lagon du Grand Cul-de-Sac",
+        "Grand Cul de Sac Marin"
+      ],
+      "when": "Toute l’année. De décembre à avril, alizés plus réguliers et mer souvent plus claire.",
+      "risks": [
+        "soleil",
+        "vent",
+        "moustiques",
+        "oursins"
+      ],
+      "drive": "40 min depuis Pointe-à-Pitre",
+      "parking": "Port de Sainte-Rose ou Vieux-Bourg, gratuit",
+      "self": "Les deux points de départ sont le port de Sainte-Rose, au nord de la Basse-Terre, et le petit port de Vieux-Bourg à Morne-à-l'Eau. Le lagon se découvre depuis l'eau : sans embarcation, on ne voit la mangrove que depuis la rive.",
+      "note": {
+        "icon": "shield",
+        "title": "Cœur de Parc national",
+        "text": "Une partie du lagon est en réserve naturelle. Débarquement interdit sur certains îlets et îlet Blanc fermé une partie de l'année pour la nidification."
+      },
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "riviere-salee": {
+      "h2": "Rivière Salée, le chenal de mangrove entre Basse-Terre et Grande-Terre",
+      "sig": "Un bras de mer de 6 km bordé de palétuviers, que l’on remonte sous les deux ponts de l’île.",
+      "tip": "Regardez les racines au passage des ponts : c'est là que les jeunes poissons s'abritent. Le contraste entre la ville et la mangrove est saisissant.",
+      "tipBy": "bluelagoon",
+      "aka": [
+        "Rivière-Salée",
+        "Canal de la Rivière Salée"
+      ],
+      "when": "Toute l’année, de préférence le matin quand l’eau est lisse.",
+      "risks": [
+        "soleil",
+        "bateaux",
+        "moustiques"
+      ],
+      "drive": "15 min depuis Pointe-à-Pitre",
+      "parking": "Marinas de Bas-du-Fort ou de Jarry",
+      "self": "La Rivière Salée se longe en bateau ou en kayak. Depuis la terre, on l'aperçoit des ponts de la Gabarre et de l'Alliance, mais le trafic y est dense et il n'y a pas de cheminement piéton.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "ilet-blanc": {
+      "h2": "Îlet Blanc, la halte de sable blanc du Grand Cul-de-Sac Marin",
+      "sig": "Un banc de sable en plein lagon, où l’on se baigne dans moins d’un mètre d’eau turquoise.",
+      "tip": "On s'arrête en fin de matinée, quand le soleil fait ressortir le turquoise. Laissez les coquillages sur place, l'îlet est protégé.",
+      "tipBy": "bluelagoon",
+      "when": "Hors période de fermeture (nidification, avril à juillet selon arrêté du Parc).",
+      "risks": [
+        "soleil",
+        "oursins",
+        "vent"
+      ],
+      "drive": "40 min jusqu’à Sainte-Rose",
+      "parking": "Port de Sainte-Rose",
+      "self": "L'îlet n'est accessible qu'en bateau, depuis Sainte-Rose. Vérifiez les dates de fermeture publiées par le Parc national avant toute sortie.",
+      "alert": {
+        "title": "Fermé une partie de l’année",
+        "text": "L'îlet Blanc est fermé au public pendant la nidification des oiseaux marins. Les dates sont fixées chaque année par arrêté du Parc national."
+      },
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag",
+        "when"
+      ]
+    },
+    "ilet-a-fajou": {
+      "h2": "Îlet à Fajou, le grand îlet de mangrove de la réserve",
+      "sig": "Le plus grand îlet du lagon, entièrement couvert de mangrove, au cœur de la réserve naturelle.",
+      "tip": "On en fait le tour par l'eau : les frégates et les pélicans se posent sur les palétuviers côté large.",
+      "tipBy": "bluelagoon",
+      "when": "Toute l’année, en sortie guidée.",
+      "risks": [
+        "soleil",
+        "vent",
+        "hautsfonds"
+      ],
+      "drive": "40 min jusqu’à Sainte-Rose",
+      "parking": "Port de Sainte-Rose",
+      "self": "Fajou se découvre uniquement depuis l'eau, en sortie guidée. Le débarquement y est réglementé par la réserve naturelle.",
+      "note": {
+        "icon": "ban",
+        "title": "Débarquement réglementé",
+        "text": "L'îlet fait partie de la réserve naturelle : on l'observe depuis le bateau."
+      },
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "lagon-vieux-bourg": {
+      "h2": "Mangrove de Vieux-Bourg, la porte d’entrée en kayak du lagon",
+      "sig": "On part d’un petit port de pêche et, dix minutes plus tard, on pagaie sous les palétuviers.",
+      "tip": "Dans les chenaux, arrêtez de pagayer une minute et écoutez : les crabes qui grattent, les hérons, l'eau. C'est le meilleur moment de la sortie.",
+      "tipBy": "yalode",
+      "aka": [
+        "Port de Vieux-Bourg",
+        "Mangrove de Morne-à-l’Eau"
+      ],
+      "when": "Toute l’année. Départ 8 h 45 pour la lumière et le calme, 14 h 30 pour le coucher de soleil.",
+      "risks": [
+        "soleil",
+        "moustiques",
+        "vent"
+      ],
+      "drive": "25 min depuis Pointe-à-Pitre",
+      "parking": "Gratuit, au port de pêche",
+      "self": "Le port de Vieux-Bourg se trouve au bout de la route de Vieux-Bourg, à Morne-à-l'Eau. Depuis le quai, on voit la mangrove ; pour y entrer, il faut une embarcation.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "sentier-vieux-bourg-babin": {
+      "h2": "Sentier Vieux-Bourg / Babin, de la mangrove à la plage verte",
+      "sig": "Le seul sentier qui mène à la plage de Babin, où l’herbe pousse jusqu’au bord de l’eau.",
+      "tip": "Faites le sentier tôt et finissez à Babin : la lumière rasante sur la prairie humide est superbe. Prévoyez des chaussures qui ne craignent pas la boue.",
+      "tipBy": "yalode",
+      "nameStory": "Le sentier porte le nom de « La case aux lamantins », en souvenir des lamantins qui vivaient autrefois dans le Grand Cul-de-Sac Marin. Ils ont disparu de Guadeloupe au XXe siècle.",
+      "aka": [
+        "La case aux lamantins",
+        "Plage verte de Babin"
+      ],
+      "when": "Par temps sec ; évitez les jours qui suivent de fortes pluies.",
+      "risks": [
+        "vase",
+        "moustiques",
+        "chaleur"
+      ],
+      "drive": "25 min depuis Pointe-à-Pitre",
+      "parking": "Port de pêche de Vieux-Bourg",
+      "bag": "walk",
+      "self": "Départ du port de pêche de Vieux-Bourg, balisage jaune. Le sentier longe la mangrove puis traverse une prairie humide jusqu'à la plage de Babin.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag",
+        "nameStory"
+      ]
+    },
+    "beautiran": {
+      "h2": "Sentier de Beautiran, la mangrove sur les traces du port sucrier",
+      "sig": "Une boucle qui part des « marches des esclaves » et longe la mangrove de l’ancien port d’expédition du sucre.",
+      "tip": "Regardez les racines des palétuviers à marée basse : les huîtres de mangrove s'y accrochent en grappes.",
+      "nameStory": "Beautiran était le port d'où partaient le sucre et le rhum de l'usine de Beauport. Les « marches des esclaves », point de départ du sentier, rappellent ce passé.",
+      "when": "De décembre à mai, tôt le matin : la boucle est longue et peu ombragée.",
+      "risks": [
+        "chaleur",
+        "vase",
+        "moustiques"
+      ],
+      "drive": "35 min depuis Pointe-à-Pitre",
+      "parking": "Bourg de Petit-Canal, près des marches",
+      "bag": "walk",
+      "self": "Départ depuis les marches des esclaves, dans le bourg de Petit-Canal (nouveau départ depuis décembre 2024). Boucle de 11,5 km, comptez 4 h.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag",
+        "nameStory"
+      ]
+    },
+    "marais-port-louis": {
+      "h2": "Marais de Port-Louis, la grande zone humide du nord Grande-Terre",
+      "sig": "Une zone Ramsar sauvée d’un projet de raffinerie, que l’on traverse sur un caillebotis jusqu’au canal.",
+      "tip": "Venez avec des jumelles en début de matinée : plus de 90 espèces d'oiseaux y sont observées.",
+      "when": "Toute l’année, de préférence le matin.",
+      "risks": [
+        "degrade",
+        "glissant",
+        "moustiques",
+        "chaleur"
+      ],
+      "drive": "45 min depuis Pointe-à-Pitre",
+      "parking": "Parking du cimetière, derrière la plage du Souffleur",
+      "bag": "walk",
+      "self": "Départ du parking du cimetière de Port-Louis, derrière la plage du Souffleur. Le caillebotis du Marais Rocheux mène au canal de la Pointe des Mangles.",
+      "alert": {
+        "title": "Caillebotis endommagé",
+        "text": "Rando Guadeloupe déconseille l'accès au caillebotis du chemin Kas Moustach, endommagé. Restez sur les tronçons en bon état."
+      },
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "chemins-de-mangrove-anse-bertrand": {
+      "h2": "Chemins de mangrove, la randonnée littorale d’Anse-Bertrand à Port-Louis",
+      "sig": "Une marche facile qui alterne côte rocheuse, mangrove et plages, avec une pause baignade en chemin.",
+      "tip": "Faites-la dans le sens Anse-Bertrand → Port-Louis et terminez par un bain à la plage du Souffleur.",
+      "when": "Le matin, par temps sec.",
+      "risks": [
+        "chaleur",
+        "soleil",
+        "moustiques"
+      ],
+      "drive": "50 min depuis Pointe-à-Pitre",
+      "parking": "Bourg d’Anse-Bertrand",
+      "bag": "walk",
+      "self": "Le chemin part d'Anse-Bertrand et longe le littoral jusqu'à la plage du Souffleur à Port-Louis. Prévoyez un retour en voiture ou en taxi.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "taonaba-belle-plaine": {
+      "h2": "Taonaba, la forêt marécageuse de Belle-Plaine aux Abymes",
+      "sig": "Un caillebotis gratuit dans la plus grande forêt marécageuse de Guadeloupe, à quelques minutes de l’aéroport.",
+      "tip": "Allez jusqu'au bout du caillebotis et attendez en silence : les crabes violonistes sortent dès que le bruit retombe.",
+      "nameStory": "Taonaba est le nom amérindien donné au site par la Maison de la mangrove. Il rappelle la présence des premiers habitants de l'archipel dans ces zones humides.",
+      "when": "Toute l’année, en journée.",
+      "risks": [
+        "moustiques",
+        "glissant"
+      ],
+      "drive": "15 min depuis Pointe-à-Pitre",
+      "parking": "Parking de la Maison de la mangrove, gratuit",
+      "bus": "Ligne Les Abymes, arrêt Belle-Plaine",
+      "bag": "walk",
+      "self": "Le site se trouve à Belle-Plaine, aux Abymes, le long du canal. Le caillebotis est en accès libre, comptez 15 à 30 minutes.",
+      "estimated": [
+        "drive",
+        "parking",
+        "bus",
+        "risks",
+        "bag",
+        "nameStory"
+      ]
+    },
+    "jarry-foret-marecageuse": {
+      "h2": "Forêt marécageuse de Jarry, une mangrove en cours de restauration",
+      "sig": "Au milieu de la zone industrielle, un programme rend à la forêt marécageuse les hectares perdus depuis 1950.",
+      "when": "Site en restauration : pas de visite organisée pour l’instant.",
+      "risks": [
+        "vase",
+        "moustiques"
+      ],
+      "drive": "10 min depuis Pointe-à-Pitre",
+      "parking": "Non aménagé",
+      "bag": "walk",
+      "self": "Il n'existe pas de sentier ouvert au public. Le site se suit à travers les actualités du Conservatoire du littoral (projet JA-RIV).",
+      "note": {
+        "icon": "info",
+        "title": "Pas de sentier public",
+        "text": "Le site est en cours de restauration. Aucune visite libre n’est organisée pour le moment."
+      },
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "riviere-lezarde": {
+      "h2": "Embouchure de la Lézarde, la porte du Petit Cul-de-Sac Marin",
+      "sig": "L’embouchure d’une rivière de Basse-Terre qui ouvre directement sur la mangrove du Petit Cul-de-Sac Marin.",
+      "when": "Le matin, mer calme.",
+      "risks": [
+        "soleil",
+        "vase",
+        "moustiques"
+      ],
+      "drive": "20 min depuis Pointe-à-Pitre",
+      "parking": "Bord de route, Petit-Bourg",
+      "bag": "water",
+      "self": "L'embouchure se trouve à Petit-Bourg. Des loueurs locaux proposent kayaks et bateaux pour remonter la mangrove.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "riviere-moustique-goyave": {
+      "h2": "Mangrove de la Rivière Moustique, face à l’îlet Fortune",
+      "sig": "Une petite mangrove à moins d’un kilomètre du port de Goyave, idéale pour une première sortie en kayak.",
+      "tip": "Pagayez jusqu'à la sortie de la rivière : la vue sur l'îlet Fortune vaut le détour.",
+      "when": "Le matin, mer calme.",
+      "risks": [
+        "moustiques",
+        "soleil"
+      ],
+      "drive": "30 min depuis Pointe-à-Pitre",
+      "parking": "Port de pêche de Goyave",
+      "bag": "water",
+      "self": "Départ depuis le port de pêche de Goyave. Des loueurs proposent des kayaks pour descendre la rivière jusqu'à la mangrove.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "pointe-a-bacchus": {
+      "h2": "Pointe à Bacchus, la boucle facile le long de la mangrove",
+      "sig": "Une boucle de 3 km, plate et balisée, où l’on croise les palétuviers blancs au bord de l’eau.",
+      "tip": "Faites la boucle en fin d'après-midi : la lumière sur le Petit Cul-de-Sac Marin est la plus belle.",
+      "when": "Toute l’année, en dehors des heures chaudes.",
+      "risks": [
+        "moustiques",
+        "vase"
+      ],
+      "drive": "20 min depuis Pointe-à-Pitre",
+      "parking": "Lycée des Droits de l’Homme, Petit-Bourg",
+      "bag": "walk",
+      "self": "Départ près du lycée des Droits de l'Homme à Petit-Bourg. Boucle de 3,2 km, environ 2 h.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "saint-felix-gosier": {
+      "h2": "Sentier de Saint-Félix, la passerelle dans les palétuviers rouges",
+      "sig": "Une courte passerelle mène au cœur des palétuviers rouges, avec un observatoire à oiseaux au bout.",
+      "tip": "Installez-vous dans l'observatoire dix minutes sans bouger : les hérons reviennent très vite.",
+      "when": "Toute l’année, tôt le matin pour les oiseaux.",
+      "risks": [
+        "glissant",
+        "moustiques"
+      ],
+      "drive": "15 min depuis Pointe-à-Pitre",
+      "parking": "Plage de Saint-Félix, gratuit",
+      "bag": "walk",
+      "self": "Départ depuis la plage de Saint-Félix au Gosier. Le sentier côtier passe par la passerelle et l'observatoire.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "mangrove-vieux-fort-marie-galante": {
+      "h2": "Mangrove de Vieux-Fort, trois mangroves en pédalo à Marie-Galante",
+      "sig": "On traverse en 45 minutes trois mangroves successives, jusqu’aux mangles médailles de 20 m.",
+      "tip": "Réservez le bateau électrique si vous venez avec une personne à mobilité réduite : il est adapté.",
+      "when": "Du mardi au samedi, horaires de l’association CISMAG.",
+      "risks": [
+        "moustiques",
+        "soleil"
+      ],
+      "drive": "1 h de ferry depuis Pointe-à-Pitre",
+      "parking": "Anse Canot, Saint-Louis",
+      "bag": "water",
+      "self": "Départ de l'Anse Canot à Saint-Louis. Le sentier balisé de 9 km fait la boucle ; la balade en pédalo ou bateau électrique se réserve auprès de l'association CISMAG.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "folle-anse-marie-galante": {
+      "h2": "Folle Anse, marais et mangroves de Grand-Bourg",
+      "sig": "Une mosaïque de marais ouverts, de forêts inondées et de mangroves à l’embouchure d’un petit bassin versant.",
+      "when": "Par temps sec.",
+      "risks": [
+        "vase",
+        "moustiques"
+      ],
+      "drive": "1 h de ferry jusqu’à Grand-Bourg",
+      "parking": "Bord de route, Folle Anse",
+      "bag": "walk",
+      "self": "Le site se trouve le long de la route côtière au nord de Grand-Bourg. Il n'y a pas de sentier aménagé : restez sur les chemins existants.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "labyrinthe-morne-a-leau": {
+      "h2": "Labyrinthe de palétuviers, les chenaux secrets de Morne-à-l’Eau",
+      "sig": "Des chenaux si étroits qu’on pousse parfois les racines à la main pour avancer.",
+      "tip": "Rentrez les pagaies dans les passages les plus étroits et avancez en tirant sur les racines : c'est le moment préféré des enfants.",
+      "tipBy": "yalode",
+      "when": "Selon la marée, choisie par le guide.",
+      "risks": [
+        "moustiques",
+        "hautsfonds",
+        "soleil"
+      ],
+      "drive": "25 min depuis Pointe-à-Pitre",
+      "parking": "Port de Vieux-Bourg",
+      "self": "Les chenaux ne sont pas balisés et changent avec la marée. Ils ne se parcourent qu'en kayak, avec un guide qui connaît le passage.",
+      "note": {
+        "icon": "map",
+        "title": "Itinéraire non balisé",
+        "text": "Les chenaux sont accessibles uniquement en kayak. Seul, le risque de se perdre est réel."
+      },
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "ilet-corallien-morne-a-leau": {
+      "h2": "Îlet corallien de Morne-à-l’Eau, la pause baignade du lagon",
+      "sig": "Un îlet de sable corallien au milieu de la baie, où la sortie kayak fait halte pour se baigner.",
+      "tip": "Gardez vos chaussures pour marcher sur l'îlet : le corail mort coupe.",
+      "tipBy": "yalode",
+      "when": "Selon les conditions de mer, choisies par le guide.",
+      "risks": [
+        "oursins",
+        "soleil",
+        "vent"
+      ],
+      "drive": "25 min depuis Pointe-à-Pitre",
+      "parking": "Port de Vieux-Bourg",
+      "self": "L'îlet n'est accessible qu'en embarcation, depuis Vieux-Bourg. La halte dépend de la météo et de la marée.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "mangrove-desirade": {
+      "h2": "Mangrove de la Désirade, une fiche à compléter",
+      "when": "À vérifier.",
+      "risks": [
+        "soleil",
+        "chaleur"
+      ],
+      "drive": "45 min de ferry depuis Saint-François",
+      "parking": "Bourg de Beauséjour",
+      "bag": "walk",
+      "self": "Aucune information vérifiée sur l'accès à la mangrove de la Désirade. Renseignez-vous à l'office de tourisme de l'île à votre arrivée.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    },
+    "anse-a-la-barque": {
+      "h2": "Anse à la Barque, la petite mangrove de la Côte-sous-le-Vent",
+      "sig": "Une baie abritée bordée de palétuviers, entre Vieux-Habitants et Bouillante.",
+      "when": "Toute l’année.",
+      "risks": [
+        "soleil",
+        "moustiques",
+        "oursins"
+      ],
+      "drive": "1 h 15 depuis Pointe-à-Pitre",
+      "parking": "Bord de la N2, places limitées",
+      "bag": "water",
+      "self": "La baie se trouve en bord de N2, entre Vieux-Habitants et Bouillante. On longe la mangrove à pied depuis la plage.",
+      "estimated": [
+        "drive",
+        "parking",
+        "risks",
+        "bag"
+      ]
+    }
+  }
+}

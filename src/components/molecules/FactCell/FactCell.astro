@@ -1,0 +1,21 @@
+---
+// One fact: icon + caption label above a strong value. Must sit inside a FactGrid (<dl>).
+import Icon from '../../atoms/Icon/Icon.astro';
+interface Props { icon?: string; label: string; value: string }
+const { icon, label, value } = Astro.props;
+---
+<div class="fact-cell">
+  <dt class="fact-cell__label text-caption">{icon && <Icon name={icon} tone="secondary" />}<span>{label}</span></dt>
+  <dd class="fact-cell__value text-body-strong">{value}</dd>
+</div>
+
+<style>
+  .fact-cell {
+    display: flex; flex-direction: column; gap: var(--space-1); min-width: 0;
+    padding: var(--space-3) var(--space-4);
+    border-right: var(--border-width) solid var(--color-border-subtle);
+    border-bottom: var(--border-width) solid var(--color-border-subtle);
+  }
+  .fact-cell__label { display: flex; align-items: center; gap: var(--space-2); }
+  .fact-cell__value { margin: 0; }
+</style>

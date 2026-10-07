@@ -1,0 +1,47 @@
+---
+// Native <details>. Variants: fold (summary + toggle word), faq (question + "+"), section (eyebrow + h2 + toggle word).
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+interface Props {
+  variant?: 'fold' | 'faq' | 'section';
+  summary: string;
+  eyebrow?: string;
+  toggleLabel?: string;
+  headingId?: string;
+  open?: boolean;
+  id?: string;
+  class?: string;
+}
+const { variant = 'fold', summary, eyebrow, toggleLabel = 'Afficher', headingId, open = false, id, class: className } = Astro.props;
+---
+<details class:list={['disclosure', `disclosure--${variant}`, className]} open={open} id={id}>
+  <summary class="disclosure__summary">
+    {variant === 'faq' && <><span class="text-body-strong">{summary}</span><span class="disclosure__sign text-title" aria-hidden="true"></span></>}
+    {variant === 'fold' && <><span class="text-legal">{summary}</span><span class="disclosure__toggle text-legal" aria-hidden="true">{toggleLabel} <span class="disclosure__chevron">▾</span></span></>}
+    {variant === 'section' && (
+      <>
+        <span class="disclosure__head">{eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}<h2 class="text-heading" id={headingId}>{summary}</h2></span>
+        <span class="disclosure__toggle text-caption" aria-hidden="true">{toggleLabel} <span class="disclosure__chevron">▾</span></span>
+      </>
+    )}
+  </summary>
+  <div class="disclosure__body"><slot /></div>
+</details>
+
+<style>
+  .disclosure__summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: var(--tap-size-min); }
+  .disclosure__toggle { flex-shrink: 0; }
+  .disclosure__chevron { display: inline-block; transition: transform var(--duration-fast) var(--easing-standard); }
+  .disclosure[open] .disclosure__chevron { transform: rotate(180deg); }
+  .disclosure__head { display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .disclosure--faq { border-top: var(--border-width) solid var(--color-border-default); }
+  .disclosure--faq .disclosure__summary { padding: var(--space-4) 0; }
+  .disclosure--faq .disclosure__sign { color: var(--color-text-secondary); flex-shrink: 0; }
+  .disclosure--faq .disclosure__sign::before { content: '+'; }
+  .disclosure--faq[open] .disclosure__sign::before { content: '−'; }
+  .disclosure--faq .disclosure__body { padding: 0 var(--space-7) var(--space-4) 0; }
+
+  .disclosure--section .disclosure__summary { padding: var(--space-1) 0; }
+  .disclosure--section .disclosure__body { margin-top: var(--space-3); }
+  .disclosure__body :global(p) { margin: 0; }
+</style>

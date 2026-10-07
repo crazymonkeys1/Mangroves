@@ -1,0 +1,16 @@
+---
+// "À proximité": nearby sites as compact cards.
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+import SiteCard from '../SiteCard/SiteCard.astro';
+import type { SiteCardModel } from '../../../lib/site-card';
+interface Props { sites: SiteCardModel[] }
+---
+<section class="nearby-sites" id="proximite" aria-labelledby="h-proximite">
+  <SectionHead eyebrow="À proximité" title="Autres sites à proximité" id="h-proximite" />
+  <ul class="nearby-sites__list">{Astro.props.sites.map((s) => <li><SiteCard site={s} variant="nearby" /></li>)}</ul>
+</section>
+
+<style>
+  .nearby-sites { border-top: var(--border-width) solid var(--color-border-default); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); }
+  .nearby-sites__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-3); }
+</style>

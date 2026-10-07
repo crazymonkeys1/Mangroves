@@ -1,0 +1,99 @@
+---
+// "Accès" (#acces): practical tiles, policy note, how to go alone, with a guide, and the alone/with-guide comparison.
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import CautionNote from '../../molecules/CautionNote/CautionNote.astro';
+import FactGrid from '../../molecules/FactGrid/FactGrid.astro';
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+import type { SitePageModel } from '../../../lib/site-page';
+interface Props { data: SitePageModel['access'] }
+const { h2, tiles, tilesEstimated, note, mapUrl, selfText, guideLine, compare } = Astro.props.data;
+---
+<section class="access-panel" id="acces" aria-labelledby="h-acces">
+  <SectionHead eyebrow="Accès" title={h2} id="h-acces" />
+  <div class="access-panel__tiles">
+    <FactGrid items={tiles} label="Accès en bref" />
+    {tilesEstimated && <CautionNote>Temps de route et parking estimés, à confirmer</CautionNote>}
+  </div>
+
+  {note && (
+    <div class="access-panel__note">
+      <span class="access-panel__note-icon"><Icon name={note.icon} size="control" tone="brand" /></span>
+      <div class="access-panel__note-body"><p class="text-body-strong">{note.title}</p><p class="text-body">{note.text}</p></div>
+    </div>
+  )}
+
+  <div class="access-panel__block">
+    <div class="access-panel__self-head">
+      <Eyebrow tone="secondary" as="h3">Par vos propres moyens</Eyebrow>
+      <a class="access-panel__map" href={mapUrl} target="_blank" rel="noopener" aria-label="Ouvrir dans Google Maps" title="Ouvrir dans Google Maps"><Icon name="map" size="control" tone="secondary" /></a>
+    </div>
+    <p class="text-body">{selfText}</p>
+  </div>
+
+  {guideLine && (
+    <div class="access-panel__block">
+      <Eyebrow tone="secondary" as="h3">Avec un guide</Eyebrow>
+      <p class="text-body">{guideLine.text}</p>
+      <a class="access-panel__link text-body-strong" href="#visiter">{guideLine.linkLabel}</a>
+    </div>
+  )}
+
+  {compare && (
+    <div class="access-panel__compare">
+      <Eyebrow tone="secondary" as="h3">{compare.title}</Eyebrow>
+      <div class="access-panel__columns">
+        {compare.columns.map((c) => (
+          <div class:list={['access-panel__column', c.operator && `access-panel__column--${c.operator}`]}>
+            <div class="access-panel__column-head">
+              {c.photo ? <Avatar src={c.photo} size={48} /> : <span class="access-panel__column-icon"><Icon name={c.icon || 'compass'} size="nav" /></span>}
+              <div>
+                <p class:list={['text-eyebrow', !c.operator && 'is-secondary', c.operator && `is-operator-${c.operator}`]}>{c.label}</p>
+                <p class="text-title">{c.price}</p>
+              </div>
+            </div>
+            <ul class="access-panel__rows">
+              {c.rows.map((r) => (
+                <li class="access-panel__row">
+                  <span class:list={['access-panel__mark', 'text-caption-strong', r.ok ? 'access-panel__mark--ok' : 'access-panel__mark--warn']} aria-hidden="true">{r.ok ? '✓' : '!'}</span>
+                  <span class="access-panel__row-text"><span class="text-caption">{r.label}</span><span class="text-body-strong">{r.value}</span></span>
+                  <span class="sr-only">{r.ok ? '(avantage)' : '(à prévoir)'}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</section>
+
+<style>
+  .access-panel { border-top: var(--border-width) solid var(--color-border-default); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+  .access-panel p { margin: 0; }
+  .access-panel h3 { margin: 0; }
+  .access-panel__tiles { display: flex; flex-direction: column; gap: var(--space-2); }
+  .access-panel__note { background: var(--color-surface-brand-soft); border-radius: var(--radius-container); padding: var(--card-padding); display: flex; gap: var(--space-3); align-items: flex-start; }
+  .access-panel__note-icon { width: var(--space-6); height: var(--space-6); border-radius: var(--radius-full); background: var(--color-surface-card); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .access-panel__note-body { display: flex; flex-direction: column; gap: var(--space-1); }
+  .access-panel__block { display: flex; flex-direction: column; gap: var(--space-2); }
+  .access-panel__self-head { display: flex; align-items: center; gap: var(--space-1); }
+  .access-panel__map { width: var(--tap-size-min); height: var(--tap-size-min); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-control); }
+  @media (hover: hover) { .access-panel__map:hover { background: var(--color-surface-sunken); } }
+  .access-panel__link { align-self: flex-start; display: inline-flex; align-items: center; min-height: var(--tap-size-min); }
+  .access-panel__compare { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-1); }
+  .access-panel__columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-3); }
+  .access-panel__column { background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); padding: var(--card-padding); display: flex; flex-direction: column; min-width: 0; }
+  .access-panel__column--yalode { border: 2px solid var(--color-operator-yalode); }
+  .access-panel__column--bluelagoon { border: 2px solid var(--color-operator-bluelagoon); }
+  .access-panel__column-head { display: flex; align-items: center; gap: var(--space-3); padding-bottom: var(--space-3); border-bottom: var(--border-width) solid var(--color-border-subtle); }
+  .access-panel__column-icon { width: calc(var(--space-7) + var(--space-2)); height: calc(var(--space-7) + var(--space-2)); border-radius: var(--radius-full); background: var(--color-surface-sunken); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .access-panel__rows { list-style: none; margin: 0; padding: 0; }
+  .access-panel__row { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-3) 0; border-bottom: var(--border-width) solid var(--color-border-subtle); }
+  .access-panel__row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .access-panel__row-text { display: flex; flex-direction: column; min-width: 0; }
+  .access-panel__mark { width: var(--space-5); height: var(--space-5); flex-shrink: 0; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; }
+  .access-panel__mark--ok { background: var(--color-surface-brand-soft); color: var(--color-text-brand); }
+  .access-panel__mark--warn { background: var(--color-surface-caution); color: var(--color-text-caution); }
+</style>

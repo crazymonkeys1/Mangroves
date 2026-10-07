@@ -1,0 +1,21 @@
+---
+// Search input in a pill (filter contexts).
+import Icon from '../../atoms/Icon/Icon.astro';
+interface Props { placeholder?: string; label: string; id: string; class?: string }
+const { placeholder = 'Rechercher', label, id, class: className } = Astro.props;
+---
+<label class:list={['search-field', className]} for={id}>
+  <Icon name="search" size="control" tone="secondary" />
+  <input class="search-field__input" id={id} type="search" placeholder={placeholder} aria-label={label} enterkeyhint="search" autocomplete="off" data-filter-search />
+</label>
+
+<style>
+  .search-field {
+    flex: 1 1 auto; min-width: 0; height: calc(var(--tap-size-min) + var(--space-1));
+    display: flex; align-items: center; gap: var(--space-3); padding: 0 var(--space-4);
+    background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-full); cursor: text;
+  }
+  .search-field:focus-within { box-shadow: var(--focus-ring); }
+  .search-field__input { flex: 1; min-width: 0; height: 100%; padding: 0; border: 0; background: transparent; color: var(--color-text-primary); }
+  .search-field__input:focus-visible { box-shadow: none; outline: none; }
+</style>

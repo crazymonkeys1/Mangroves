@@ -1,0 +1,44 @@
+---
+// Social posts about the site: thumbnail + title + platform · account.
+import Eyebrow from '../../atoms/Eyebrow/Eyebrow.astro';
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+interface Props { title: string; items: { platform: string; author: string; title: string; url: string; thumb: string }[] }
+const { title, items } = Astro.props;
+const platformClass = (p: string) => 'social-video-grid__platform--' + p.toLowerCase();
+---
+<section class="social-video-grid" id="reseaux" aria-labelledby="h-reseaux">
+  <SectionHead eyebrow="Réseaux sociaux" title={title} id="h-reseaux" />
+  <ul class="social-video-grid__list">
+    {items.map((v) => (
+      <li>
+        <a class="social-video-grid__item" href={v.url} target="_blank" rel="noopener nofollow">
+          <span class="social-video-grid__thumb">
+            {v.thumb && <img src={v.thumb} alt="" loading="lazy" decoding="async" />}
+            <span class="social-video-grid__badge text-caption-strong" aria-hidden="true">▶ Vidéo</span>
+          </span>
+          <span class="text-body-strong">{v.title}</span>
+          <span class="social-video-grid__meta text-caption">
+            <span class:list={['social-video-grid__platform', 'text-caption-strong', platformClass(v.platform)]} aria-hidden="true">{v.platform[0]}</span>
+            {v.platform} · {v.author}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .social-video-grid { padding: var(--space-6) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+  .social-video-grid__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+  @media (min-width: 600px) { .social-video-grid__list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); } }
+  .social-video-grid__item { display: flex; flex-direction: column; gap: var(--space-2); text-decoration: none; }
+  .social-video-grid__thumb { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: var(--radius-container); overflow: hidden; background: var(--color-surface-inverse); }
+  .social-video-grid__thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .social-video-grid__badge { position: absolute; left: var(--space-3); bottom: var(--space-3); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); background: var(--color-overlay-chip); color: var(--color-text-inverse); }
+  .social-video-grid__meta { display: flex; align-items: center; gap: var(--space-2); }
+  .social-video-grid__platform { width: var(--space-5); height: var(--space-5); border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; color: var(--color-text-inverse); background: var(--color-text-secondary); flex-shrink: 0; }
+  .social-video-grid__platform--instagram { background: var(--color-social-instagram); }
+  .social-video-grid__platform--youtube { background: var(--color-social-youtube); }
+  .social-video-grid__platform--tiktok { background: var(--color-social-tiktok); }
+  .social-video-grid__platform--facebook { background: var(--color-social-facebook); }
+</style>

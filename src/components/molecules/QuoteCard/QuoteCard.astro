@@ -1,0 +1,22 @@
+---
+// A visitor or guide quote: faint opening mark, italic quote, thin divider, author with tick.
+interface Props { quote: string; author: string }
+const { quote, author } = Astro.props;
+---
+<figure class="quote-card">
+  <span class="quote-card__mark text-display" aria-hidden="true">“</span>
+  <blockquote class="quote-card__quote"><p class="text-quote">{quote}</p></blockquote>
+  <figcaption class="quote-card__author text-caption"><span class="quote-card__tick" aria-hidden="true"></span>{author}</figcaption>
+</figure>
+
+<style>
+  .quote-card {
+    margin: 0; display: flex; flex-direction: column; gap: var(--space-3);
+    background: var(--color-surface-inset); border: var(--border-width) solid var(--color-border-subtle); border-radius: var(--radius-container);
+    padding: var(--space-5) var(--space-5) var(--space-4);
+  }
+  .quote-card__mark { color: var(--color-text-brand); opacity: .35; height: var(--space-5); line-height: 1; }
+  .quote-card__quote { margin: 0; }
+  .quote-card__author { margin-top: auto; display: flex; align-items: center; gap: var(--space-3); padding-top: var(--space-3); border-top: var(--border-width) solid var(--color-border-subtle); }
+  .quote-card__tick { width: var(--space-4); height: var(--radius-tick); border-radius: var(--radius-tick); background: var(--color-action-primary); flex-shrink: 0; }
+</style>

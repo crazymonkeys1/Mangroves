@@ -1,0 +1,42 @@
+---
+// Key facts under the hero (2×2 under the title on phones) + the "Y aller avec un guide" tile.
+// From md the strip overlaps the hero edge.
+import FactGrid from '../../molecules/FactGrid/FactGrid.astro';
+interface Props {
+  facts: { icon?: string; label: string; value: string }[];
+  cta: { title: string; sub: string; price: string } | null;
+}
+const { facts, cta } = Astro.props;
+---
+<div class="fact-strip">
+  <FactGrid items={facts} elevated label="Infos clés" class="fact-strip__grid" />
+  {cta && (
+    <a class="fact-strip__cta" href="#visiter">
+      <span class="fact-strip__cta-text">
+        <span class="text-body-strong">{cta.title}</span>
+        <span class="text-caption">{cta.sub} <strong class="fact-strip__price">{cta.price}</strong></span>
+      </span>
+      <span class="fact-strip__arrow text-title" aria-hidden="true">→</span>
+    </a>
+  )}
+</div>
+
+<style>
+  .fact-strip { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: stretch; }
+  .fact-strip :global(.fact-strip__grid) { flex: 1 1 560px; }
+  .fact-strip__cta {
+    flex: 1 1 300px; display: flex; align-items: center; gap: var(--space-3);
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
+    background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container);
+    box-shadow: var(--elevation-overlap); text-decoration: none;
+  }
+  @media (min-width: 880px) { .fact-strip__cta { flex: 0 1 330px; } }
+  .fact-strip__cta-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+  .fact-strip__price { white-space: nowrap; color: var(--color-text-primary); font-weight: var(--font-weight-strong); }
+  .fact-strip__arrow {
+    width: var(--tap-size-min); height: var(--tap-size-min); flex-shrink: 0; border-radius: var(--radius-full);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--color-action-primary); color: var(--color-action-primary-text);
+  }
+  @media (hover: hover) { .fact-strip__cta:hover { background: var(--color-surface-inset); } }
+</style>

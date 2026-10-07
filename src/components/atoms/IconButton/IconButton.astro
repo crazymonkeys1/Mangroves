@@ -1,0 +1,23 @@
+---
+// Icon-only action (close, carousel). `label` is required and becomes the accessible name.
+import Icon from '../Icon/Icon.astro';
+interface Props { icon?: string; glyph?: string; label: string; tone?: 'default' | 'inverse'; class?: string; [key: string]: unknown }
+const { icon, glyph, label, tone = 'default', class: className, ...rest } = Astro.props;
+---
+<button type="button" class:list={['icon-button', `icon-button--${tone}`, className]} aria-label={label} {...rest}>
+  {icon ? <Icon name={icon} size="control" /> : <span aria-hidden="true" class="text-body-strong">{glyph}</span>}
+</button>
+
+<style>
+  .icon-button {
+    width: var(--tap-size-min); height: var(--tap-size-min); flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 0; border-radius: var(--radius-full); background: transparent; color: var(--color-text-primary); cursor: pointer;
+    transition: background-color var(--duration-fast) var(--easing-standard);
+  }
+  .icon-button--inverse, .icon-button--inverse .text-body-strong { color: var(--color-text-inverse); }
+  @media (hover: hover) {
+    .icon-button--default:hover { background: var(--color-surface-sunken); }
+    .icon-button--inverse:hover { background: var(--color-overlay-chip); }
+  }
+</style>

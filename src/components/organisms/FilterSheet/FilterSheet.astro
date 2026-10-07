@@ -1,0 +1,38 @@
+---
+// All filters in a bottom sheet (native <dialog>). Footer CTA reads "Voir N mangroves".
+import Button from '../../atoms/Button/Button.astro';
+import Chip from '../../atoms/Chip/Chip.astro';
+import IconButton from '../../atoms/IconButton/IconButton.astro';
+import FilterGroup from '../../molecules/FilterGroup/FilterGroup.astro';
+import SwitchRow from '../../molecules/SwitchRow/SwitchRow.astro';
+import type { DirectoryPageModel } from '../../../lib/directory';
+interface Props { filters: DirectoryPageModel['filters'] }
+const { filters } = Astro.props;
+---
+<dialog class="filter-sheet" data-filter-sheet aria-labelledby="filter-sheet-title">
+  <div class="filter-sheet__panel">
+    <div class="filter-sheet__head">
+      <h2 class="text-title" id="filter-sheet-title">Filtres</h2>
+      <IconButton glyph="✕" label="Fermer" data-close-filters />
+    </div>
+    <SwitchRow icon="compass" label="Sorties guidées" data-filter="served" data-value="1" />
+    <FilterGroup title="Île" icon="pin">{filters.islands.map((o) => <Chip kind="toggle" icon="pin" data-filter="island" data-value={o.value}>{o.label}</Chip>)}</FilterGroup>
+    <FilterGroup title="Activité" icon="waves">{filters.activities.map((o) => <Chip kind="toggle" icon={o.icon} data-filter="activity" data-value={o.value}>{o.label}</Chip>)}</FilterGroup>
+    <FilterGroup title="Difficulté" icon="mountain">{filters.difficulties.map((o) => <Chip kind="toggle" icon="mountain" data-filter="difficulty" data-value={o.value}>{o.label}</Chip>)}</FilterGroup>
+    <FilterGroup title="Trier" icon="sort">{filters.sorts.map((o) => <Chip kind="toggle" data-filter="sort" data-value={o.value} selected={o.value === 'pertinence'}>{o.label}</Chip>)}</FilterGroup>
+    <FilterGroup title="Ambiance et public">{filters.more.map((o) => <Chip kind="toggle" icon={o.icon} data-filter="more" data-value={o.value}>{o.label}</Chip>)}</FilterGroup>
+    <div class="filter-sheet__footer">
+      <Button variant="secondary" data-clear-filters>Effacer</Button>
+      <Button variant="neutral" class="filter-sheet__apply" data-close-filters><span data-apply-label>Voir les mangroves</span></Button>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .filter-sheet { --chip-radius: var(--radius-full); width: 100%; max-width: var(--container-sheet); max-height: 85vh; margin: auto auto 0; padding: 0; border: 0; border-radius: var(--radius-container) var(--radius-container) 0 0; background: var(--color-surface-page); color: var(--color-text-primary); }
+  .filter-sheet::backdrop { background: var(--color-overlay-modal); }
+  .filter-sheet__panel { padding: var(--space-5) var(--space-5) 0; display: flex; flex-direction: column; gap: var(--space-5); }
+  .filter-sheet__head { display: flex; justify-content: space-between; align-items: center; }
+  .filter-sheet__footer { position: sticky; bottom: 0; display: flex; gap: var(--space-3); padding: var(--space-3) 0 var(--space-5); background: var(--color-surface-page); }
+  .filter-sheet__footer :global(.filter-sheet__apply) { flex: 1; }
+</style>

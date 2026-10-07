@@ -1,0 +1,40 @@
+---
+// Line icon from the design-system set (docs/design-system.md §6). Decorative unless `label` is set.
+import paths from '../../../lib/icon-paths.json';
+
+interface Props {
+  name: string;
+  /** row 15 · control 17 · nav 24 */
+  size?: 'row' | 'control' | 'nav';
+  tone?: 'current' | 'secondary' | 'brand' | 'inverse';
+  label?: string;
+  class?: string;
+}
+const { name, size = 'row', tone = 'current', label, class: className } = Astro.props;
+const all = paths as Record<string, string[]>;
+const parts = (all[name] || all.leaf).map((p) => {
+  if (p.startsWith('c:')) { const [cx, cy, r] = p.slice(2).split(','); return { kind: 'circle', cx, cy, r }; }
+  if (p.startsWith('r:')) { const [x, y, width, height, rx] = p.slice(2).split(','); return { kind: 'rect', x, y, width, height, rx }; }
+  return { kind: 'path', d: p };
+});
+---
+<svg
+  class:list={['icon', `icon--${size}`, `icon--${tone}`, className]}
+  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+  focusable="false" aria-hidden={label ? undefined : 'true'} role={label ? 'img' : undefined} aria-label={label}
+>
+  {parts.map((p) =>
+    p.kind === 'circle' ? <circle cx={p.cx} cy={p.cy} r={p.r} />
+    : p.kind === 'rect' ? <rect x={p.x} y={p.y} width={p.width} height={p.height} rx={p.rx} />
+    : <path d={p.d} />)}
+</svg>
+
+<style>
+  /* Tier-3: icon sizes from docs/design-system.md §6 (proposed tokens: --icon-size-row/-control/-nav). */
+  .icon { --icon-size: 15px; width: var(--icon-size); height: var(--icon-size); flex-shrink: 0; display: block; }
+  .icon--control { --icon-size: 17px; }
+  .icon--nav { --icon-size: 24px; }
+  .icon--secondary { color: var(--color-text-secondary); }
+  .icon--brand { color: var(--color-text-brand); }
+  .icon--inverse { color: var(--color-text-inverse); }
+</style>

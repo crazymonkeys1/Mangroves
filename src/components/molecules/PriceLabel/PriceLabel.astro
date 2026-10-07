@@ -1,0 +1,15 @@
+---
+// Price + unit ("dès 52 €" + "par adulte").
+interface Props { amount: string; unit?: string; prefix?: string; tone?: 'default' | 'inverse'; align?: 'start' | 'end'; class?: string }
+const { amount, unit, prefix, tone = 'default', align = 'start', class: className } = Astro.props;
+---
+<span class:list={['price-label', `price-label--${align}`, tone === 'inverse' && 'on-inverse', className]}>
+  <span class="price-label__line">{prefix && <span class="text-caption">{prefix}</span>}<span class="text-title">{amount}</span></span>
+  {unit && <span class="text-caption">{unit}</span>}
+</span>
+
+<style>
+  .price-label { display: inline-flex; flex-direction: column; gap: var(--space-1); }
+  .price-label--end { align-items: flex-end; text-align: right; }
+  .price-label__line { display: inline-flex; align-items: baseline; gap: var(--space-2); white-space: nowrap; }
+</style>

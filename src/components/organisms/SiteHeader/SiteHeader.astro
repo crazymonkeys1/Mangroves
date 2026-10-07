@@ -1,0 +1,41 @@
+---
+// Brand and navigation. Menu icon below sm, inline nav from sm. Sticky.
+import NavMenu from '../../molecules/NavMenu/NavMenu.astro';
+interface Props { links: { href: string; label: string }[] }
+const { links } = Astro.props;
+---
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <span class="site-header__mark text-body-strong" aria-hidden="true">MG</span>
+      <span class="site-header__wordmark text-title">Mangroves Gwada</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Navigation principale">
+      {links.map((l, i) => <a class:list={['site-header__link', 'text-body-strong', i === links.length - 1 && 'site-header__link--outlined']} href={l.href}>{l.label}</a>)}
+    </nav>
+    <div class="site-header__menu"><NavMenu links={links} /></div>
+  </div>
+</header>
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: var(--z-header); background: var(--color-surface-page); border-bottom: var(--border-width) solid var(--color-border-default); }
+  .site-header__inner {
+    position: relative; max-width: var(--container-page); margin: 0 auto; padding: var(--space-2) var(--page-gutter);
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  }
+  .site-header__brand { display: flex; align-items: center; gap: var(--space-3); min-height: var(--tap-size-min); min-width: 0; text-decoration: none; }
+  .site-header__mark {
+    width: var(--space-7); height: var(--space-7); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--color-border-strong); border-radius: var(--radius-control);
+  }
+  .site-header__wordmark { white-space: nowrap; }
+  .site-header__nav { display: none; align-items: center; gap: var(--space-2); }
+  .site-header__link { display: flex; align-items: center; min-height: var(--tap-size-min); padding: 0 var(--space-2); white-space: nowrap; text-decoration: none; }
+  .site-header__link--outlined { padding: 0 var(--space-4); border: 1.5px solid var(--color-border-strong); border-radius: var(--radius-full); }
+  @media (hover: hover) { .site-header__link:hover { background: var(--color-surface-sunken); border-radius: var(--radius-full); } }
+  @media (min-width: 600px) {
+    .site-header__nav { display: flex; }
+    .site-header__menu { display: none; }
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+// Hierarchy trail. The last item is the current page (not a link).
+interface Props { items: { label: string; href?: string }[] }
+const { items } = Astro.props;
+---
+<nav class="breadcrumb-trail" aria-label="Fil d'Ariane">
+  <ol class="breadcrumb-trail__list text-caption">
+    {items.map((it, i) => (
+      <li class="breadcrumb-trail__item">
+        {i > 0 && <span class="breadcrumb-trail__sep" aria-hidden="true">›</span>}
+        {it.href ? <a href={it.href}>{it.label}</a> : <span class="breadcrumb-trail__current" aria-current="page">{it.label}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb-trail__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); }
+  .breadcrumb-trail__item { display: flex; align-items: center; gap: var(--space-2); }
+  .breadcrumb-trail__item a { display: inline-flex; align-items: center; min-height: var(--tap-size-min); }
+  .breadcrumb-trail__current { color: var(--color-text-primary); }
+</style>

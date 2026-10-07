@@ -1,0 +1,62 @@
+---
+// "Qui sommes-nous": inverse band with the two guides.
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import ActionTile from '../../molecules/ActionTile/ActionTile.astro';
+import type { ShellData } from '../../../lib/shell';
+interface Props { data: ShellData['aboutUs']; id?: string }
+const { data, id = 'qui-sommes-nous' } = Astro.props;
+---
+<section class="about-us" id={id} aria-labelledby={`${id}-title`}>
+  <div class="about-us__inner">
+    <span class="about-us__label on-inverse"><span class="text-eyebrow">Qui sommes-nous</span></span>
+    <div class="about-us__card">
+      <div class="about-us__avatars">{data.guides.map((g) => <Avatar src={g.photo} size={64} ring />)}</div>
+      <h2 class="text-heading" id={`${id}-title`}>{data.title}</h2>
+      {data.paragraphs.map((p) => <p class="text-body">{p}</p>)}
+      <div class="about-us__guides">
+        {data.guides.map((g) => (
+          <div class="about-us__guide">
+            <div class="about-us__guide-head">
+              <img class="about-us__guide-photo" src={g.photo} alt="" width="48" height="48" loading="lazy" />
+              <div class="about-us__guide-names">
+                <h3 class="text-body-strong">{g.name}</h3>
+                <p class:list={['text-body-strong', `about-us__with--${g.key}`]}>Avec {g.guide}</p>
+                <p class="about-us__cred text-caption"><Icon name="grad" />{g.credential}</p>
+              </div>
+            </div>
+            <p class="text-body">{g.pitch}</p>
+            <div class="about-us__actions">
+              <ActionTile href={g.contactUrl} icon="mail" label="Écrire" ariaLabel={`Écrire à ${g.guide}`} external />
+              <ActionTile href={g.profileHref} icon="user" label="Profil" ariaLabel={`Profil de ${g.guide}`} />
+              <ActionTile href={g.website} icon="ext" label="Site" ariaLabel={`Site de ${g.name} (${g.domain})`} external />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-us { background: var(--color-surface-inverse); padding: var(--space-8) var(--page-gutter); margin-top: var(--space-8); }
+  .about-us__inner { max-width: var(--container-content); margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-5); }
+  .about-us__label { padding: var(--space-2) var(--space-4); border: var(--border-width) solid var(--color-border-inverse); border-radius: var(--radius-full); white-space: nowrap; }
+  .about-us__card {
+    width: 100%; background: var(--color-surface-card); border-radius: var(--radius-container);
+    padding: var(--space-5) var(--card-padding); display: flex; flex-direction: column; gap: var(--space-4);
+  }
+  @media (min-width: 880px) { .about-us__card { padding: var(--space-7); } }
+  .about-us__avatars { display: flex; }
+  .about-us__avatars :global(.avatar + .avatar) { margin-left: calc(-1 * var(--space-3)); }
+  .about-us__guides { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-3); margin-top: var(--space-1); }
+  .about-us__guide { border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); padding: var(--card-padding); display: flex; flex-direction: column; gap: var(--space-3); }
+  .about-us__guide-head { display: flex; align-items: center; gap: var(--space-3); }
+  .about-us__guide-photo { width: calc(var(--space-7) + var(--space-2)); height: calc(var(--space-7) + var(--space-2)); border-radius: var(--radius-control); object-fit: cover; background: var(--color-surface-sunken); flex-shrink: 0; }
+  .about-us__guide-names { display: flex; flex-direction: column; }
+  .about-us__guide-names h3, .about-us__guide-names p { margin: 0; }
+  .about-us__with--yalode { color: var(--color-operator-yalode); }
+  .about-us__with--bluelagoon { color: var(--color-operator-bluelagoon); }
+  .about-us__cred { display: flex; align-items: center; gap: var(--space-2); }
+  .about-us__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; }
+</style>

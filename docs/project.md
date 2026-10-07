@@ -56,7 +56,7 @@ Bold only for alerts and values (now: two weights); one loud element per block; 
 
 ## 6. Stack, data flow and lead-capture intent
 
-- **Stack and hosting: not decided.** Decide in Claude Code. Constraint from SEO (below): real URLs and HTML that exists without JavaScript (server-rendered or statically generated). Do not choose a stack silently; propose options with trade-offs first.
+- **Stack and hosting: decided (7 Oct 2026).** Astro with static output, hosted on Cloudflare Pages. Every route is a real URL with complete HTML (title, meta, canonical, JSON-LD) without JavaScript.
 - **Data flow, phase 1:** build from `data/mangroves-db.json` and content moved out of the prototype into data files, unchanged in meaning. **Phase 2:** connect Airtable (tables per `airtable/README.md`) as the editing source, keeping slugs and keys. Design the data layer so the source can be swapped without touching components (pages are the only data consumers).
 - **Lead capture (intent only, nothing implemented):** the home page offers a one-time "top 5 des journées en mangrove" by SMS or e-mail, with a consent line and a link to the privacy page. Purpose: build an audience for direct partner bookings. Not wired: no provider, storage, consent logging or double opt-in yet; the form must not claim to send anything until it does. Needs a provider choice, GDPR-compliant consent wording and a legal-reviewed privacy page before launch.
 - **Fonts:** Google Fonts (Spectral 600 + 400 italic, Work Sans 400 + 600, `display=swap`, preconnect); both are SIL Open Font License 1.1.
@@ -97,11 +97,13 @@ From `docs/seo-audit-detail-page.md` (still valid; implementation not started):
 | `data/mangroves-db.json`, `airtable/` | Content |
 | `Mangroves Guadeloupe (Detail landing v12).dc.html` | Current design (visual reference, monolith) |
 | `Guide Offer Card.dc.html` | Guide card component (design) |
+| `src/` | Astro build: `lib/` (data layer and page models, the only readers of `data/`), `components/{atoms,molecules,organisms}/`, `templates/`, `pages/` |
+| `data/content/` | Content moved out of the prototype's logic class: operators, per-site editorial (`site-content.json`, with `estimated` fields), vocabularies, social, videos, article and listing index |
 
 ## 9. Open items
 
-1. Choose the production stack and rendering in Claude Code (§6).
-2. Move content from the design's logic class into data; add Airtable columns.
+1. ~~Choose the production stack~~ (done: Astro + Cloudflare Pages). Built so far: directory `/` and site pages `/mangrove/<slug>`. Still to build: articles `/idees/<slug>` and `/idees`, guide profiles `/guides/<slug>`, listings (`/ile`, `/commune`, `/activite`), comparison, privacy.
+2. Content for site pages moved into `data/content/` (V9, OPERATORS, OP_ABOUT, SOCIAL, VIDEOS, RISK). Still in the prototype: full article content (FILTER_PAGES, ARTICLE), TIPS, compare rows, privacy. Add Airtable columns.
 3. Verify the estimated figures (§4); get guide approvals; real photos and permissions.
 4. Rebuild the comparison page with tokens; legal review of privacy page.
 5. English version; zone pages; SEO monitoring.

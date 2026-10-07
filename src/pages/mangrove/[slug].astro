@@ -1,0 +1,14 @@
+---
+// Route: /mangrove/<slug>, one static page per published site.
+import SiteDetailTemplate from '../../templates/SiteDetailTemplate.astro';
+import { getSites } from '../../lib/data';
+import { buildSitePage } from '../../lib/site-page';
+import { shellData } from '../../lib/shell';
+
+export function getStaticPaths() {
+  return getSites().map((site) => ({ params: { slug: site.slug }, props: { site } }));
+}
+const { site } = Astro.props;
+const page = buildSitePage(site, Astro.site!.href);
+---
+<SiteDetailTemplate page={page} shell={shellData()} />

@@ -1,0 +1,100 @@
+---
+// Site detail page skeleton (docs/components.md → SiteDetailTemplate). Layout only: slots and order.
+// Below lg: one column + StickyBookingBar. From lg: main column + sticky GuideOfferCard.
+import AboutUsBand from '../components/organisms/AboutUsBand/AboutUsBand.astro';
+import AccessPanel from '../components/organisms/AccessPanel/AccessPanel.astro';
+import ExploreLinks from '../components/organisms/ExploreLinks/ExploreLinks.astro';
+import FactStrip from '../components/organisms/FactStrip/FactStrip.astro';
+import FaqList from '../components/organisms/FaqList/FaqList.astro';
+import GuideOfferCard from '../components/organisms/GuideOfferCard/GuideOfferCard.astro';
+import GuidedTourCard from '../components/organisms/GuidedTourCard/GuidedTourCard.astro';
+import Hero from '../components/organisms/Hero/Hero.astro';
+import Lightbox from '../components/organisms/Lightbox/Lightbox.astro';
+import NearbySites from '../components/organisms/NearbySites/NearbySites.astro';
+import PhotoGallery from '../components/organisms/PhotoGallery/PhotoGallery.astro';
+import ReadingList from '../components/organisms/ReadingList/ReadingList.astro';
+import SafetyPanel from '../components/organisms/SafetyPanel/SafetyPanel.astro';
+import SiteSummary from '../components/organisms/SiteSummary/SiteSummary.astro';
+import SocialVideoGrid from '../components/organisms/SocialVideoGrid/SocialVideoGrid.astro';
+import SourcesBar from '../components/organisms/SourcesBar/SourcesBar.astro';
+import StickyBookingBar from '../components/organisms/StickyBookingBar/StickyBookingBar.astro';
+import SectionHead from '../components/molecules/SectionHead/SectionHead.astro';
+import PageShell from './PageShell.astro';
+import type { SitePageModel } from '../lib/site-page';
+import type { ShellData } from '../lib/shell';
+interface Props { page: SitePageModel; shell: ShellData }
+const { page, shell } = Astro.props;
+const hasGuide = page.offers.length > 0;
+---
+<PageShell title={page.title} description={page.description} canonical={page.canonical} ogImage={page.ogImage} jsonLd={page.jsonLd} shell={shell}>
+  <article class:list={['site-detail', hasGuide && 'site-detail--guided']}>
+    <Hero
+      variant="site"
+      title={page.name}
+      lead={page.hero.lead}
+      eyebrow={page.hero.eyebrow}
+      slides={page.hero.images}
+      typeLabel={page.hero.typeLabel}
+      typeIcon={page.hero.typeIcon}
+      alertShort={page.hero.alertShort}
+      overlapBelow={page.facts.length > 0}
+    />
+
+    <div class="site-detail__body">
+      {page.facts.length > 0 && <div class="site-detail__facts"><FactStrip facts={page.facts} cta={page.guideCta} /></div>}
+
+      <div class="site-detail__split">
+        <div class="site-detail__main">
+          <SiteSummary data={page.summary} />
+          {page.photos && <PhotoGallery title={page.photos.h2} groups={page.photos.groups} />}
+          <AccessPanel data={page.access} />
+          <SafetyPanel data={page.safety} />
+          {page.tours.length > 0 && (
+            <section class="site-detail__tours" id="visiter" aria-labelledby="h-visiter">
+              <SectionHead eyebrow="Sortie guidée" title={page.guideH2} id="h-visiter" />
+              {page.tours.map((t) => <GuidedTourCard tour={t} />)}
+            </section>
+          )}
+        </div>
+        {hasGuide && (
+          <aside class="site-detail__aside" aria-label="Proposition du guide">
+            <GuideOfferCard offers={page.offers} />
+          </aside>
+        )}
+      </div>
+
+      <div class="site-detail__more">
+        {page.videos && <SocialVideoGrid title={page.videos.h2} items={page.videos.items} />}
+        {page.reads.length > 0 && <ReadingList items={page.reads} />}
+        <FaqList title={page.faq.h2} items={page.faq.items} />
+      </div>
+      {page.nearby.length > 0 && <NearbySites sites={page.nearby} />}
+      <ExploreLinks links={page.explore} />
+      <SourcesBar crumbs={page.crumbs} sources={page.sources} credits={page.photoCredits} />
+    </div>
+
+    <AboutUsBand data={shell.aboutUs} />
+  </article>
+
+  <Fragment slot="after">
+    {page.sticky && <StickyBookingBar {...page.sticky} />}
+    {page.hero.images.length > 0 && <Lightbox images={page.hero.images} />}
+  </Fragment>
+</PageShell>
+
+<style>
+  .site-detail__body { max-width: var(--container-page); margin: 0 auto; padding: 0 var(--page-gutter); }
+  .site-detail__facts { position: relative; z-index: var(--z-raised); margin-top: calc(-1 * var(--space-6)); }
+  @media (min-width: 880px) { .site-detail__facts { margin-top: calc(-1 * (var(--space-8) + var(--space-1))); } }
+  .site-detail__split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-8); align-items: start; }
+  .site-detail__main, .site-detail__more { max-width: var(--container-content); min-width: 0; display: flex; flex-direction: column; }
+  .site-detail__aside { display: none; }
+  .site-detail__tours { border-top: var(--border-width) solid var(--color-border-default); padding: var(--section-padding-top) 0 var(--section-padding-bottom); display: flex; flex-direction: column; gap: var(--space-4); }
+  /* Room for the sticky booking bar below lg. */
+  .site-detail--guided { padding-bottom: var(--space-8); }
+  @media (min-width: 1180px) {
+    .site-detail--guided { padding-bottom: 0; }
+    .site-detail--guided .site-detail__split { grid-template-columns: minmax(0, 1fr) 340px; }
+    .site-detail__aside { display: block; position: sticky; top: calc(var(--tap-size-min) + var(--space-6)); margin-top: var(--space-6); }
+  }
+</style>

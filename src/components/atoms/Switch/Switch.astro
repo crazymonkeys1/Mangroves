@@ -1,0 +1,20 @@
+---
+// Visual switch. The interactive element is its parent row (a button with aria-pressed), see SwitchRow.
+---
+<span class="switch" aria-hidden="true"><span class="switch__thumb"></span></span>
+
+<style>
+  .switch {
+    position: relative; display: inline-block; flex-shrink: 0;
+    width: var(--space-7); height: var(--space-5);
+    border-radius: var(--radius-full); background: var(--color-control-off);
+    transition: background-color var(--duration-fast) var(--easing-standard);
+  }
+  .switch__thumb {
+    position: absolute; top: var(--space-1); left: var(--space-1); width: var(--space-4); height: var(--space-4);
+    border-radius: var(--radius-full); background: var(--color-surface-card); box-shadow: var(--elevation-thumb);
+    transition: transform var(--duration-fast) var(--easing-standard);
+  }
+  :global([aria-pressed='true']) > .switch, :global([aria-pressed='true']) .switch { background: var(--color-control-on); }
+  :global([aria-pressed='true']) .switch__thumb { transform: translateX(var(--space-4)); }
+</style>

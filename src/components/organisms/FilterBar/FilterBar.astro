@@ -1,0 +1,71 @@
+---
+// Find sites. Below md: one line (search + "Filtres" with count). From md: inline search, switches and dropdowns.
+// Every control carries data-filter / data-value; the directory script keeps them in sync.
+import Chip from '../../atoms/Chip/Chip.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import SearchField from '../../molecules/SearchField/SearchField.astro';
+import SwitchRow from '../../molecules/SwitchRow/SwitchRow.astro';
+import type { DirectoryPageModel } from '../../../lib/directory';
+interface Props { filters: DirectoryPageModel['filters'] }
+const { filters } = Astro.props;
+const dropdowns = [
+  { key: 'island', label: 'Île', icon: 'pin', options: filters.islands },
+  { key: 'activity', label: 'Activité', icon: 'waves', options: filters.activities },
+  { key: 'difficulty', label: 'Difficulté', icon: 'mountain', options: filters.difficulties },
+];
+---
+<div class="filter-bar">
+  <div class="filter-bar__mobile">
+    <SearchField id="search-mobile" label="Rechercher une mangrove ou une commune" />
+    <button type="button" class="filter-bar__open text-caption-strong" data-open-filters>
+      <Icon name="sliders" size="control" />Filtres<span class="filter-bar__count" data-filter-count hidden></span>
+    </button>
+  </div>
+  <div class="filter-bar__desktop">
+    <SearchField id="search-desktop" label="Rechercher" placeholder="Une mangrove, une commune…" class="filter-bar__search" />
+    <SwitchRow icon="compass" label="Sorties guidées" compact data-filter="served" data-value="1" />
+    <SwitchRow icon="users" label="En famille" compact data-filter="more" data-value="kids" />
+    {dropdowns.map((d) => (
+      <details class="filter-bar__dropdown" data-dropdown>
+        <summary class="filter-bar__trigger text-body-strong"><Icon name={d.icon} size="control" tone="secondary" /><span data-dropdown-label={d.key}>{d.label}</span><span aria-hidden="true">▾</span></summary>
+        <div class="filter-bar__menu" role="group" aria-label={d.label}>
+          {d.options.map((o) => <Chip kind="toggle" icon={'icon' in o ? (o as { icon: string }).icon : d.icon} data-filter={d.key} data-value={o.value}>{o.label}</Chip>)}
+        </div>
+      </details>
+    ))}
+    <button type="button" class="filter-bar__more text-body-strong" data-open-filters><Icon name="sliders" size="control" />Plus<span data-more-count></span></button>
+  </div>
+</div>
+
+<style>
+  .filter-bar { --chip-radius: var(--radius-full); border-bottom: var(--border-width) solid var(--color-border-default); padding: var(--space-3) var(--page-gutter); position: relative; z-index: var(--z-dropdown); }
+  .filter-bar__mobile, .filter-bar__desktop { max-width: var(--container-page); margin: 0 auto; align-items: center; gap: var(--space-2); }
+  .filter-bar__mobile { display: flex; }
+  .filter-bar__desktop { display: none; flex-wrap: wrap; }
+  @media (min-width: 880px) {
+    .filter-bar__mobile { display: none; }
+    .filter-bar__desktop { display: flex; }
+  }
+  .filter-bar__desktop :global(.filter-bar__search) { flex: 1 1 160px; }
+  .filter-bar__open, .filter-bar__more {
+    height: calc(var(--tap-size-min) + var(--space-1)); flex-shrink: 0; display: flex; align-items: center; gap: var(--space-2);
+    padding: 0 var(--space-4); border: 0; border-radius: var(--radius-full); cursor: pointer;
+    background: var(--color-action-neutral); color: var(--color-action-neutral-text);
+  }
+  .filter-bar__count {
+    min-width: var(--space-5); height: var(--space-5); padding: 0 var(--space-1); border-radius: var(--radius-full);
+    background: var(--color-surface-card); color: var(--color-text-primary); display: inline-flex; align-items: center; justify-content: center;
+  }
+  .filter-bar__dropdown { position: relative; flex-shrink: 0; }
+  .filter-bar__trigger {
+    height: calc(var(--tap-size-min) + var(--space-1)); display: flex; align-items: center; gap: var(--space-2); padding: 0 var(--space-4);
+    border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-full); background: var(--color-surface-card); white-space: nowrap;
+  }
+  .filter-bar__dropdown[data-active] .filter-bar__trigger { background: var(--color-action-neutral); color: var(--color-action-neutral-text); border-color: var(--color-action-neutral); }
+  .filter-bar__dropdown[data-active] .filter-bar__trigger :global(.icon) { color: inherit; }
+  .filter-bar__menu {
+    position: absolute; top: calc(100% + var(--space-2)); left: 0; z-index: var(--z-dropdown); min-width: 200px;
+    display: flex; flex-direction: column; align-items: stretch; gap: var(--space-1); padding: var(--space-2);
+    background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); box-shadow: var(--elevation-overlap);
+  }
+</style>
