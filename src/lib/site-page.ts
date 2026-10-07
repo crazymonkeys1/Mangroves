@@ -7,7 +7,7 @@ import {
   type Operator, type OperatorKey, type Site,
 } from './data';
 import {
-  activityIcon, activityLabel, cap, firstCommune, frNum, routes, subIsland, toArticle, truncate, utm, withArticle,
+  activityIcon, activityLabel, cap, firstCommune, frNum, isBuilt, linkIfBuilt, routes, subIsland, toArticle, truncate, utm, withArticle,
 } from './format';
 import { siteCard, type SiteCardModel } from './site-card';
 
@@ -379,11 +379,14 @@ export function buildSitePage(site: Site, siteUrl: string) {
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
     {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Mangroves de Guadeloupe', item: new URL('/', siteUrl).href },
-        { '@type': 'ListItem', position: 2, name: isl, item: new URL(routes.island(isl), siteUrl).href },
-        { '@type': 'ListItem', position: 3, name: commune, item: new URL(routes.commune(commune), siteUrl).href },
-        { '@type': 'ListItem', position: 4, name: site.name },
-      ],
+        // Only levels that are real pages (island and commune listings come with OL-10).
+        ...[
+          { name: 'Mangroves de Guadeloupe', href: '/' },
+          { name: isl, href: routes.island(isl) },
+          { name: commune, href: routes.commune(commune) },
+        ].filter((c) => isBuilt(c.href)),
+        { name: site.name, href: routes.site(site.slug) },
+      ].map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.href, siteUrl).href })),
     },
   ];
 
@@ -408,6 +411,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
     guideCta: none ? null : { title: 'Y aller avec un guide', sub: `Avec ${guideNames} · dès`, price: priceFrom },
     summary: {
       h2: X.h2 || `${site.name}, mangrove de ${commune}`,
+      answer,
       sig: X.sig,
       paragraphs: site.paragraphs,
       tip: X.tip ? { label: tipOp ? 'Le conseil de ' + tipOp.guide : 'Le conseil de l’équipe', text: X.tip, photo: tipOp?.photo } : null,
@@ -445,11 +449,11 @@ export function buildSitePage(site: Site, siteUrl: string) {
     reads,
     faq: { h2: site.name + ' : questions fréquentes', items: faq },
     nearby,
-    explore: getArticles().map((a) => ({ href: routes.article(a.slug), label: a.nav, icon: a.icon })),
+    explore: getArticles().map((a) => ({ href: routes.article(a.slug), label: a.nav, icon: a.icon })).filter((l) => isBuilt(l.href)),
     crumbs: [
       { label: 'Mangroves de Guadeloupe', href: routes.home },
-      { label: isl, href: routes.island(isl) },
-      { label: commune, href: routes.commune(commune) },
+      { label: isl, href: linkIfBuilt(routes.island(isl)) },
+      { label: commune, href: linkIfBuilt(routes.commune(commune)) },
       { label: site.name },
     ],
     sources: site.sources.map((s) => ({ ...s, typeLabel: getSourceTypeLabel(s.type) })),

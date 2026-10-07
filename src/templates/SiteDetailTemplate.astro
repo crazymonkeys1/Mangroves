@@ -69,7 +69,7 @@ const hasGuide = page.offers.length > 0;
         <FaqList title={page.faq.h2} items={page.faq.items} />
       </div>
       {page.nearby.length > 0 && <NearbySites sites={page.nearby} />}
-      <ExploreLinks links={page.explore} />
+      {page.explore.length > 0 && <ExploreLinks links={page.explore} />}
       <SourcesBar crumbs={page.crumbs} sources={page.sources} credits={page.photoCredits} />
     </div>
 

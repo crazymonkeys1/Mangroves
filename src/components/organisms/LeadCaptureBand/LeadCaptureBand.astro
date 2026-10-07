@@ -4,6 +4,8 @@
 import Button from '../../atoms/Button/Button.astro';
 import Field from '../../atoms/Field/Field.astro';
 import TabToggle from '../../molecules/TabToggle/TabToggle.astro';
+interface Props { privacyHref?: string }
+const { privacyHref } = Astro.props;
 ---
 <section class="lead-capture on-inverse" aria-labelledby="lead-title">
   <span class="text-eyebrow">Le top 5, par message</span>
@@ -16,7 +18,7 @@ import TabToggle from '../../molecules/TabToggle/TabToggle.astro';
     <Button variant="primary" type="submit" fullWidth disabled>Recevoir mon top 5</Button>
     <p class="text-caption" id="lead-status">Envoi bientôt disponible.</p>
   </form>
-  <p class="text-caption">Désinscription en un clic. <a href="/confidentialite">Politique de confidentialité</a></p>
+  <p class="text-caption">Désinscription en un clic. {privacyHref ? <a href={privacyHref}>Politique de confidentialité</a> : 'Politique de confidentialité'}</p>
 </section>
 
 <style>

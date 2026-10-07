@@ -11,8 +11,9 @@ interface Props {
   ogImage?: string;
   jsonLd?: object[];
   shell: ShellData;
+  noindex?: boolean;
 }
-const { title, description, canonical, ogImage, jsonLd = [], shell } = Astro.props;
+const { title, description, canonical, ogImage, jsonLd = [], shell, noindex = false } = Astro.props;
 ---
 <!doctype html>
 <html lang="fr">
@@ -21,7 +22,8 @@ const { title, description, canonical, ogImage, jsonLd = [], shell } = Astro.pro
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Mangroves Gwada" />

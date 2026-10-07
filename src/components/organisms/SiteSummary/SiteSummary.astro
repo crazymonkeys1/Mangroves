@@ -9,12 +9,14 @@ import CautionNote from '../../molecules/CautionNote/CautionNote.astro';
 import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
 import type { SitePageModel } from '../../../lib/site-page';
 interface Props { data: SitePageModel['summary'] }
-const { h2, sig, paragraphs, tip, nameStory, knowRows, alert } = Astro.props.data;
+const { h2, answer, sig, paragraphs, tip, nameStory, knowRows, alert } = Astro.props.data;
 ---
 <section class="site-summary" id="essentiel" aria-labelledby="h-essentiel">
   <SectionHead eyebrow="Aperçu" title={h2} id="h-essentiel" />
+  {/* The opening answer: same sentence as the meta description and JSON-LD description, quotable alone. */}
+  <p class="text-lead">{answer}</p>
   {sig && <blockquote class="site-summary__signature"><p class="text-quote">{sig}</p></blockquote>}
-  {paragraphs.map((p, i) => <p class={i === 0 ? 'text-lead' : 'text-body'}>{p}</p>)}
+  {paragraphs.map((p) => <p class="text-body">{p}</p>)}
 
   {tip && (
     <aside class="site-summary__tip" aria-label={tip.label}>

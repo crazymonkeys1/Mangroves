@@ -33,7 +33,7 @@ const { page, shell } = Astro.props;
               data-difficulty={c.filter.difficulty} data-kids={String(c.filter.kids)} data-served={String(c.filter.served)} data-birds={String(c.filter.birds)} data-photo={String(c.filter.photo)}>
               <SiteCard site={c} headingLevel="h2" />
             </li>
-            {i === 2 && <li class="directory__lead" data-lead><LeadCaptureBand /></li>}
+            {i === 2 && <li class="directory__lead" data-lead><LeadCaptureBand privacyHref={page.privacyHref} /></li>}
           </>
         ))}
       </ul>

@@ -65,6 +65,17 @@ export function utm(url: string, placement: string, slug: string): string {
   return `${url}${sep}utm_source=mangroves-gwada&utm_medium=${placement}&utm_campaign=${slug}`;
 }
 
+/** Route prefixes that exist in src/pages. Add one when its page type is built (OL-10). */
+const BUILT_ROUTES = ['/mangrove/'];
+/** True when `href` points to a page we actually generate. Never link to anything else. */
+export const isBuilt = (href: string) => {
+  if (href.startsWith('#') || /^https?:/.test(href)) return true;
+  const path = href.split('#')[0];
+  return path === '/' || BUILT_ROUTES.some((p) => path.startsWith(p));
+};
+/** The href if its page exists, otherwise undefined (callers render plain text or skip). */
+export const linkIfBuilt = (href: string) => (isBuilt(href) ? href : undefined);
+
 /** Routes (docs/project.md §2 and CLAUDE.md "Decided"). */
 export const routes = {
   home: '/',

@@ -1,6 +1,6 @@
 // Home page (directory) model: hero, filter vocabularies, cards, metadata.
 import { getOperator, getSites } from './data';
-import { filterIsland, routes } from './format';
+import { filterIsland, linkIfBuilt, routes } from './format';
 import { siteCard } from './site-card';
 
 export function buildDirectoryPage(siteUrl: string) {
@@ -22,7 +22,7 @@ export function buildDirectoryPage(siteUrl: string) {
       lead: 'On répertorie les mangroves de l\'archipel, à pied, en kayak ou en bateau, et on vous y emmène sur les plus belles.',
       image: { src: 'https://www.bluelagoon-gp.com/wp-content/uploads/sites/7196/2024/04/paletuvier-enfant.jpg', alt: '', caption: 'Palétuvier', credit: 'Blue Lagoon' },
       // Ratings only where the operator has a real, sourced one (no invented ratings).
-      guides: ops.map((o) => ({ href: routes.guide(o.guideSlug), photo: o.photo, name: o.name, rating: o.rating ? o.rating.split(' · ')[0] : undefined })),
+      guides: ops.map((o) => ({ href: linkIfBuilt(routes.guide(o.guideSlug)) || '#qui-sommes-nous', photo: o.photo, name: o.name, rating: o.rating ? o.rating.split(' · ')[0] : undefined })),
     },
     filters: {
       islands: islands.map((i) => ({ value: i, label: i })),
@@ -44,6 +44,7 @@ export function buildDirectoryPage(siteUrl: string) {
         { value: 'familles', label: 'Familles d’abord' },
       ],
     },
+    privacyHref: linkIfBuilt(routes.privacy),
     contacts: ops.map((o) => ({ guide: o.guide, url: o.contactUrl })),
     cards,
     jsonLd: [

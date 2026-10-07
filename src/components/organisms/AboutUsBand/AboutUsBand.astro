@@ -28,7 +28,7 @@ const { data, id = 'qui-sommes-nous' } = Astro.props;
             <p class="text-body">{g.pitch}</p>
             <div class="about-us__actions">
               <ActionTile href={g.contactUrl} icon="mail" label="Écrire" ariaLabel={`Écrire à ${g.guide}`} external />
-              <ActionTile href={g.profileHref} icon="user" label="Profil" ariaLabel={`Profil de ${g.guide}`} />
+              {g.profileHref && <ActionTile href={g.profileHref} icon="user" label="Profil" ariaLabel={`Profil de ${g.guide}`} />}
               <ActionTile href={g.website} icon="ext" label="Site" ariaLabel={`Site de ${g.name} (${g.domain})`} external />
             </div>
           </div>

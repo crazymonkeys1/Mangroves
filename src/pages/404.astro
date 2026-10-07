@@ -1,0 +1,18 @@
+---
+// Not found. Not indexed; points back to the directory.
+import Button from '../components/atoms/Button/Button.astro';
+import PageShell from '../templates/PageShell.astro';
+import { shellData } from '../lib/shell';
+---
+<PageShell title="Page introuvable · Mangroves Gwada" description="Cette page n'existe pas ou a été déplacée." canonical={new URL('/404', Astro.site).href} shell={shellData()} noindex>
+  <section class="not-found">
+    <h1 class="text-heading">Cette page n'existe pas</h1>
+    <p class="text-body">Elle a peut-être été déplacée. Toutes les mangroves sont dans le répertoire.</p>
+    <Button variant="neutral" href="/">Voir toutes les mangroves</Button>
+  </section>
+</PageShell>
+
+<style>
+  .not-found { max-width: var(--container-narrow); margin: 0 auto; padding: var(--space-8) var(--page-gutter); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+  .not-found p { margin: 0; }
+</style>

@@ -1,6 +1,6 @@
 // Data for the page shell (header, footer, "Qui sommes-nous"), shared by every page.
 import { getActivityListings, getArticles, getOperator, getSites } from './data';
-import { routes, slugify, subIsland } from './format';
+import { isBuilt, linkIfBuilt, routes, slugify, subIsland } from './format';
 
 export function shellData() {
   const sites = getSites();
@@ -12,26 +12,32 @@ export function shellData() {
   const yalode = getOperator('yalode');
   const bluelagoon = getOperator('bluelagoon');
 
+  // Only link to pages that exist (OL-10). "Les guides" falls back to the on-page "Qui sommes-nous" band.
+  const nav = [
+    { href: routes.ideas, label: 'Idées de sorties' },
+    { href: linkIfBuilt(routes.guide(yalode.guideSlug)) || '/#qui-sommes-nous', label: 'Les guides' },
+  ].filter((l) => isBuilt(l.href));
+  const footer = [
+    { title: 'Par activité', links: getActivityListings().map((p) => ({ href: routes.activity(p.slug), label: p.label })) },
+    { title: 'Par île', links: islands.map((x) => ({ href: `/ile/${slugify(x)}`, label: x })) },
+    { title: 'Par commune', links: communes.map((c) => ({ href: routes.commune(c), label: c })) },
+    { title: 'Idées de sorties', links: [...getArticles().map((a) => ({ href: routes.article(a.slug), label: a.nav })), { href: routes.ideas, label: 'Toutes les idées' }] },
+    {
+      title: 'Les guides',
+      links: [
+        { href: routes.guide(yalode.guideSlug), label: `${yalode.guide} · ${yalode.name}` },
+        { href: routes.guide(bluelagoon.guideSlug), label: `${bluelagoon.guide} · ${bluelagoon.name}` },
+        { href: routes.compare, label: 'Bateau ou kayak ?' },
+        { href: routes.privacy, label: 'Confidentialité' },
+      ],
+    },
+  ]
+    .map((c) => ({ ...c, links: c.links.filter((l) => isBuilt(l.href)) }))
+    .filter((c) => c.links.length > 0);
+
   return {
-    nav: [
-      { href: routes.ideas, label: 'Idées de sorties' },
-      { href: routes.guide(yalode.guideSlug), label: 'Les guides' },
-    ],
-    footer: [
-      { title: 'Par activité', links: getActivityListings().map((p) => ({ href: routes.activity(p.slug), label: p.label })) },
-      { title: 'Par île', links: islands.map((x) => ({ href: `/ile/${slugify(x)}`, label: x })) },
-      { title: 'Par commune', links: communes.map((c) => ({ href: routes.commune(c), label: c })) },
-      { title: 'Idées de sorties', links: [...getArticles().map((a) => ({ href: routes.article(a.slug), label: a.nav })), { href: routes.ideas, label: 'Toutes les idées' }] },
-      {
-        title: 'Les guides',
-        links: [
-          { href: routes.guide(yalode.guideSlug), label: `${yalode.guide} · ${yalode.name}` },
-          { href: routes.guide(bluelagoon.guideSlug), label: `${bluelagoon.guide} · ${bluelagoon.name}` },
-          { href: routes.compare, label: 'Bateau ou kayak ?' },
-          { href: routes.privacy, label: 'Confidentialité' },
-        ],
-      },
-    ],
+    nav,
+    footer,
     aboutUs: {
       title: 'Nous, c’est Pascal et Jean-Eudes',
       paragraphs: [
@@ -46,7 +52,7 @@ export function shellData() {
         credential: o.credential.split(' · ')[0],
         pitch: o.about.pitch,
         contactUrl: o.contactUrl,
-        profileHref: routes.guide(o.guideSlug),
+        profileHref: linkIfBuilt(routes.guide(o.guideSlug)),
         website: o.about.website,
         domain: o.about.domain,
       })),

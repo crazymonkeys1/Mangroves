@@ -43,7 +43,8 @@ for (const file of htmlFiles) {
     if (desc.length > 160) add(file, 'P2', `description ${desc.length} chars (> 160)`);
     descs.set(desc, [...(descs.get(desc) || []), file]);
   }
-  if (!canonical) add(file, 'P1', 'missing canonical');
+  const noindex = /<meta name="robots" content="[^"]*noindex/.test(html);
+  if (!canonical && !noindex) add(file, 'P1', 'missing canonical');
   else if (/localhost/.test(canonical)) add(file, 'P1', 'canonical/JSON-LD URLs point to localhost (build with SITE_URL)');
   if (/<meta name="robots" content="[^"]*noindex/.test(html)) add(file, 'info', 'noindex');
 
@@ -55,7 +56,7 @@ for (const file of htmlFiles) {
   for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     try { JSON.parse(m[1]); } catch { add(file, 'P0', 'invalid JSON-LD block'); }
   }
-  if (!/application\/ld\+json/.test(html)) add(file, 'P2', 'no JSON-LD');
+  if (!noindex && !/application\/ld\+json/.test(html)) add(file, 'P2', 'no JSON-LD');
 
   for (const m of html.matchAll(/<img\b[^>]*>/g)) if (!/\balt(=|[\s>\/])/.test(m[0])) add(file, 'P1', `<img> without alt: ${m[0].slice(0, 90)}`);
   for (const m of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) if (!/rel="[^"]*noopener/.test(m[0])) add(file, 'P2', `target=_blank without rel=noopener: ${m[0].slice(0, 90)}`);
