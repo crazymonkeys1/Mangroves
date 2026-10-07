@@ -1,0 +1,17 @@
+---
+// Authors: stacked photos + one line of text (names, date, reading time).
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+interface Props { photos: string[]; text: string; size?: 36 | 48; tone?: 'default' | 'inverse' }
+const { photos, text, size = 36, tone = 'default' } = Astro.props;
+---
+<p class:list={['byline', tone === 'inverse' && 'on-inverse']}>
+  <span class="byline__photos">{photos.map((p) => <Avatar src={p} size={size} ring />)}</span>
+  <span class="text-caption">{text}</span>
+</p>
+
+<style>
+  .byline { margin: 0; display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+  .byline__photos { display: flex; flex-shrink: 0; }
+  .byline__photos :global(.avatar + .avatar) { margin-left: calc(-1 * var(--space-2)); }
+  .on-inverse .byline__photos :global(.avatar) { --avatar-ring: var(--color-border-inverse); }
+</style>

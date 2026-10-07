@@ -1,0 +1,19 @@
+---
+// An article in lists: image (3:2), optional category, title, brief and meta. `compact` = image + title ("À lire aussi").
+interface Props { href: string; image: string; title: string; category?: string; brief?: string; meta?: string; headingLevel?: 'h2' | 'h3' }
+const { href, image, title, category, brief, meta, headingLevel: H = 'h3' } = Astro.props;
+---
+<a class="article-card" href={href}>
+  <img class="article-card__image" src={image} alt="" loading="lazy" decoding="async" />
+  {category && <span class="text-eyebrow">{category}</span>}
+  <H class="article-card__title text-title">{title}</H>
+  {brief && <span class="text-body">{brief}</span>}
+  {meta && <span class="text-caption">{meta}</span>}
+</a>
+
+<style>
+  .article-card { display: flex; flex-direction: column; gap: var(--space-3); text-decoration: none; color: var(--color-text-primary); }
+  .article-card__image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-container); background: var(--color-surface-sunken); }
+  .article-card__title { margin: 0; }
+  @media (hover: hover) { .article-card:hover .article-card__title { text-decoration: underline; text-decoration-color: var(--color-action-primary); text-decoration-thickness: 2px; text-underline-offset: 4px; } }
+</style>

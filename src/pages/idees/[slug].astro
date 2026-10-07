@@ -1,0 +1,12 @@
+---
+// Route: /idees/<slug>, one SEO article per entry in data/content/articles.json.
+import ArticleTemplate from '../../templates/ArticleTemplate.astro';
+import { buildArticlePage, getArticlePaths } from '../../lib/article';
+import { shellData } from '../../lib/shell';
+
+export function getStaticPaths() {
+  return getArticlePaths().map((slug) => ({ params: { slug } }));
+}
+const page = buildArticlePage(Astro.params.slug!, Astro.site!.href);
+---
+<ArticleTemplate page={page} shell={shellData()} />

@@ -66,7 +66,7 @@ export function utm(url: string, placement: string, slug: string): string {
 }
 
 /** Route prefixes that exist in src/pages. Add one when its page type is built (OL-10). */
-const BUILT_ROUTES = ['/mangrove/', '/ile/', '/commune/', '/activite/', '/guides/'];
+const BUILT_ROUTES = ['/mangrove/', '/ile/', '/commune/', '/activite/', '/guides/', '/idees'];
 /** True when `href` points to a page we actually generate. Never link to anything else. */
 export const isBuilt = (href: string) => {
   if (href.startsWith('#') || /^https?:/.test(href)) return true;

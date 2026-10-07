@@ -2,6 +2,7 @@
 // Page opening on a photo. `site` variant: carousel, back link, type badge, alert dot, H1, commune line, lead.
 // `directory` variant: centred title, subtitle and the partner guides.
 // `listing` variant: breadcrumb, kind label, H1 and a short intro, aligned bottom-left.
+// `article` variant: photo, breadcrumb, category label, H1 and byline.
 // `profile` variant: on the operator colour, breadcrumb, guide photo, H1, role and the `actions` slot.
 import Badge from '../../atoms/Badge/Badge.astro';
 import Icon from '../../atoms/Icon/Icon.astro';
@@ -10,10 +11,11 @@ import PhotoCredit from '../../molecules/PhotoCredit/PhotoCredit.astro';
 import OperatorChip from '../../molecules/OperatorChip/OperatorChip.astro';
 import BreadcrumbTrail from '../../molecules/BreadcrumbTrail/BreadcrumbTrail.astro';
 import Avatar from '../../atoms/Avatar/Avatar.astro';
+import Byline from '../../molecules/Byline/Byline.astro';
 
 interface Slide { src: string; alt: string; caption: string; credit: string }
 interface Props {
-  variant: 'site' | 'directory' | 'listing' | 'profile';
+  variant: 'site' | 'directory' | 'listing' | 'profile' | 'article';
   title: string;
   lead?: string;
   eyebrow?: string;
@@ -32,8 +34,10 @@ interface Props {
   /** profile: operator key (background colour) and guide photo. */
   operator?: 'yalode' | 'bluelagoon';
   photo?: string;
+  /** article: authors' photos and the byline text. */
+  byline?: { photos: string[]; text: string };
 }
-const { variant, title, lead, eyebrow, slides, typeLabel, typeIcon = 'leaf', alertShort, overlapBelow = false, backHref = '/', label, guides = [], crumbs = [], intro, operator, photo } = Astro.props;
+const { variant, title, lead, eyebrow, slides, typeLabel, typeIcon = 'leaf', alertShort, overlapBelow = false, backHref = '/', label, guides = [], crumbs = [], intro, operator, photo, byline } = Astro.props;
 const multi = slides.length > 1;
 ---
 <section class:list={['hero', `hero--${variant}`, operator && `hero--${operator}`, overlapBelow && 'hero--overlap']} data-hero aria-label={variant === 'site' ? undefined : label}>
@@ -82,6 +86,15 @@ const multi = slides.length > 1;
           <div class="hero__actions"><slot name="actions" /></div>
         </div>
       </>
+    ) : variant === 'article' ? (
+      <>
+        <BreadcrumbTrail items={crumbs} tone="inverse" />
+        <div class="hero__text on-inverse">
+          {label && <p class="hero__label text-eyebrow">{label}</p>}
+          <h1 class="text-display hero__title">{title}</h1>
+          {byline && <Byline photos={byline.photos} text={byline.text} tone="inverse" />}
+        </div>
+      </>
     ) : variant === 'listing' ? (
       <>
         <BreadcrumbTrail items={crumbs} tone="inverse" />
@@ -114,7 +127,7 @@ const multi = slides.length > 1;
       <span class="sr-only" aria-live="polite" data-hero-status>Image 1 sur {slides.length}</span>
     </div>
   )}
-  {variant === 'directory' && slides[0] && <PhotoCredit class="hero__credit-corner" text={`Photo : ${slides[0].credit}`} />}
+  {(variant === 'directory' || variant === 'article') && slides[0] && <PhotoCredit class="hero__credit-corner" text={`Photo : ${slides[0].credit}`} />}
 </section>
 
 <script>
@@ -162,6 +175,10 @@ const multi = slides.length > 1;
   .hero__profile p { margin: 0; }
   .hero__profile :global(.hero__photo) { --avatar-ring: var(--color-border-inverse); }
   .hero__actions { display: flex; flex-direction: column; gap: var(--space-2); }
+  .hero--article { min-height: calc(var(--hero-height) + var(--space-5)); }
+  .hero--article .hero__scrim { background: linear-gradient(180deg, var(--color-overlay-modal) 0%, transparent 40%, var(--color-overlay-chip) 100%); }
+  .hero--article .hero__content { max-width: var(--container-narrow); justify-content: space-between; flex: 1; padding-top: var(--space-5); padding-bottom: var(--space-7); gap: var(--space-4); }
+  .hero--article .hero__label { align-self: flex-start; white-space: nowrap; padding: var(--space-1) var(--space-3); border: var(--border-width) solid var(--color-border-inverse); border-radius: var(--radius-full); }
   .hero--listing .hero__scrim { background: linear-gradient(180deg, var(--color-overlay-modal) 0%, var(--color-overlay-chip) 100%); }
   .hero--listing .hero__content { padding-top: var(--space-5); padding-bottom: var(--space-7); gap: var(--space-3); }
   .hero--listing .hero__label { align-self: flex-start; white-space: nowrap; }

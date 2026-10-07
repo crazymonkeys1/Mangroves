@@ -1,0 +1,38 @@
+---
+// SEO article skeleton (docs/components.md → ArticleTemplate): Hero article, ArticleBody (with PickList and FaqList
+// in its slots), related articles, AboutUsBand.
+import AboutUsBand from '../components/organisms/AboutUsBand/AboutUsBand.astro';
+import ArticleBody from '../components/organisms/ArticleBody/ArticleBody.astro';
+import ArticleCard from '../components/organisms/ArticleCard/ArticleCard.astro';
+import FaqList from '../components/organisms/FaqList/FaqList.astro';
+import Hero from '../components/organisms/Hero/Hero.astro';
+import PickList from '../components/organisms/PickList/PickList.astro';
+import SectionHead from '../components/molecules/SectionHead/SectionHead.astro';
+import PageShell from './PageShell.astro';
+import type { ArticlePageModel } from '../lib/article';
+import type { ShellData } from '../lib/shell';
+interface Props { page: ArticlePageModel; shell: ShellData }
+const { page, shell } = Astro.props;
+---
+<PageShell title={page.title} description={page.description} canonical={page.canonical} ogImage={page.ogImage} jsonLd={page.jsonLd} shell={shell}>
+  <article>
+    <Hero variant="article" crumbs={page.hero.crumbs} label={page.hero.category} title={page.hero.title} slides={[page.hero.slide]} byline={{ photos: page.hero.authors, text: page.hero.byline }} />
+    <div class="article">
+      <ArticleBody data={page.body}>
+        <PickList slot="selection" data={page.selection} />
+        <FaqList slot="faq" title={page.faq.title} items={page.faq.items} />
+      </ArticleBody>
+    </div>
+  </article>
+  <section class="article-more" aria-labelledby="h-a-lire-aussi">
+    <SectionHead eyebrow="À lire aussi" title="Autres idées de sorties" id="h-a-lire-aussi" />
+    <ul class="article-more__list">{page.more.map((m) => <li><ArticleCard href={m.href} image={m.image} title={m.title} /></li>)}</ul>
+  </section>
+  <AboutUsBand data={shell.aboutUs} />
+</PageShell>
+
+<style>
+  .article { max-width: var(--container-narrow); margin: 0 auto; padding: var(--space-7) var(--page-gutter) 0; }
+  .article-more { max-width: var(--container-page); margin: var(--space-8) auto 0; padding: 0 var(--page-gutter); display: flex; flex-direction: column; gap: var(--space-4); }
+  .article-more__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: var(--space-5); }
+</style>

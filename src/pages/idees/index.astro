@@ -1,0 +1,8 @@
+---
+// Route: /idees, the index of SEO articles.
+import IdeasTemplate from '../../templates/IdeasTemplate.astro';
+import { buildIdeasPage } from '../../lib/article';
+import { shellData } from '../../lib/shell';
+const page = buildIdeasPage(Astro.site!.href);
+---
+<IdeasTemplate page={page} shell={shellData()} />

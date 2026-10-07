@@ -126,10 +126,30 @@ export interface SiteContent {
 export interface Article {
   slug: string;
   nav: string;
+  crumb: string;
+  category: string;
+  icon: string;
   title: string;
+  metaTitle: string;
+  metaDescription: string;
   heroImg: string;
   heroCredit: string;
-  icon: string;
+  updated: string;
+  updatedIso: string;
+  readTime: string;
+  intro: string;
+  brief: string;
+  essentials: { lead: string; text: string }[];
+  guideH2: string;
+  sections: { title: string; paragraphs: string[] }[];
+  /** A site is selected when it has every listed property; `activities` matches any of them. */
+  select: { kidFriendly?: boolean; birdwatching?: boolean; activities?: Activity[] };
+  selectionLabel: string;
+  operators: OperatorKey[];
+  know: { label: string; value: string }[];
+  before: string;
+  faq: { q: string; a: string }[];
+  related: string[];
 }
 
 /** Publishing rule (data/mangroves-db.json `publishRule`): hide sites still "à vérifier". */
@@ -182,5 +202,12 @@ export const getSocial = (slug: string) =>
 export const getVideos = (slug: string) =>
   ((videosFile.sites as Record<string, { platform: string; author: string; title: string; q: string }[]>)[slug]) || [];
 
-export const getArticles = (): Article[] => articlesFile.articles;
+export const getArticles = (): Article[] => articlesFile.articles as unknown as Article[];
+export const getArticle = (slug: string) => getArticles().find((a) => a.slug === slug);
+export const getWhyGuideTiles = () => articlesFile.whyGuideTiles;
+export const articleSites = (a: Article): Site[] =>
+  getSites().filter((s) =>
+    (a.select.kidFriendly === undefined || s.kidFriendly === a.select.kidFriendly) &&
+    (a.select.birdwatching === undefined || s.birdwatching === a.select.birdwatching) &&
+    (!a.select.activities || a.select.activities.some((x) => s.activities.includes(x))));
 export const getActivityListings = () => listingsFile.activities;

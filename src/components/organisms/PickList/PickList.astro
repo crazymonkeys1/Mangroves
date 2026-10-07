@@ -1,0 +1,50 @@
+---
+// Numbered ideas in an article: number + linked name, photo, kind, place, guide, blurb, why, facts, link.
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+import Icon from '../../atoms/Icon/Icon.astro';
+import FactGrid from '../../molecules/FactGrid/FactGrid.astro';
+import SectionHead from '../../molecules/SectionHead/SectionHead.astro';
+import type { ArticlePageModel } from '../../../lib/article';
+interface Props { data: ArticlePageModel['selection'] }
+const { title, picks } = Astro.props.data;
+---
+<section class="pick-list" id="selection" aria-labelledby="h-selection">
+  <SectionHead eyebrow="Notre sélection" title={title} id="h-selection" />
+  {picks.map((p) => (
+    <article class:list={['pick-list__item', p.operator && `pick-list__item--${p.operator}`]}>
+      <h3 class="pick-list__heading"><span class="pick-list__number text-heading">{p.number}</span><a class="text-title" href={p.href}>{p.name}</a></h3>
+      {p.image && (
+        <figure class="pick-list__figure">
+          <a href={p.href} tabindex="-1" aria-hidden="true"><img src={p.image.src} alt={p.image.alt} loading="lazy" decoding="async" /></a>
+          <figcaption class="text-caption">{p.image.credit}</figcaption>
+        </figure>
+      )}
+      <p class="pick-list__meta">
+        <span class="pick-list__kind text-caption-strong">{p.kind}</span>
+        <span class="pick-list__place text-caption"><Icon name="pin" tone="brand" />{p.commune}</span>
+        {p.guide && <span class="pick-list__guide text-caption-strong"><Avatar src={p.guide.photo} size={22} />{p.guide.label}</span>}
+      </p>
+      <p class="text-body">{p.blurb}</p>
+      {p.why && <p class="text-body"><strong>{p.why.label}</strong> {p.why.text}</p>}
+      <FactGrid items={p.facts} label={`${p.name} en bref`} />
+      <a class="pick-list__link text-body-strong" href={p.href}>{p.linkLabel}</a>
+    </article>
+  ))}
+</section>
+
+<style>
+  .pick-list { display: flex; flex-direction: column; gap: var(--space-7); }
+  .pick-list__item { --pick-color: var(--color-text-brand); display: flex; flex-direction: column; gap: var(--space-3); }
+  .pick-list__item--yalode { --pick-color: var(--color-operator-yalode); }
+  .pick-list__item--bluelagoon { --pick-color: var(--color-operator-bluelagoon); }
+  .pick-list__item p { margin: 0; }
+  .pick-list__heading { margin: 0; display: flex; align-items: baseline; gap: var(--space-3); }
+  .pick-list__number { color: var(--color-text-secondary); }
+  .pick-list__heading a { text-decoration: none; }
+  .pick-list__figure { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); text-align: center; }
+  .pick-list__figure img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-container); background: var(--color-surface-sunken); }
+  .pick-list__meta { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+  .pick-list__kind, .pick-list__guide { color: var(--pick-color); }
+  .pick-list__place, .pick-list__guide { display: inline-flex; align-items: center; gap: var(--space-2); }
+  .pick-list__link { align-self: flex-end; display: inline-flex; align-items: center; min-height: var(--tap-size-min); }
+</style>
