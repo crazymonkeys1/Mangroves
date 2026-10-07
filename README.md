@@ -22,7 +22,7 @@ npm run check     # type check
 | Build output directory | `dist` |
 | Node version | 22 (from `.node-version`) |
 
-Before launch, deploys are previews on `*.pages.dev`: every page is `noindex` and `robots.txt` blocks crawlers. At launch, set two environment variables in the Pages project: `SITE_URL` (the real domain, e.g. `https://www.example.fr`) and `INDEXABLE=true`. The build refuses `INDEXABLE=true` without `SITE_URL`.
+Pages are indexed by default. Set the environment variable `SITE_URL` in the Pages project to the stable address (`https://<project>.pages.dev` now, the real domain later): canonical URLs, the sitemap and JSON-LD use it, and a Cloudflare build without it fails. To hide a deployment from crawlers, set `INDEXABLE=false` (pages get `noindex`, `robots.txt` disallows all).
 
 ## Layout
 

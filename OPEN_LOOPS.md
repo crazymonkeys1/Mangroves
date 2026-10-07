@@ -6,7 +6,7 @@ Last review: 0158c1a (7 Oct 2026); lists, guide profiles, articles, comparison a
 
 ## Decisions needed
 
-- **OL-04 · Production domain** — No domain yet (7 Oct 2026); the site runs as a Cloudflare Pages preview on `*.pages.dev`, not indexed (`src/lib/site-config.ts`, `robots.txt` disallows all). At launch: buy the domain, attach it to the Pages project, set `SITE_URL` and `INDEXABLE=true` (README "Deploy"), check that Cloudflare's "Block AI bots" is off, then submit `sitemap.xml` to Google Search Console and Bing.
+- **OL-04 · Production domain** — No domain yet (7 Oct 2026). The site is indexed on `https://<project>.pages.dev` (`SITE_URL` set to that address in the Pages project). At launch: buy the domain, attach it to the Pages project, change `SITE_URL` to it, and redirect `*.pages.dev` to the domain (Cloudflare Bulk Redirects) so search engines move the pages over; check that "Block AI bots" is off; submit `sitemap.xml` to Google Search Console and Bing.
 - **OL-05 · Lead capture provider and consent** — The "top 5" form is intent only, and disabled (`LeadCaptureBand`). Before enabling it: pick a provider, write the consent wording, log consent, double opt-in, and a legal-reviewed privacy page (`docs/project.md` §6).
 
 ## To do

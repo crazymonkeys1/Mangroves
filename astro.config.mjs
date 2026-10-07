@@ -3,10 +3,10 @@ import { defineConfig } from 'astro/config';
 
 // Static output: every route is plain HTML at build time (SEO and AI crawlers need it without JS).
 // SITE_URL is the production origin; it feeds canonical URLs and JSON-LD.
-// Cloudflare Pages sets CF_PAGES and CF_PAGES_URL. Until launch, deploys are previews on *.pages.dev:
-// not indexed (see src/lib/site-config.ts) and using the preview URL as origin.
-// At launch set INDEXABLE=true and SITE_URL (the real domain); the build refuses one without the other (OL-04).
-if (process.env.INDEXABLE === 'true' && !process.env.SITE_URL) throw new Error('INDEXABLE=true needs SITE_URL (the production origin, e.g. https://www.example.fr).');
+// Pages are indexed by default (src/lib/site-config.ts). On Cloudflare, CF_PAGES_URL changes with every
+// deployment, so an indexed build needs a stable origin in SITE_URL (https://<project>.pages.dev now,
+// the real domain later). The build refuses to publish canonical URLs without it.
+if (process.env.CF_PAGES && process.env.INDEXABLE !== 'false' && !process.env.SITE_URL) throw new Error('Set SITE_URL in the Pages project (e.g. https://mangroves-gwada.pages.dev), or INDEXABLE=false for a hidden preview.');
 
 export default defineConfig({
   site: process.env.SITE_URL || process.env.CF_PAGES_URL || 'http://localhost:4321',
