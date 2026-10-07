@@ -16,7 +16,7 @@ An independent, French-language directory of the mangroves of Guadeloupe (21 sit
 
 ## 2. Views and routes
 
-Today the design uses hash routes. Production needs real, crawlable URLs (see §6).
+The design uses hash routes; the build uses the real URLs below. Built: `/`, `/mangrove/<slug>`, `/ile/<slug>`, `/commune/<slug>`, `/activite/<slug>`, `/guides/<slug>`, `/idees`, `/idees/<slug>`, `/comparatif`, plus `/robots.txt`, `/sitemap.xml`, `/llms.txt` and a 404. Not built: `/confidentialite` (legal text pending, OPEN_LOOPS OL-10). New page types must be added to `BUILT_ROUTES` (`src/lib/format.ts`) and to `src/pages/sitemap.xml.ts`.
 
 | View | Design route | Template | Notes |
 |---|---|---|---|

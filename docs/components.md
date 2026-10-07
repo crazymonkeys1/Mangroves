@@ -37,7 +37,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `DisclaimerFold` | Legal fine print | `Disclosure` + `text-legal` | folded by default; link to full notice opens it (`#avertissement`) |
 | `QuoteCard` | Visitor/guide quote | glyph + `text-quote` + divider + caption author with tick | `surface-inset`, `border-subtle`, radius-container |
 | `LinkRow` | External/internal list row | title `text-body` + meta `text-caption` + ↗ | min-height 44, top rule `border-default`; used in reading lists |
-| `BreadcrumbTrail` | Hierarchy | `TextLink`s + `›` | `text-caption`; `BreadcrumbList` JSON-LD |
+| `BreadcrumbTrail` | Hierarchy | `TextLink`s + `›` | `text-caption`; `tone: default \| inverse` (on photos); items without `href` render as text (unbuilt routes); `BreadcrumbList` JSON-LD |
 | `PriceLabel` | Price + unit | `text-title` + `text-caption` | "dès 52 €" + "par adulte" |
 | `OperatorChip` | Guide shortcut | `Avatar` 36 + name + rating + star | translucent on dark grounds |
 | `ActionTile` | Compact secondary action | `Icon` + one word `text-caption-strong` | 44 min, `surface-inset`; full wording in aria-label |
@@ -51,7 +51,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 |---|---|---|---|
 | `SiteHeader` | Brand and navigation | Logo (monogram + wordmark `text-title` clamp), `NavMenu`, inline nav | menu icon < sm → inline nav ≥ sm; sticky; padding 8×16 |
 | `SiteFooter` | Site map and warning | link columns (`text-eyebrow` heads, `text-caption` links), `DisclaimerFold` | 1 col → 2 (sm) → 5 (md) |
-| `Hero` | Page opening | photo, `gradient-hero-scrim`, `Eyebrow`/`Badge`, `h1.text-display`, subtitle `text-quote`, optional `OperatorChip`s, `PhotoCredit` | `variant`: directory, listing, article, profile, site; height `--hero-height` |
+| `Hero` | Page opening | photo, scrim, `Eyebrow`/`Badge`, `h1.text-display`, subtitle `text-quote`, optional `OperatorChip`s, `BreadcrumbTrail` (inverse), `Byline`, `PhotoCredit` | `variant`: site (carousel), directory, listing, article, profile (operator colour, `actions` slot); height `--hero-height` |
 | `FilterBar` | Find sites | `SearchField`, filters trigger button (count badge) / inline `Chip`s + `Switch`es | 1 line < md → inline ≥ md |
 | `FilterSheet` | All filters | header (`text-title` + close), `SwitchRow`, `FilterGroup`s, sort, sticky CTA | bottom sheet, radius-container top, max 85 vh |
 | `ResultToolbar` | Count, clear, view switch | caption count, `TextLink` "Tout effacer", `SegmentedControl` (grille/liste) | wraps |
@@ -80,6 +80,8 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | Name | Level | Purpose | Notes |
 |---|---|---|---|
 | `Lightbox` | organism | Full-screen photo viewer for `PhotoGallery` and the site hero | native `<dialog>`, `overlay-lightbox`, Esc / arrows / swipe, caption with credit |
+| `FeatureList` | molecule | Short benefits: icon tile + title + one line | `surface: page \| card`; used by GuidedTourCard, the guide profile and ArticleBody ("Pourquoi partir avec un guide") |
+| `ArticleCard` | organism | An article in lists: image 3:2, optional category, title, brief, meta | `/idees` index (full) and "À lire aussi" (image + title) |
 | `PageShell` | template | Document head (title, meta, canonical, Open Graph, JSON-LD, fonts), `SiteHeader`, main, `SiteFooter` | also opens a folded `<details>` when an in-page link targets it (`#alerte`, `#sources`, `#avertissement`) |
 
 Implementation: `src/components/{atoms,molecules,organisms}/{Name}/{Name}.astro`, templates in `src/templates/`. Tier-3 local values (not yet tokens): icon sizes 15/17/24, avatar diameters 22–72, grid column minimums (140/190/220/240/260/280/300 px). See "Proposed additions" in the build notes.
