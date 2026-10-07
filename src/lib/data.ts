@@ -8,6 +8,7 @@ import socialFile from '../../data/content/social.json';
 import videosFile from '../../data/content/videos.json';
 import articlesFile from '../../data/content/articles.json';
 import listingsFile from '../../data/content/listings.json';
+import compareFile from '../../data/content/compare.json';
 
 export type Activity = 'bateau' | 'kayak' | 'marche' | 'pedalo' | 'canot';
 export type OperatorKey = 'yalode' | 'bluelagoon';
@@ -211,3 +212,5 @@ export const articleSites = (a: Article): Site[] =>
     (a.select.birdwatching === undefined || s.birdwatching === a.select.birdwatching) &&
     (!a.select.activities || a.select.activities.some((x) => s.activities.includes(x))));
 export const getActivityListings = () => listingsFile.activities;
+
+export const getCompare = () => ({ ...compareFile, rows: compareFile.rows.map((r) => ({ ...r, boat: nbsp(r.boat), kayak: nbsp(r.kayak) })) });

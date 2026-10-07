@@ -1,0 +1,42 @@
+---
+// Side-by-side comparison as a real table. On phones each row stacks: label, then one line per option.
+interface Props { caption: string; columns: string[]; rows: { label: string; values: string[] }[] }
+const { caption, columns, rows } = Astro.props;
+---
+<table class="compare-table">
+  <caption class="sr-only">{caption}</caption>
+  <thead>
+    <tr><td></td>{columns.map((c) => <th scope="col" class="text-eyebrow is-secondary">{c}</th>)}</tr>
+  </thead>
+  <tbody>
+    {rows.map((r) => (
+      <tr>
+        <th scope="row" class="compare-table__label text-eyebrow is-secondary">{r.label}</th>
+        {r.values.map((v, i) => <td class="text-body" data-label={columns[i]}>{v}</td>)}
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<style>
+  .compare-table { width: 100%; border-collapse: collapse; background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); overflow: hidden; display: block; }
+  .compare-table thead { display: none; }
+  .compare-table tbody, .compare-table tr { display: block; }
+  .compare-table tr + tr { border-top: var(--border-width) solid var(--color-border-default); }
+  .compare-table th, .compare-table td { display: block; text-align: left; padding: var(--space-2) var(--space-4); }
+  .compare-table__label { padding-top: var(--space-3); }
+  /* Phones: name the option before each value (the column header is hidden). */
+  .compare-table td::before { content: attr(data-label) ' : '; color: var(--color-text-secondary); }
+  .compare-table td:last-child { padding-bottom: var(--space-3); }
+  @media (min-width: 600px) {
+    .compare-table { display: table; }
+    .compare-table thead { display: table-header-group; }
+    .compare-table tbody { display: table-row-group; }
+    .compare-table tr { display: table-row; }
+    .compare-table th, .compare-table td { display: table-cell; padding: var(--space-3) var(--space-4); vertical-align: top; }
+    .compare-table td { border-left: var(--border-width) solid var(--color-border-default); }
+    .compare-table thead th { border-left: var(--border-width) solid var(--color-border-default); }
+    .compare-table tbody tr, .compare-table tr + tr { border-top: var(--border-width) solid var(--color-border-default); }
+    .compare-table td::before { content: none; }
+  }
+</style>

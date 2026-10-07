@@ -1,0 +1,8 @@
+---
+// Route: /comparatif (boat vs kayak).
+import CompareTemplate from '../templates/CompareTemplate.astro';
+import { buildComparePage } from '../lib/compare';
+import { shellData } from '../lib/shell';
+const page = buildComparePage(Astro.site!.href);
+---
+<CompareTemplate page={page} shell={shellData()} />

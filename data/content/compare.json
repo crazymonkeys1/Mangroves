@@ -1,0 +1,53 @@
+{
+  "_note": "Boat vs kayak comparison (/comparatif). Moved from the v12 prototype (compare view and compareRows). Partner claims here need guide approval before launch (OPEN_LOOPS OL-02).",
+  "title": "Bateau ou kayak ? Deux façons d'entrer dans la mangrove",
+  "intro": "Blue Lagoon et Yalodé travaillent la même lagune, le Grand Cul-de-Sac Marin, mais n'y proposent pas la même expérience. Voici comment elles diffèrent, sans détour.",
+  "operators": [
+    {
+      "key": "bluelagoon",
+      "mode": "En bateau",
+      "text": "Le capitaine Jean-Eudes a fondé Blue Lagoon en 2010 à Sainte-Rose. Le bateau boucle un circuit complet du lagon : forêt de palétuviers, rivière, baignade sur un îlot de sable blanc et snorkeling sur le récif. Jusqu'à 12 personnes à bord, dans une ambiance conviviale et familiale.",
+      "idealFor": "Idéal si vous voulez voir large : plusieurs paysages du lagon en une seule sortie, avec de la baignade et un rythme accessible à tous les âges."
+    },
+    {
+      "key": "yalode",
+      "mode": "En kayak",
+      "text": "Pascal Proust a lancé Yalodé à Vieux-Bourg, sur un microclimat parmi les plus stables du lagon. Le kayak se glisse dans des chenaux de palétuviers trop étroits pour un bateau : une immersion plus lente, plus proche, avec des pauses pour observer la faune et la flore.",
+      "idealFor": "Idéal si vous voulez ressentir la mangrove de près, à votre rythme, en petit comité."
+    }
+  ],
+  "rows": [
+    {
+      "label": "Capacité",
+      "boat": "Jusqu’à 12 personnes",
+      "kayak": "Jusqu’à 32 personnes (4 groupes de 8)"
+    },
+    {
+      "label": "Terrain",
+      "boat": "Circuit complet du lagon : mangrove, rivière, îlots, récif",
+      "kayak": "Chenaux étroits inaccessibles au bateau"
+    },
+    {
+      "label": "Météo",
+      "boat": "Sainte-Rose, côte au vent, plus exposée en journée",
+      "kayak": "Vieux-Bourg, microclimat stable ~99% du temps"
+    },
+    {
+      "label": "Rythme",
+      "boat": "Complet et rythmé, plusieurs arrêts",
+      "kayak": "Lent et immersif, pauses botaniques"
+    },
+    {
+      "label": "Filtre naturel",
+      "boat": "Accessible à tous les niveaux",
+      "kayak": "Demande un minimum de forme physique"
+    },
+    {
+      "label": "Tarif indicatif",
+      "boat": "≈ 52 € / adulte",
+      "kayak": "≈ 38 € / adulte"
+    }
+  ],
+  "summaryTitle": "En bref, pour choisir",
+  "summary": "Vous voulez de la baignade, plusieurs paysages du lagon et voyagez en groupe ou en famille nombreuse : prenez le bateau avec Blue Lagoon. Vous voulez vous glisser au cœur des palétuviers, à votre rythme, en petit comité : prenez le kayak avec Yalodé. Les deux se réservent en ligne, même la veille en basse saison."
+}

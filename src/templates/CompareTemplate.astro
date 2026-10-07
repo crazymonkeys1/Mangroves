@@ -1,0 +1,51 @@
+---
+// Comparison skeleton (docs/components.md → CompareTemplate): title block, the two operators, CompareTable, summary.
+import Eyebrow from '../components/atoms/Eyebrow/Eyebrow.astro';
+import BreadcrumbTrail from '../components/molecules/BreadcrumbTrail/BreadcrumbTrail.astro';
+import AboutUsBand from '../components/organisms/AboutUsBand/AboutUsBand.astro';
+import CompareTable from '../components/organisms/CompareTable/CompareTable.astro';
+import PageShell from './PageShell.astro';
+import type { ComparePageModel } from '../lib/compare';
+import type { ShellData } from '../lib/shell';
+interface Props { page: ComparePageModel; shell: ShellData }
+const { page, shell } = Astro.props;
+---
+<PageShell title={page.title} description={page.description} canonical={page.canonical} jsonLd={page.jsonLd} shell={shell}>
+  <div class="compare">
+    <BreadcrumbTrail items={page.crumbs} />
+    <div class="compare__head">
+      <h1 class="text-display">{page.h1}</h1>
+      <p class="text-lead">{page.intro}</p>
+    </div>
+    <div class="compare__operators">
+      {page.operators.map((o) => (
+        <section class:list={['compare__operator', `compare__operator--${o.key}`, 'on-inverse']} aria-labelledby={`h-${o.key}`}>
+          <span class="text-eyebrow">{o.mode}</span>
+          <h2 class="text-title" id={`h-${o.key}`}>{o.name}</h2>
+          <p class="text-body">{o.text}</p>
+          <p class="text-body">{o.idealFor}</p>
+          <a class="compare__link text-body-strong" href={o.profileHref}>{o.profileLabel} →</a>
+        </section>
+      ))}
+    </div>
+    <CompareTable caption={page.table.caption} columns={page.table.columns} rows={page.table.rows} />
+    <p class="text-caption">Tarifs indicatifs relevés en {page.table.priceDate}, à confirmer lors de la réservation.</p>
+    <aside class="compare__summary" aria-labelledby="h-summary">
+      <h2 class="text-body-strong" id="h-summary">{page.summary.title}</h2>
+      <p class="text-body">{page.summary.text}</p>
+    </aside>
+  </div>
+  <AboutUsBand data={shell.aboutUs} />
+</PageShell>
+
+<style>
+  .compare { max-width: var(--container-content); margin: 0 auto; padding: var(--space-5) var(--page-gutter) 0; display: flex; flex-direction: column; gap: var(--space-5); }
+  .compare p, .compare h2 { margin: 0; }
+  .compare__head { display: flex; flex-direction: column; gap: var(--space-3); }
+  .compare__operators { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-4); }
+  .compare__operator { border-radius: var(--radius-container); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); background: var(--color-surface-inverse); }
+  .compare__operator--yalode { background: var(--color-operator-yalode); }
+  .compare__operator--bluelagoon { background: var(--color-operator-bluelagoon); }
+  .compare__link { color: var(--color-text-inverse); align-self: flex-start; display: inline-flex; align-items: center; min-height: var(--tap-size-min); margin-top: auto; }
+  .compare__summary { background: var(--color-surface-sunken); border-radius: var(--radius-container); padding: var(--card-padding); display: flex; flex-direction: column; gap: var(--space-2); }
+</style>
