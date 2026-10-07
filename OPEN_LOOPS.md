@@ -2,7 +2,7 @@
 
 Single tracker for deferred work, pending decisions and known limitations (maintained by the `step-review` skill). Each item stands on its own: read it with `CLAUDE.md` and act. Close an item by deleting it and citing its ID in the commit message.
 
-Last review: e945ac4 (7 Oct 2026); handoff import, Astro build, step-review skill and its fix plan
+Last review: 0158c1a (7 Oct 2026); lists, guide profiles, articles, comparison and their fix plan
 
 ## Decisions needed
 
