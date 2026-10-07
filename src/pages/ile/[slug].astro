@@ -1,0 +1,15 @@
+---
+// Route: /ile/<slug>, one listing per value that has published sites.
+import ListingTemplate from '../../templates/ListingTemplate.astro';
+import { getArticles } from '../../lib/data';
+import { isBuilt, routes } from '../../lib/format';
+import { buildListingPage, getListingPaths } from '../../lib/listing';
+import { shellData } from '../../lib/shell';
+
+export function getStaticPaths() {
+  return getListingPaths().filter((p) => p.kind === 'ile').map((p) => ({ params: { slug: p.slug } }));
+}
+const page = buildListingPage('ile', Astro.params.slug!, Astro.site!.href);
+const explore = getArticles().map((a) => ({ href: routes.article(a.slug), label: a.nav, icon: a.icon })).filter((l) => isBuilt(l.href));
+---
+<ListingTemplate page={page} shell={shellData()} explore={explore} />

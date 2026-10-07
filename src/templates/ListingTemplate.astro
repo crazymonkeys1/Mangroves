@@ -1,0 +1,32 @@
+---
+// Listing skeleton (docs/components.md → ListingTemplate): Hero listing, SiteCards, FaqList, ExploreLinks, AboutUsBand.
+import AboutUsBand from '../components/organisms/AboutUsBand/AboutUsBand.astro';
+import ExploreLinks from '../components/organisms/ExploreLinks/ExploreLinks.astro';
+import FaqList from '../components/organisms/FaqList/FaqList.astro';
+import Hero from '../components/organisms/Hero/Hero.astro';
+import SiteCard from '../components/organisms/SiteCard/SiteCard.astro';
+import PageShell from './PageShell.astro';
+import type { ListingPageModel } from '../lib/listing';
+import type { ShellData } from '../lib/shell';
+interface Props { page: ListingPageModel; shell: ShellData; explore: { href: string; label: string; icon: string }[] }
+const { page, shell, explore } = Astro.props;
+---
+<PageShell title={page.title} description={page.description} canonical={page.canonical} ogImage={page.ogImage} jsonLd={page.jsonLd} shell={shell}>
+  <Hero variant="listing" label={page.hero.kindLabel} title={page.hero.title} intro={page.hero.intro} slides={page.hero.slides} crumbs={page.hero.crumbs} />
+  <div class="listing">
+    <p class="listing__count text-body">{page.count}</p>
+    <ul class="listing__results">{page.cards.map((c) => <li><SiteCard site={c} headingLevel="h2" /></li>)}</ul>
+    <div class="listing__more">
+      <FaqList title={page.faq.title} items={page.faq.items} />
+      {explore.length > 0 && <ExploreLinks links={explore} />}
+    </div>
+  </div>
+  <AboutUsBand data={shell.aboutUs} />
+</PageShell>
+
+<style>
+  .listing { max-width: var(--container-page); margin: 0 auto; padding: var(--space-6) var(--page-gutter) 0; display: flex; flex-direction: column; gap: var(--space-4); }
+  .listing__count { margin: 0; color: var(--color-text-secondary); }
+  .listing__results { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-4); }
+  .listing__more { max-width: var(--container-content); margin-top: var(--space-4); display: flex; flex-direction: column; }
+</style>

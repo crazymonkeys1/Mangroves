@@ -1,9 +1,9 @@
 ---
 // Hierarchy trail. The last item is the current page (not a link).
-interface Props { items: { label: string; href?: string }[] }
-const { items } = Astro.props;
+interface Props { items: { label: string; href?: string }[]; tone?: 'default' | 'inverse' }
+const { items, tone = 'default' } = Astro.props;
 ---
-<nav class="breadcrumb-trail" aria-label="Fil d'Ariane">
+<nav class:list={['breadcrumb-trail', tone === 'inverse' && 'breadcrumb-trail--inverse']} aria-label="Fil d'Ariane">
   <ol class="breadcrumb-trail__list text-caption">
     {items.map((it, i) => (
       <li class="breadcrumb-trail__item">
@@ -19,4 +19,7 @@ const { items } = Astro.props;
   .breadcrumb-trail__item { display: flex; align-items: center; gap: var(--space-2); }
   .breadcrumb-trail__item a { display: inline-flex; align-items: center; min-height: var(--tap-size-min); }
   .breadcrumb-trail__current { color: var(--color-text-primary); }
+  /* On photos: light text with the photo shadow. */
+  .breadcrumb-trail--inverse .breadcrumb-trail__list { color: var(--color-text-inverse-secondary); text-shadow: var(--text-shadow-on-photo); }
+  .breadcrumb-trail--inverse a, .breadcrumb-trail--inverse .breadcrumb-trail__current { color: var(--color-text-inverse); }
 </style>
