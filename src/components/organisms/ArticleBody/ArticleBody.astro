@@ -27,8 +27,8 @@ const b = Astro.props.data;
     <ul class="article-body__essentials">{b.essentials.map((e) => <li class="text-body"><strong>{e.lead}</strong> {e.text}</li>)}</ul>
   </section>
 
-  <section class="article-body__section" id="le-guide" aria-labelledby="h-le-guide">
-    <SectionHead eyebrow="Le guide" title={b.guideH2} id="h-le-guide" />
+  <section class="article-body__section" id="en-detail" aria-labelledby="h-en-detail">
+    <SectionHead eyebrow="En détail" title={b.guideH2} id="h-en-detail" />
     {b.sections.map((s) => (
       <div class="article-body__part">
         <h3 class="text-body-strong">{s.title}</h3>

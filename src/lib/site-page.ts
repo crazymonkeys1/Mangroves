@@ -288,7 +288,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
       ctaLabel: 'Réserver sur ' + o.name,
       contactUrl: link(o.contactUrl, 'guide-card'),
       contactLabel: 'Écrire à ' + o.guide,
-      footnote: `Réservation directement auprès de ${o.name}, sans frais ajoutés par ce guide.`,
+      footnote: `Réservation directement auprès de ${o.name}, sans frais ajoutés par ce site.`,
     };
   });
 

@@ -47,7 +47,7 @@ export function buildArticlePage(slug: string, siteUrl: string) {
   }));
 
   const toc = [
-    ['#essentiel', "L'essentiel"], ['#le-guide', a.guideH2], ['#selection', 'Notre sélection'],
+    ['#essentiel', "L'essentiel"], ['#en-detail', a.guideH2], ['#selection', 'Notre sélection'],
     ['#avant-de-partir', 'Avant de partir'], ['#faq', 'Questions fréquentes'], ['#avec-un-guide', 'Pourquoi partir avec un guide'],
   ].map(([href, label]) => ({ href, label }));
 
@@ -112,12 +112,12 @@ export function buildIdeasPage(siteUrl: string) {
   }));
   return {
     title: 'Idées de sorties en mangrove en Guadeloupe',
-    description: 'Nos guides pour choisir sa sortie : en famille, en bateau, en kayak, à pied ou pour les oiseaux. Écrits par Pascal et Jean-Eudes, mis à jour régulièrement.',
+    description: 'Nos idées pour choisir sa sortie : en famille, en bateau, en kayak, à pied ou pour les oiseaux. Écrits par Pascal et Jean-Eudes, mis à jour régulièrement.',
     canonical,
     crumbs: [{ label: 'Accueil', href: routes.home }, { label: 'Idées de sorties' }],
     eyebrow: 'Le blog',
     h1: 'Idées de sorties en mangrove',
-    lead: 'Nos guides pour choisir sa sortie : en famille, en bateau, en kayak, à pied ou pour les oiseaux. Écrits par Pascal et Jean-Eudes, mis à jour régulièrement.',
+    lead: 'Nos idées pour choisir sa sortie : en famille, en bateau, en kayak, à pied ou pour les oiseaux. Écrits par Pascal et Jean-Eudes, mis à jour régulièrement.',
     items,
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Idées de sorties en mangrove', url: canonical, inLanguage: 'fr',
