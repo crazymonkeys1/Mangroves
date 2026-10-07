@@ -13,7 +13,16 @@ npm run build     # static HTML in dist/
 npm run check     # type check
 ```
 
-Set `SITE_URL` (for example `https://www.example.fr`) at build time so canonical URLs and JSON-LD use the production origin.
+## Deploy (Cloudflare Pages)
+
+| Setting | Value |
+|---|---|
+| Framework preset | Astro |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Node version | 22 (from `.node-version`) |
+
+Before launch, deploys are previews on `*.pages.dev`: every page is `noindex` and `robots.txt` blocks crawlers. At launch, set two environment variables in the Pages project: `SITE_URL` (the real domain, e.g. `https://www.example.fr`) and `INDEXABLE=true`. The build refuses `INDEXABLE=true` without `SITE_URL`.
 
 ## Layout
 

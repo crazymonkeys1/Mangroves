@@ -4,6 +4,7 @@ import '../styles/global.css';
 import SiteHeader from '../components/organisms/SiteHeader/SiteHeader.astro';
 import SiteFooter from '../components/organisms/SiteFooter/SiteFooter.astro';
 import type { ShellData } from '../lib/shell';
+import { INDEXABLE } from '../lib/site-config';
 interface Props {
   title: string;
   description: string;
@@ -23,6 +24,7 @@ const { title, description, canonical, ogImage, jsonLd = [], shell, noindex = fa
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {!noindex && !INDEXABLE && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
