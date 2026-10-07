@@ -41,7 +41,7 @@ The look must be changeable without renames: edit palette values or re-point sem
 - Component registered/updated in `docs/components.md`; deviations noted in your reply.
 
 ## Content and data
-Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in `airtable/README.md`). Editorial content moved out of the prototype lives in `data/content/` (operators, per-site content with `estimated` fields, vocabularies). Only `src/lib/data.ts` reads `data/`. Slugs/keys are permanent. Article, compare, tips and privacy content is still in the prototype's logic class and must move into data before those pages are built. Estimated figures are listed in `docs/project.md` §4; show them as unverified.
+Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in `airtable/README.md`). Editorial content moved out of the prototype lives in `data/content/` (operators, per-site content with `estimated` fields, vocabularies, articles, comparison). Only `src/lib/data.ts` reads `data/`. Slugs/keys are permanent. Only the tips (TIPS) and the privacy text (PRIVACY) are still in the prototype's logic class; move them into data before using them. Estimated figures are listed in `docs/project.md` §4; show them as unverified.
 
 ## Decided
 - **Working mode:** all work continues in Claude Code from these docs.

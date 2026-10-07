@@ -45,6 +45,7 @@ export function buildDirectoryPage(siteUrl: string) {
       ],
     },
     privacyHref: linkIfBuilt(routes.privacy),
+    priceDate: ops[0].priceDate,
     contacts: ops.map((o) => ({ guide: o.guide, url: o.contactUrl })),
     cards,
     jsonLd: [

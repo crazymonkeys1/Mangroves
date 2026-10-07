@@ -71,6 +71,7 @@ export function buildListingPage(kind: Kind, slug: string, siteUrl: string) {
       crumbs: [{ label: 'Accueil', href: routes.home }, { label: KIND_LABEL[kind] }, { label: def.label }],
     },
     count: `${sites.length} mangrove${plural ? 's' : ''}`,
+    priceDate: yalode.priceDate,
     cards,
     faq: { title: `${def.label} : questions fréquentes`, items: faq },
     jsonLd: [

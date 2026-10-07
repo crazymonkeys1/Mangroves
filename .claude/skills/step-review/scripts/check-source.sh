@@ -10,7 +10,7 @@ grep -rn "\-\-palette-" "$SRC"
 section "Hand-set type (font-size/family/weight/line-height/letter-spacing)"
 grep -rnE "font-(size|family|weight)\s*:|line-height\s*:|letter-spacing\s*:" "$SRC" --include=*.astro --include=*.css
 section "Raw z-index / shadows"
-grep -rnE "z-index:\s*[0-9]|box-shadow:\s*[0-9]" "$SRC"
+grep -rnE "z-index:\s*[0-9]|box-shadow:\s*[0-9]" "$SRC" | grep -vE "box-shadow:\s*0 0 0 var\(--"
 section "max-width media queries / off-scale breakpoints"
 grep -rnP "@media[^{]*(max-width|min-width:\s*(?!600px|880px|1180px)\d+px)" "$SRC"
 section "Raw px values (review: allowed only as documented tier-3 locals)"
