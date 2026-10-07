@@ -2,7 +2,7 @@
 // detailBase() + v9For() (copy unchanged), with prototype-only concerns removed
 // (tabs layout, hero palettes, JS layout switching).
 import {
-  getArticles, getBag, getDefaultSafety, getOperator, getRisk, getSiteContent, getSites, getSocial,
+  getArticles, getBag, getDataDate, getDefaultSafety, getOperator, getRisk, getSiteContent, getSites, getSocial,
   getSourceTypeLabel, getVideos, getZone,
   type Operator, type OperatorKey, type Site,
 } from './data';
@@ -359,11 +359,15 @@ export function buildSitePage(site: Site, siteUrl: string) {
 
   // ---------- Metadata and JSON-LD ----------
   const modeTitle = op ? op.kind : both ? 'bateau, kayak' : 'accès';
-  const title = `${site.name} (${site.commune}) : ${modeTitle}, infos pratiques`;
+  // Pattern from docs/project.md §6; the town is added only when the name doesn't already contain it and the title fits 65 characters.
+  const titleEnd = ` : ${modeTitle}, infos pratiques`;
+  const withTown = `${site.name} (${site.commune})${titleEnd}`;
+  const nameHasTown = site.commune.split(' / ').some((c) => site.name.includes(c));
+  const title = !nameHasTown && withTown.length <= 65 ? withTown : site.name + titleEnd;
   const description = truncate(answer);
   const jsonLd: object[] = [
     {
-      '@context': 'https://schema.org', '@type': 'TouristAttraction', name: site.name, description: answer, url: pageUrl, dateModified: '2026-09-30',
+      '@context': 'https://schema.org', '@type': 'TouristAttraction', name: site.name, description: answer, url: pageUrl, dateModified: getDataDate(),
       image: site.images.map((im) => ({ '@type': 'ImageObject', contentUrl: im.url, caption: im.caption, creditText: im.credit, copyrightNotice: im.license })),
       ...(site.zone ? { containedInPlace: { '@type': 'Place', name: site.zone } } : {}),
       address: { '@type': 'PostalAddress', addressLocality: site.commune, addressRegion: 'Guadeloupe', addressCountry: 'FR' },
@@ -413,7 +417,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
       h2: X.h2 || `${site.name}, mangrove de ${commune}`,
       answer,
       sig: X.sig,
-      paragraphs: site.paragraphs,
+      paragraphs: site.paragraphs.map((text, i) => ({ text, estimated: (X.estimatedParagraphs || []).includes(i) })),
       tip: X.tip ? { label: tipOp ? 'Le conseil de ' + tipOp.guide : 'Le conseil de l’équipe', text: X.tip, photo: tipOp?.photo } : null,
       nameStory: X.nameStory ? { text: X.nameStory, estimated: estimated.has('nameStory') } : null,
       knowRows,

@@ -16,7 +16,7 @@ const { h2, answer, sig, paragraphs, tip, nameStory, knowRows, alert } = Astro.p
   {/* The opening answer: same sentence as the meta description and JSON-LD description, quotable alone. */}
   <p class="text-lead">{answer}</p>
   {sig && <blockquote class="site-summary__signature"><p class="text-quote">{sig}</p></blockquote>}
-  {paragraphs.map((p) => <p class="text-body">{p}</p>)}
+  {paragraphs.map((p) => <><p class="text-body">{p.text}</p>{p.estimated && <CautionNote>Chiffre estimé, à confirmer</CautionNote>}</>)}
 
   {tip && (
     <aside class="site-summary__tip" aria-label={tip.label}>

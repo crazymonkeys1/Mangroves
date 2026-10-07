@@ -120,6 +120,7 @@ export interface SiteContent {
   note?: { icon: string; title: string; text: string };
   alert?: { title: string; text: string; items?: string[] };
   estimated: string[];
+  estimatedParagraphs?: number[];
 }
 
 export interface Article {
@@ -152,6 +153,8 @@ const allSites: Site[] = (db.sites as unknown as Site[]).map((s) => ({
 }));
 
 export const getSites = (): Site[] => allSites.filter(isPublished);
+/** Date of the site database version ("2026-09-29d" → "2026-09-29"), used as dateModified until sites carry their own. */
+export const getDataDate = (): string => String(db.version).slice(0, 10);
 export const getSite = (slug: string): Site | undefined => getSites().find((s) => s.slug === slug);
 
 // Prices never break between the amount and the currency.

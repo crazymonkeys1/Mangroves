@@ -60,6 +60,9 @@ const { page, shell } = Astro.props;
 </script>
 
 <style>
+  /* Filters and the view switch need the script: hidden until it has run (cards stay readable without JS). */
+  .directory:not([data-enhanced]) :global(.filter-bar),
+  .directory:not([data-enhanced]) :global(.result-toolbar__actions) { display: none; }
   .directory__body { max-width: var(--container-page); margin: 0 auto; padding: var(--space-4) var(--page-gutter) 0; display: flex; flex-direction: column; gap: var(--space-4); }
   .directory__results { list-style: none; margin: 0; padding: var(--space-1) 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: var(--space-4); }
   .directory__results[data-view='list'] { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }

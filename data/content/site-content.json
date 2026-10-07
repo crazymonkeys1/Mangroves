@@ -1,5 +1,5 @@
 {
-  "_note": "Per-site editorial content moved from the v12 prototype (V9). Keys = site slugs in mangroves-db.json. `estimated` lists fields shown with a CautionNote until verified (docs/project.md §4). `bag` is \"water\", \"walk\" or an explicit list; absent = chosen from the site activities.",
+  "_note": "Per-site editorial content moved from the v12 prototype (V9). Keys = site slugs in mangroves-db.json. `estimated` lists fields shown with a CautionNote until verified (docs/project.md §4). `bag` is \"water\", \"walk\" or an explicit list; absent = chosen from the site activities. `estimatedParagraphs` lists indexes of database paragraphs that contain an estimate (shown with a CautionNote).",
   "sites": {
     "grand-cul-de-sac-marin": {
       "h2": "Grand Cul-de-Sac Marin, le lagon de mangrove du nord de la Guadeloupe",
@@ -56,6 +56,9 @@
         "parking",
         "risks",
         "bag"
+      ],
+      "estimatedParagraphs": [
+        1
       ]
     },
     "ilet-blanc": {
@@ -63,7 +66,7 @@
       "sig": "Un banc de sable en plein lagon, où l’on se baigne dans moins d’un mètre d’eau turquoise.",
       "tip": "On s'arrête en fin de matinée, quand le soleil fait ressortir le turquoise. Laissez les coquillages sur place, l'îlet est protégé.",
       "tipBy": "bluelagoon",
-      "when": "Hors période de fermeture (nidification, avril à juillet selon arrêté du Parc).",
+      "when": "Hors période de fermeture (nidification des sternes, du 15 avril au 30 septembre selon arrêté du Parc).",
       "risks": [
         "soleil",
         "oursins",
@@ -80,8 +83,7 @@
         "drive",
         "parking",
         "risks",
-        "bag",
-        "when"
+        "bag"
       ]
     },
     "ilet-a-fajou": {

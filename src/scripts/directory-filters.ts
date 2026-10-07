@@ -116,4 +116,5 @@ export function initDirectoryFilters(root: HTMLElement) {
     root.querySelectorAll<HTMLDetailsElement>('[data-dropdown][open]').forEach((d) => { if (!d.contains(e.target as Node)) d.open = false; });
   });
   apply();
+  root.dataset.enhanced = '';
 }

@@ -46,7 +46,7 @@ The first answer in Aperçu (where, how to visit, duration, price, minimum age) 
 | Status | Item |
 |---|---|
 | Verified from sources | Site facts flagged `confidence = vérifié` |
-| **Estimated, show with CautionNote or confirm** | "5 à 7,5 km" Rivière Salée channel width; "8 000 ha" mangrove area (Zones humides and Made in Guadeloupe sources); drive times from Pointe-à-Pitre, parking, Taonaba bus line; Îlet Blanc closure months; Taonaba name story; Blue Lagoon included/bring lists; risks and "Dans le sac" by visit type |
+| **Estimated, show with CautionNote or confirm** | "5 à 7,5 km" Rivière Salée channel width; "8 000 ha" mangrove area (Zones humides and Made in Guadeloupe sources); drive times from Pointe-à-Pitre, parking, Taonaba bus line; Taonaba name story; Blue Lagoon included/bring lists; risks and "Dans le sac" by visit type |
 | Needs guide approval | Tips signed Pascal or Jean-Eudes, tour quotes, "Pourquoi y aller avec…", Jean-Eudes's full name, bio, "Depuis 2010", authorised-operator wording; confirm Yalodé's Parc national status and the "sans frais ajoutés" claim |
 | Missing | Real social posts per site; real guide photos; Parc national photo permissions (29 images kept provisionally, "tous droits réservés", see `docs/image-sources.md`); Désirade content; English version; zone pages |
 

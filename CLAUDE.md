@@ -61,7 +61,7 @@ Deferred work and pending decisions live in `OPEN_LOOPS.md` (one tracker; don't 
 - Judge SEO on the built HTML (`dist/`), not the source: missing routes, duplicate titles and missing metadata only show there.
 - Never link to a route that isn't built; build the target first, or render the label without a link until it exists.
 - A build prompt must state the routes in scope, the production origin (`SITE_URL`), and the crawl files expected (robots, sitemap, llms.txt, 404).
-- When copying content from the prototype, cross-check every date, price or rule stated in two places; keep each fact in one data field (see OL-01).
+- When copying content from the prototype, cross-check every date, price or rule stated in two places; keep each fact in one data field (the Îlet Blanc closure dates contradicted each other).
 - Text styles set `text-wrap`, which overrides an inherited `white-space: nowrap`: keep "38 €" together with a non-breaking space in data, not with CSS.
 - `.on-inverse` recolours every text style inside it: put it on the text block, never on a container holding white badges or chips.
 - The page's opening answer (meta description, JSON-LD `description`) must also be visible in the body, where an assistant can quote it.
