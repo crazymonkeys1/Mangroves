@@ -48,7 +48,7 @@ Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in
 - **Stack (decided 7 Oct 2026):** Astro, static output (one HTML file per route, JavaScript only for small interactions). Hosting: Cloudflare Pages. Code in `src/` (see `README.md`).
 - **Data:** keep `data/mangroves-db.json` as is for now; Airtable comes later (tables in `airtable/`, articles live in `Articles`, `Article Sections`, `Article FAQ`).
 - **URLs:** articles `/idees/<slug>` (not linked to a guide), guide profiles `/guides/<slug>`, sites `/mangrove/<slug>`.
-- **Access framing (7 Oct 2026):** every mangrove is free to visit; some on foot, others need a boat or kayak (own or rented) or a guide, who brings real advantages. Generated copy follows this (OL-24 tracks site pages still to align).
+- **Access framing (7 Oct 2026):** every mangrove is free to visit; some on foot, others need a boat or kayak (own or rented) or a guide, who brings real advantages. All copy follows this: "L’accès est gratuit", then how to reach it, the guide as an option (`howToReach` in `src/lib/format.ts`). Sites with no access mode in the data make no access claim.
 - **Lead capture:** intent only (`docs/project.md` §6); do not wire or imply sending.
 - **Fonts:** Google Fonts (Spectral 600 + 400 italic, Work Sans 400 + 600).
 

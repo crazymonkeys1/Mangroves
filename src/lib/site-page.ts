@@ -7,7 +7,7 @@ import {
   type Operator, type OperatorKey, type Site,
 } from './data';
 import {
-  activityIcon, activityLabel, cap, firstCommune, frNum, isBuilt, linkIfBuilt, routes, subIsland, toArticle, truncate, utm, withArticle,
+  activityIcon, activityLabel, cap, howToReach, firstCommune, frNum, isBuilt, linkIfBuilt, routes, subIsland, toArticle, truncate, utm, withArticle,
 } from './format';
 import { siteCard, type SiteCardModel } from './site-card';
 
@@ -115,14 +115,19 @@ export function buildSitePage(site: Site, siteUrl: string) {
   const estimated = new Set(X.estimated);
 
   // ---------- Opening answer (meta description, JSON-LD description, FAQ) ----------
-  const selfZone = !site.zone || site.zone === site.name;
+  // No "secteur du …" when the zone is the site itself or the island already named (Marie-Galante).
+  const selfZone = !site.zone || site.zone === site.name || site.island === site.zone;
   const islandNote = !site.island.startsWith('Guadeloupe') ? ' (' + site.island + ')' : '';
   const place = site.commune + islandNote + (selfZone ? '' : ', dans le secteur du ' + site.zone);
+  // Access framing (CLAUDE.md "Decided"): the site is free; then how to reach it; the guide is an option.
+  const reach = howToReach(site);
+  // No access mode in the data (e.g. Jarry, under restoration): make no access claim.
+  const freeLine = reach.text ? `L’accès est gratuit ; on le découvre ${reach.text}` : '';
   const answer = op
-    ? `${Art} se trouve à ${place}. Le site se visite surtout ${op.mode.toLowerCase()} avec un guide : ${op.durationShort} au départ de ${op.departShort}, dès ${op.price} par adulte${op.minAge ? ', dès ' + op.minAge + ' ans' : ''}.`
+    ? `${Art} se trouve à ${place}.${freeLine ? ` ${freeLine}.` : ''} Avec un guide, ${op.mode.toLowerCase()} : ${op.durationShort} au départ de ${op.departShort}, dès ${op.price} par adulte${op.minAge ? ', dès ' + op.minAge + ' ans' : ''}.`
     : both
-      ? `${Art} se trouve à ${place}. Le site se visite avec un guide local, en bateau (Blue Lagoon, dès ${bluelagoon.price}) ou en kayak (Yalodé, dès ${yalode.price}, dès 3 ans).`
-      : `${Art} se trouve à ${place}. ${site.access === 'libre' ? 'Le site est en accès libre' : 'Le site se visite'}${site.duration ? ', comptez ' + site.duration.toLowerCase() : ''}${site.difficulty ? ' (difficulté : ' + site.difficulty.toLowerCase() + ')' : ''}.`;
+      ? `${Art} se trouve à ${place}.${freeLine ? ` ${freeLine}.` : ''} Avec un guide local : en bateau (Blue Lagoon, dès ${bluelagoon.price}) ou en kayak (Yalodé, dès ${yalode.price}, dès 3 ans).`
+      : `${Art} se trouve à ${place}.` + (freeLine ? ` ${freeLine}${site.duration ? ', comptez ' + site.duration.toLowerCase() : ''}${site.difficulty ? ' (difficulté : ' + site.difficulty.toLowerCase() + ')' : ''}.` : '');
   const soloAnswer = op && GCSM
     ? "Possible en location, mais les règles changent d'une zone à l'autre dans le cœur du Parc national."
     : site.access === 'libre'
@@ -198,11 +203,10 @@ export function buildSitePage(site: Site, siteUrl: string) {
       ? `Avec ${op0.guide} (${op0.name}) : départ de ${op0.departShort}, le point de rendez-vous est confirmé à la réservation.`
       : '';
   const boat = !!op && op.kind === 'bateau';
-  const free = site.access === 'libre';
   const compare: CompareColumn[] = op
     ? [
-        { label: 'Seul', price: free ? 'Gratuit' : 'Location', icon: 'compass', rows: [
-          { icon: boat ? 'boat' : 'waves', label: 'Embarcation', value: free ? 'Aucune, le site est à pied' : 'À louer chez un loueur autorisé', ok: free },
+        { label: 'Seul', price: 'Gratuit', icon: 'compass', rows: [
+          { icon: boat ? 'boat' : 'waves', label: 'Embarcation', value: reach.onFoot ? 'Aucune, le site est à pied' : 'À louer chez un loueur autorisé', ok: reach.onFoot },
           { icon: 'map', label: 'Itinéraire', value: 'Chenaux à trouver seul', ok: false },
           { icon: 'shield', label: 'Règles du Parc', value: GCSM ? 'À connaître vous-même' : 'À respecter', ok: false },
           { icon: 'user', label: 'Âge', value: 'Selon votre expérience', ok: true },
@@ -347,8 +351,13 @@ export function buildSitePage(site: Site, siteUrl: string) {
     ? 'Oui, lors des haltes sur les îlets prévues pendant la sortie, selon les conditions.'
     : "Ce n'est pas un site de baignade : l'eau de mangrove est peu profonde et vaseuse.";
   const extraFaq: (Faq | null)[] = [
-    { q: `Peut-on visiter ${art} sans guide ?`, a: none ? (site.access === 'libre' ? 'Oui, le site est en accès libre. ' : '') + (X.self || '') : soloAnswer },
-    { q: 'Est-ce gratuit ?', a: free ? 'Oui, l’accès au site est gratuit.' : priceFrom ? `L’accès se fait en sortie guidée, dès ${priceFrom} par adulte.` : 'L’accès se fait avec un loueur ou une association, à tarif variable.' },
+    { q: `Peut-on visiter ${art} sans guide ?`, a: none ? (reach.text ? 'Oui, l’accès est gratuit. ' : '') + (X.self || '') : soloAnswer },
+    !reach.text ? null : {
+      q: 'Est-ce gratuit ?',
+      a: 'Oui, l’accès au site est gratuit.'
+        + (reach.water && !reach.onFoot ? ' Il se découvre depuis l’eau : avec votre embarcation, en location ou avec un guide.' : '')
+        + (priceFrom ? ` La sortie guidée est en option, dès ${priceFrom} par adulte (tarif relevé en ${yalode.priceDate}).` : ''),
+    },
     { q: 'Peut-on se baigner ?', a: swim },
     { q: `${Art} est-il adapté aux enfants ?`, a: site.kidFriendly ? 'Oui, le site convient aux familles' + (op0 && op0.minAge ? ', dès ' + op0.minAge + ' ans en sortie guidée' : '') + '. Prévoyez protection solaire et anti-moustique.' : 'La sortie est longue ou peu aménagée : elle convient plutôt aux adultes et aux enfants marcheurs.' },
     X.when ? { q: 'Quand y aller ?', a: X.when } : null,
@@ -375,7 +384,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
       ...(site.zone ? { containedInPlace: { '@type': 'Place', name: site.zone } } : {}),
       address: { '@type': 'PostalAddress', addressLocality: site.commune, addressRegion: 'Guadeloupe', addressCountry: 'FR' },
       ...(site.gps ? { geo: { '@type': 'GeoCoordinates', latitude: site.gps[0], longitude: site.gps[1] } } : {}),
-      isAccessibleForFree: free,
+      ...(reach.text ? { isAccessibleForFree: true } : {}),
       touristType: ['Amateurs de nature', ...(site.kidFriendly ? ['Familles'] : []), ...(site.birdwatching ? ["Observateurs d'oiseaux"] : [])],
     },
     ...ops.map((o) => ({

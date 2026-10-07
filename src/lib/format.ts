@@ -6,7 +6,7 @@ export function withArticle(name: string): string {
   const w = name.split(' ')[0];
   if (w === 'Mangrove') return 'la mangrove' + name.slice(8);
   if (/^[AEIOUÉÈÎH]/i.test(name)) return "l'" + name;
-  const feminine = ['Rivière', 'Pointe', 'Baie', 'Plage', 'Forêt', 'Anse', 'Ravine', 'Réserve', 'Lagune', 'Presqu'];
+  const feminine = ['Rivière', 'Pointe', 'Baie', 'Plage', 'Forêt', 'Anse', 'Folle', 'Ravine', 'Réserve', 'Lagune', 'Presqu'];
   return (feminine.some((f) => w.startsWith(f)) ? 'la ' : 'le ') + name;
 }
 
@@ -53,6 +53,22 @@ export function activityIcon(activities: Activity[]): string {
   if (activities.includes('marche')) return 'footprints';
   if (activities.includes('pedalo') || activities.includes('canot')) return 'waves';
   return 'leaf';
+}
+
+export const WATER_MODES: Record<string, string> = { kayak: 'en kayak', bateau: 'en bateau', pedalo: 'en pédalo', canot: 'en canot' };
+export const orList = (xs: string[]) => (xs.length > 1 ? xs.slice(0, -1).join(', ') + ' ou ' + xs[xs.length - 1] : xs[0] || '');
+export const andList = (xs: string[]) => (xs.length > 1 ? xs.slice(0, -1).join(', ') + ' et ' + xs[xs.length - 1] : xs[0] || '');
+
+/**
+ * How a site is reached (access framing, CLAUDE.md "Decided"): every site is free; on foot, or from the water.
+ * Returns '' when the data has no access mode (e.g. a site under restoration).
+ */
+export function howToReach(site: Site): { onFoot: boolean; water: boolean; text: string } {
+  const onFoot = site.activities.includes('marche');
+  const modes = orList(site.activities.filter((a) => a in WATER_MODES).map((a) => WATER_MODES[a]));
+  const water = !!modes;
+  const text = onFoot && water ? `à pied ou depuis l’eau, ${modes}` : onFoot ? 'à pied' : water ? `depuis l’eau, ${modes}` : '';
+  return { onFoot, water, text };
 }
 
 /** Meta description: the opening answer, cut on a word at 155 characters. */

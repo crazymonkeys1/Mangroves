@@ -1,6 +1,6 @@
 // Listing pages (/ile/<slug>, /commune/<slug>, /activite/<slug>). Port of the prototype's views11() listing branch.
 import { getActivityListings, getOperator, getSites, getWhyGuideTiles, type Site } from './data';
-import { routes, slugify, subIsland, truncate } from './format';
+import { WATER_MODES, andList, orList, routes, slugify, subIsland, truncate } from './format';
 import { siteCard } from './site-card';
 
 type Kind = 'ile' | 'commune' | 'activite';
@@ -90,10 +90,7 @@ export function buildListingPage(kind: Kind, slug: string, siteUrl: string) {
 
 export type ListingPageModel = ReturnType<typeof buildListingPage>;
 
-const WATER_MODES: Record<string, string> = { kayak: 'en kayak', bateau: 'en bateau', pedalo: 'en pédalo', canot: 'en canot' };
 const GUIDE_LINE: Record<string, string> = { yalode: 'Pascal en kayak', bluelagoon: 'Jean-Eudes en bateau' };
-const orList = (xs: string[]) => (xs.length > 1 ? xs.slice(0, -1).join(', ') + ' ou ' + xs[xs.length - 1] : xs[0] || '');
-const andList = (xs: string[]) => (xs.length > 1 ? xs.slice(0, -1).join(', ') + ' et ' + xs[xs.length - 1] : xs[0] || '');
 
 /**
  * The listing's opening answer (visible intro, meta description, llms.txt), built only from data.

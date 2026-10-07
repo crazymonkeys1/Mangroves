@@ -19,7 +19,7 @@ export function buildArticlePage(slug: string, siteUrl: string) {
     const o = key ? getOperator(key) : null;
     const facts = (o
       ? [['clock', 'Durée', o.durationShort], ['user', 'Dès', o.minAge ? o.minAge + ' ans' : 'Tous âges'], ['mountain', 'Niveau', o.about.level], ['signpost', 'Prix', 'dès ' + o.price]]
-      : [['clock', 'Durée', s.duration], ['users', 'Public', s.kidFriendly ? 'En famille' : 'Adultes'], ['mountain', 'Niveau', s.difficulty], ['signpost', 'Accès', s.access === 'libre' ? 'Gratuit' : 'Payant']]
+      : [['clock', 'Durée', s.duration], ['users', 'Public', s.kidFriendly ? 'En famille' : 'Adultes'], ['mountain', 'Niveau', s.difficulty], ['signpost', 'Accès', s.activities.length ? 'Gratuit' : '']]
     ).filter((f) => f[2]).map(([icon, label, value]) => ({ icon: icon as string, label: label as string, value: value as string }));
     const im = s.images[0];
     const sig = getSiteContent(s.slug).sig;
@@ -28,7 +28,7 @@ export function buildArticlePage(slug: string, siteUrl: string) {
       name: s.name,
       href: routes.site(s.slug),
       image: im ? { src: im.url, alt: `${im.caption} – ${s.name}`, credit: 'Photo : ' + im.credit } : null,
-      kind: o ? 'Sortie guidée' : s.access === 'libre' ? 'Accès libre' : 'Accès payant',
+      kind: o ? 'Sortie guidée' : s.activities.length ? 'Accès gratuit' : 'Accès à confirmer',
       operator: o ? o.key : null,
       commune: s.commune,
       guide: o ? { photo: o.photo, label: s.servedBy === 'both' ? 'avec Pascal ou Jean-Eudes' : `avec ${o.guide} · ${o.name}` } : null,

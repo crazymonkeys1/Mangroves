@@ -34,10 +34,10 @@ export function siteCard(s: Site): SiteCardModel {
   const both = s.servedBy === 'both';
   const o = s.servedBy ? getOperator(both ? 'yalode' : s.servedBy as 'yalode' | 'bluelagoon') : null;
   const tags = [
+    o ? { icon: 'signpost', label: 'Gratuit' } : null,
     s.kidFriendly ? { icon: 'users', label: 'En famille' } : null,
     s.birdwatching ? { icon: 'bird', label: 'Oiseaux' } : null,
     s.pmr ? { icon: 'access', label: 'Accessible PMR' } : null,
-    s.access === 'libre' ? { icon: 'signpost', label: 'Gratuit' } : null,
   ].filter((t): t is { icon: string; label: string } => !!t).slice(0, 3);
   const img = s.images[0];
   return {
@@ -59,10 +59,10 @@ export function siteCard(s: Site): SiteCardModel {
         ]
       : [],
     price: o
-      ? { amount: 'dès ' + o.price, unit: 'par adulte' }
-      : { amount: s.access === 'libre' ? 'Gratuit' : s.access === 'payant' ? 'Payant' : 'Visite guidée', unit: '' },
+      ? { amount: 'dès ' + o.price, unit: 'avec un guide' }
+      : { amount: s.activities.length ? 'Gratuit' : 'Accès à confirmer', unit: '' },
     cta: o ? 'Voir la sortie' : 'Voir la mangrove',
-    rowSide: o ? (both ? 'Avec Pascal ou Jean-Eudes' : `Avec ${o.guide} · ${o.name}`) : s.access === 'libre' ? 'Accès libre' : 'Sans guide partenaire',
+    rowSide: o ? (both ? 'Gratuit, ou avec Pascal ou Jean-Eudes' : `Gratuit, ou avec ${o.guide} · ${o.name}`) : s.activities.length ? 'Gratuit' : 'Accès à confirmer',
     filter: {
       island: filterIsland(s),
       activities: s.activities.join(' '),
