@@ -56,7 +56,7 @@ Sites live in `data/mangroves-db.json` (Airtable mirror in `airtable/`, rules in
 Further URL scheme changes, new colours or sizes, renaming existing components or tokens, anything in `docs/review-final.md` §3 and §6, legal copy, partner claims (authorisations, prices, ratings).
 
 ## Open loops and reviews
-Deferred work and pending decisions live in `OPEN_LOOPS.md` (one tracker; don't start another). After each big step, run `/step-review` (`.claude/skills/step-review/`): it checks the built HTML and the source mechanically, then stops at a fix plan for approval.
+Deferred work and pending decisions live in `OPEN_LOOPS.md` (one tracker; don't start another). After each big step, run `/step-review` (`.claude/skills/step-review/`): it checks the built HTML and the source mechanically, then stops at a fix plan for approval. After a UI change, run `/ux-review` (`.claude/skills/ux-review/`): it measures the UX rules in a browser, walks the visitor tasks on a phone and on desktop, and stops at a fix plan the same way.
 
 ## Lessons from previous steps
 - Judge SEO on the built HTML (`dist/`), not the source: missing routes, duplicate titles and missing metadata only show there.
