@@ -69,6 +69,7 @@ const t = Astro.props.tour;
   </div>
 
   <footer class="tour-card__footer">
+    <p class="tour-card__price-date text-caption">{t.priceDate}</p>
     <Button variant="quiet" size="sm" href={t.contactUrl} external>{t.contactLabel}</Button>
     <Button variant="primary" size="sm" href={t.bookingUrl} external>{t.bookLabel}</Button>
   </footer>
@@ -95,5 +96,6 @@ const t = Astro.props.tour;
   .tour-card__list li { display: flex; gap: var(--space-2); align-items: center; }
   .tour-card__quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-3); }
   .tour-card__guide { display: flex; align-items: center; gap: var(--space-4); }
+  .tour-card__price-date { margin: 0 auto 0 0; }
   .tour-card__footer { background: var(--color-surface-page); padding: var(--space-3) var(--card-padding); display: flex; justify-content: flex-end; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
 </style>

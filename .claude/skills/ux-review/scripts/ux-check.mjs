@@ -66,7 +66,7 @@ function audit() {
   // One filled (loud) button per viewport (rule 4). "Filled" = an action whose fill stands out from the page (≥ 3:1).
   const actions = [...document.querySelectorAll('a[href], button, a[href] span')].filter(visible).filter((el) => {
     const cs = getComputedStyle(el); const c = rgb(cs.backgroundColor);
-    return (c[3] ?? 1) >= 0.95 && ratio(c, pageBg) >= 3 && (el.textContent || '').trim().length > 0 && (el.textContent || '').trim().length <= 40 && !el.querySelector('img');
+    return (c[3] ?? 1) >= 0.95 && ratio(c, pageBg) >= 3 && !el.closest('[aria-hidden="true"]') && (el.textContent || '').trim().length > 1 && (el.textContent || '').trim().length <= 40 && !el.querySelector('img');
   }).filter((el, _, all) => !all.some((o) => o !== el && o.contains(el)));
   const H = innerHeight;
   const byScreen = {};

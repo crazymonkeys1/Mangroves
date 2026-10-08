@@ -41,7 +41,7 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
         </span>
       )}
       <span class="site-card__footer">
-        <span class="site-card__cta text-caption-strong">{s.cta}</span>
+        <span class="site-card__cta text-body-strong">{s.cta} <span aria-hidden="true">→</span></span>
       </span>
     </span>
   </a>
@@ -68,7 +68,8 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
   .site-card__stat .text-caption-strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   /* Price and guide live on the site page (one message per card: what the place is). */
   .site-card__footer { margin-top: auto; padding-top: var(--space-1); display: flex; justify-content: flex-end; }
-  .site-card__cta { padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); background: var(--color-action-neutral); color: var(--color-action-neutral-text); white-space: nowrap; }
+  /* Looks like the site's links (tokens.css base `a`): primary text, action-coloured underline. */
+  .site-card__cta { white-space: nowrap; text-decoration: underline; text-decoration-color: var(--color-action-primary); text-decoration-thickness: calc(2 * var(--border-width)); text-underline-offset: var(--space-1); }
 
   /* ---- list (directory view switch) ---- */
   :global([data-view='list']) .site-card--grid { flex-direction: row; min-height: 112px; }

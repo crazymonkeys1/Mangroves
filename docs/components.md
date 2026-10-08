@@ -55,7 +55,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `FilterBar` | Find sites | `SearchField`, filters trigger button (count badge) / inline `Chip`s + `Switch`es | 1 line < md → inline ≥ md |
 | `FilterSheet` | All filters | header (`text-title` + close), `SwitchRow`, `FilterGroup`s, sort, sticky CTA | bottom sheet, radius-container top, max 85 vh |
 | `ResultToolbar` | Count, clear, view switch | caption count, `TextLink` "Tout effacer", `SegmentedControl` (grille/liste) | wraps |
-| `SiteCard` | A site in lists | cover + `Badge`s, `text-title` name, caption location (tight: 4 px below the title), caption meta, `Chip`s (`tag`), `FactGrid` (3), `Button` (no price, no guide badge: they live on the site page) | `variant`: grid, list, nearby |
+| `SiteCard` | A site in lists | cover + `Badge`s, `text-title` name, caption location (tight: 4 px below the title), caption meta, `Chip`s (`tag`), `FactGrid` (3), action as a quiet link "Voir la sortie →" (one filled action per screen; no price, no guide badge: they live on the site page) | `variant`: grid, list, nearby |
 | `FactStrip` | Key facts under a hero | `FactGrid` + guide `ActionTile`/CTA | 2×2 under title → overlaps hero ≥ md |
 | `SiteSummary` | "Aperçu" | `SectionHead`, signature (`text-quote`), `text-lead`, tip callout, `FactGrid` "Bon à savoir" | |
 | `PhotoGallery` | Photos + lightbox | grouped images, `PhotoCredit`, Lightbox (`overlay-lightbox`) | swipe |

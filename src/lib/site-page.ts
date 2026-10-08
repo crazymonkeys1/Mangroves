@@ -18,6 +18,7 @@ export interface Faq { q: string; a: string }
 
 export interface TourModel {
   key: OperatorKey;
+  priceDate: string;
   anchor: string;
   operatorName: string;
   photo: string;
@@ -151,6 +152,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
   // ---------- Key facts (fact strip) ----------
   const NR = 'Non renseigné';
   const facts: Fact[] = [
+    { icon: 'signpost', label: 'Accès', value: reach.text ? 'Gratuit' : '' },
     { icon: both ? 'boat' : activityIcon(site.activities), label: 'Visite', value: activityLabel(site.activities) || (site.activities.length ? '' : 'Visite libre') },
     { icon: 'mountain', label: 'Difficulté', value: site.difficulty || '' },
     { icon: 'clock', label: 'Durée', value: (op ? op.durationShort : site.duration) || '' },
@@ -249,6 +251,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
     meta: o.credential.split(' · ').slice(0, 2).join(' · '),
     price: o.price.replace(' ', ''),
     priceNote: 'par adulte',
+    priceDate: `Tarif relevé en ${o.priceDate}, à confirmer lors de la réservation.`,
     story: o.about.story || o.tagline,
     progFacts: tourFacts(o),
     programme: o.programme,
@@ -265,7 +268,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
     bio: o.about.bio || o.blurb,
     aboutFacts: o.about.facts,
     contactUrl: link(o.contactUrl, 'tour-card'),
-    contactLabel: 'Écrire à ' + o.guide,
+    contactLabel: 'Contacter ' + o.name,
     bookingUrl: link(o.bookingUrl, 'tour-card'),
     bookLabel: `Réserver sur ${o.name} →`,
   }));
@@ -276,7 +279,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
       optionLabel: o.key === 'yalode' ? 'Kayak' : 'Bateau',
       price: o.price,
       priceUnit: 'par adulte',
-      priceExtra: '',
+      priceExtra: `Tarif relevé en ${o.priceDate}`,
       rating: o.rating || '',
       guide: o.guide,
       photo: o.photo,
@@ -291,7 +294,7 @@ export function buildSitePage(site: Site, siteUrl: string) {
       ctaUrl: link(o.bookingUrl, 'guide-card'),
       ctaLabel: 'Réserver sur ' + o.name,
       contactUrl: link(o.contactUrl, 'guide-card'),
-      contactLabel: 'Écrire à ' + o.guide,
+      contactLabel: 'Contacter ' + o.name,
       footnote: `Réservation directement auprès de ${o.name}, sans frais ajoutés par ce site.`,
     };
   });

@@ -30,7 +30,7 @@ export function buildProfilePage(guideSlug: string, siteUrl: string) {
       bookingUrl: link(o.bookingUrl),
       bookLabel: `Réserver sur ${o.name}`,
       contactUrl: link(o.contactUrl),
-      contactLabel: `Écrire à ${o.guide}`,
+      contactLabel: `Contacter ${o.name}`,
     },
     about: { title: `Qui est ${o.guide} ?`, story: a.story, bio: a.bio, facts: a.facts },
     tour: { title: o.tourName, summary: o.tourSummary, facts: [...tourFacts(o).slice(0, 3), { icon: 'signpost', label: 'Tarif', value: 'dès ' + o.price }], features: o.features, priceDate: o.priceDate },

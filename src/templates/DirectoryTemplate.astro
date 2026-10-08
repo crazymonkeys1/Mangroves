@@ -42,8 +42,8 @@ const { page, shell } = Astro.props;
         <p class="text-title">Aucune mangrove ne correspond</p>
         <p class="text-body">Assouplissez un critère, ou dites-nous ce que vous cherchez.</p>
         <div class="directory__empty-actions">
-          <Button variant="secondary" data-clear-filters>Réinitialiser</Button>
-          {page.contacts.map((c) => <Button variant="neutral" href={c.url} external>Demander conseil à {c.guide}</Button>)}
+          <Button variant="neutral" data-clear-filters>Réinitialiser</Button>
+          {page.contacts.map((c) => <Button variant="secondary" href={c.url} external>Demander conseil à {c.guide}</Button>)}
         </div>
       </div>
     </div>
