@@ -120,7 +120,7 @@ Rules: one strong sans element per block; serif never in controls; colour only v
 - Base = one column, 16 px gutter, full-bleed bands via wrappers (never `100vw`).
 - Header: logo + wordmark + icon-only menu button (44×44, two bars → ×, native `<details>`); from sm the inline nav replaces it.
 - Filter bar: below md, one line (search + "Filtres" button with count); all other filters in the bottom sheet whose CTA reads "Voir N mangroves". From md, the inline bar.
-- Detail page: single column; fact grid 2 columns under the title (no overlap) → overlap hero from md; **guide card is a sticky column only from lg (1180)**; below lg a sticky bottom bar appears after the reader passes "Aperçu".
+- Detail page: single column; fact grid 2 columns under the title (no overlap) → overlap hero from md; **guide card is a sticky column only from lg (1180)**; below lg a sticky bottom bar appears once the fact strip (and its guide button) has scrolled away.
 - Grids use `repeat(auto-fit, minmax(min(100%, X), 1fr))` with X ≥ 140 (facts) / 300 (cards).
 - Forms stack at every width (max 560); field 52 px; button 52 px full width.
 - Text wraps; `white-space: nowrap` only on single-word pills and the wordmark.

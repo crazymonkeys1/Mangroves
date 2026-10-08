@@ -1,5 +1,7 @@
 // Directory filters: reads the server-rendered cards (data-* attributes), filters, sorts,
 // keeps every filter control (bar, dropdowns, sheet) in sync, and places the lead band after the 3rd result.
+// The state lives in the URL query (?q=…&activite=…) so the back button, "Tous les résultats" and shared links
+// bring the same results back; the canonical URL stays "/".
 type State = { search: string; served: boolean; island: Set<string>; activity: Set<string>; difficulty: string | null; more: Set<string>; sort: string };
 
 export function initDirectoryFilters(root: HTMLElement) {
@@ -9,6 +11,29 @@ export function initDirectoryFilters(root: HTMLElement) {
   const empty = root.querySelector<HTMLElement>('[data-empty]');
   const sheet = root.querySelector<HTMLDialogElement>('[data-filter-sheet]');
   const state: State = { search: '', served: false, island: new Set(), activity: new Set(), difficulty: null, more: new Set(), sort: 'pertinence' };
+  let searchText = '';
+  // URL parameter ↔ state (French names, comma-separated lists).
+  const P = { q: 'q', served: 'guidees', island: 'ile', activity: 'activite', difficulty: 'difficulte', more: 'plus', sort: 'tri' };
+  const readUrl = () => {
+    const u = new URLSearchParams(location.search);
+    const list = (k: string) => new Set((u.get(k) || '').split(',').filter(Boolean));
+    searchText = u.get(P.q) || '';
+    Object.assign(state, {
+      search: searchText.trim().toLowerCase(), served: u.get(P.served) === '1', island: list(P.island), activity: list(P.activity),
+      difficulty: u.get(P.difficulty), more: list(P.more), sort: u.get(P.sort) || 'pertinence',
+    });
+    root.querySelectorAll<HTMLInputElement>('[data-filter-search]').forEach((i) => (i.value = searchText));
+  };
+  const writeUrl = () => {
+    const u = new URLSearchParams();
+    if (searchText.trim()) u.set(P.q, searchText.trim());
+    if (state.served) u.set(P.served, '1');
+    for (const [k, set] of [[P.island, state.island], [P.activity, state.activity], [P.more, state.more]] as const) if (set.size) u.set(k, [...set].join(','));
+    if (state.difficulty) u.set(P.difficulty, state.difficulty);
+    if (state.sort !== 'pertinence') u.set(P.sort, state.sort);
+    const next = u.toString() ? `?${u}` : location.pathname;
+    if (next !== location.search && !(next === location.pathname && !location.search)) history.replaceState(history.state, '', next + location.hash);
+  };
   const plural = (n: number) => (n === 1 ? `${n} mangrove trouvée` : `${n} mangroves trouvées`);
 
   const matches = (el: HTMLElement) => {
@@ -72,6 +97,7 @@ export function initDirectoryFilters(root: HTMLElement) {
       const details = el.closest<HTMLElement>('[data-dropdown]');
       if (details) { if (n) details.dataset.active = ''; else delete details.dataset.active; }
     });
+    writeUrl();
   };
 
   const toggle = (set: Set<string>, v: string) => (set.has(v) ? set.delete(v) : set.add(v));
@@ -90,6 +116,7 @@ export function initDirectoryFilters(root: HTMLElement) {
       return;
     }
     if (t.closest('[data-clear-filters]')) {
+      searchText = '';
       Object.assign(state, { search: '', served: false, island: new Set(), activity: new Set(), difficulty: null, more: new Set(), sort: 'pertinence' });
       root.querySelectorAll<HTMLInputElement>('[data-filter-search]').forEach((i) => (i.value = ''));
       apply();
@@ -106,6 +133,7 @@ export function initDirectoryFilters(root: HTMLElement) {
   sheet?.addEventListener('click', (e) => { if (e.target === sheet) sheet.close(); });
   root.querySelectorAll<HTMLInputElement>('[data-filter-search]').forEach((input) => {
     input.addEventListener('input', () => {
+      searchText = input.value;
       state.search = input.value.trim().toLowerCase();
       root.querySelectorAll<HTMLInputElement>('[data-filter-search]').forEach((other) => { if (other !== input) other.value = input.value; });
       apply();
@@ -115,6 +143,7 @@ export function initDirectoryFilters(root: HTMLElement) {
   document.addEventListener('click', (e) => {
     root.querySelectorAll<HTMLDetailsElement>('[data-dropdown][open]').forEach((d) => { if (!d.contains(e.target as Node)) d.open = false; });
   });
+  readUrl();
   apply();
   root.dataset.enhanced = '';
 }

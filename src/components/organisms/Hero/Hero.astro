@@ -131,6 +131,17 @@ const multi = slides.length > 1;
 </section>
 
 <script>
+  // "Tous les résultats": coming from the results, go back in history (keeps filters, which live in the URL, and the scroll position).
+  // Without JS, or from elsewhere, it stays a plain link to the directory.
+  const back = document.querySelector<HTMLAnchorElement>('.hero__back');
+  if (back && document.referrer) {
+    const from = new URL(document.referrer);
+    if (from.origin === location.origin && from.pathname === new URL(back.href).pathname) {
+      back.href = from.pathname + from.search;
+      back.addEventListener('click', (e) => { if (history.length > 1) { e.preventDefault(); history.back(); } });
+    }
+  }
+
   for (const hero of document.querySelectorAll<HTMLElement>('[data-hero]')) {
     const slides = [...hero.querySelectorAll<HTMLImageElement>('[data-hero-slide]')];
     const dots = [...hero.querySelectorAll<HTMLElement>('[data-hero-dot]')];

@@ -1,5 +1,5 @@
 ---
-// Persistent booking bar below lg, shown once the reader has passed "Aperçu" (#essentiel).
+// Persistent booking bar below lg, shown as soon as the fact strip and its guide button ([data-booking-anchor]) leave the screen.
 import Button from '../../atoms/Button/Button.astro';
 interface Props { price: string; sub: string; cta: string; href: string; external: boolean }
 const { price, sub, cta, href, external } = Astro.props;
@@ -16,7 +16,7 @@ const { price, sub, cta, href, external } = Astro.props;
 
 <script>
   const bar = document.querySelector<HTMLElement>('[data-sticky-booking]');
-  const anchor = document.getElementById('essentiel');
+  const anchor = document.querySelector('[data-booking-anchor]') || document.getElementById('essentiel');
   if (bar && anchor && 'IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
       const past = !entry.isIntersecting && entry.boundingClientRect.top < 0;

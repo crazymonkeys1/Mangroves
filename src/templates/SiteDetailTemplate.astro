@@ -41,7 +41,7 @@ const hasGuide = page.offers.length > 0;
     />
 
     <div class="site-detail__body">
-      {page.facts.length > 0 && <div class="site-detail__facts"><FactStrip facts={page.facts} cta={page.guideCta} /></div>}
+      {page.facts.length > 0 && <div class="site-detail__facts" data-booking-anchor><FactStrip facts={page.facts} cta={page.guideCta} /></div>}
 
       <div class="site-detail__split">
         <div class="site-detail__main">
