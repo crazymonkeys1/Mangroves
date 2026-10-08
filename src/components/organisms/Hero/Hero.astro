@@ -159,7 +159,8 @@ const multi = slides.length > 1;
   .hero__zoom { border: 0; padding: 0; background: transparent; cursor: zoom-in; border-radius: 0; }
 
   /* Site hero: light top for the back link, dark bottom for the title (composed from overlay tokens). */
-  .hero--site { min-height: calc(var(--hero-height) + var(--space-6)); }
+  /* Tier-3 (OL-18): the site hero is taller than the others, as in the reference (440 on phones, up to 560, never more than the viewport minus 160). */
+  .hero--site { --hero-height-site: max(440px, min(56vw, 560px, calc(100vh - 160px))); min-height: var(--hero-height-site); }
   .hero--site .hero__scrim {
     background: linear-gradient(180deg, var(--color-overlay-modal) 0%, transparent 28%, transparent 45%, var(--color-overlay-chip) 100%);
     pointer-events: none;

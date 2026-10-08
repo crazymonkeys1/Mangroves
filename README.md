@@ -22,7 +22,7 @@ npm run check     # type check
 | Build output directory | `dist` |
 | Node version | 22 (from `.node-version`) |
 
-Pages are indexed by default. Set the environment variable `SITE_URL` in the Pages project to the stable address (`https://<project>.pages.dev` now, the real domain later): canonical URLs, the sitemap and JSON-LD use it, and a Cloudflare build without it fails. To hide a deployment from crawlers, set `INDEXABLE=false` (pages get `noindex`, `robots.txt` disallows all).
+Pages are indexed by default. The site is built by Cloudflare Workers Builds and served at `https://mangroves.app-e5e.workers.dev`. Canonical URLs, the sitemap and JSON-LD use `SITE_URL`; on Workers Builds without it, that address is used (`astro.config.mjs`); a Cloudflare Pages build without it fails. When the domain arrives, set `SITE_URL` to it. To hide a deployment from crawlers, set `INDEXABLE=false` (pages get `noindex`, `robots.txt` disallows all).
 
 ## Layout
 

@@ -36,7 +36,7 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
         <span><Icon name="mountain" tone="secondary" />{s.level}</span>
       </span>
       <span class="site-card__blurb text-body">{s.blurb}</span>
-      {s.tags.length > 0 && <span class="site-card__tags">{s.tags.map((t) => <Chip icon={t.icon}>{t.label}</Chip>)}</span>}
+      {s.tags.length > 0 && <span class="site-card__tags">{s.tags.map((t) => <Chip kind="tag" icon={t.icon}>{t.label}</Chip>)}</span>}
       {s.stats.length > 0 && (
         <span class="site-card__stats">
           {s.stats.map((st) => <span class="site-card__stat"><span class="text-caption">{st.label}</span><span class="text-caption-strong">{st.value}</span></span>)}
@@ -63,7 +63,7 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
   .site-card__badges { position: absolute; top: var(--space-3); left: var(--space-3); right: var(--space-3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-2); }
   .site-card__badges :global(.site-card__guide) { padding-left: var(--space-1); }
   .site-card__badges :global(.site-card__activity) { margin-left: auto; }
-  .site-card__body { padding: var(--card-padding); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+  .site-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
   .site-card__title { margin: 0; }
   .site-card__location { display: flex; align-items: center; gap: var(--space-1); margin-top: calc(-1 * var(--space-2)); }
   .site-card__list-meta, .site-card__row-side { display: none; }
@@ -73,6 +73,7 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
   .site-card__stat .text-caption-strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .site-card__footer { margin-top: auto; padding-top: var(--space-1); display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
   .site-card__price { display: flex; align-items: baseline; gap: var(--space-2); }
+  .site-card__price > * { white-space: nowrap; }
   .site-card__cta { padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); background: var(--color-action-neutral); color: var(--color-action-neutral-text); white-space: nowrap; }
 
   /* ---- list (directory view switch) ---- */

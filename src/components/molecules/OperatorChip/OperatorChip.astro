@@ -1,13 +1,13 @@
 ---
-// Guide shortcut: photo + name · rating + star. Translucent on dark grounds.
+// Guide shortcut: photo + name · rating (strong) + star. Outlined on dark grounds.
 import Avatar from '../../atoms/Avatar/Avatar.astro';
 import Icon from '../../atoms/Icon/Icon.astro';
 interface Props { href: string; photo: string; name: string; rating?: string }
 const { href, photo, name, rating } = Astro.props;
 ---
-<a class="operator-chip text-body-strong" href={href}>
+<a class="operator-chip text-body" href={href}>
   <Avatar src={photo} size={36} />
-  <span class="operator-chip__name">{name}{rating && <> · {rating}</>}</span>
+  <span class="operator-chip__name">{name}{rating && <> · <strong>{rating}</strong></>}</span>
   {rating && <Icon name="star" label="sur 5" />}
 </a>
 
@@ -15,7 +15,7 @@ const { href, photo, name, rating } = Astro.props;
   .operator-chip {
     display: inline-flex; align-items: center; gap: var(--space-2); min-height: var(--tap-size-min);
     padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1); border-radius: var(--radius-full);
-    background: var(--color-overlay-chip); border: var(--border-width) solid var(--color-border-inverse);
+    background: transparent; border: var(--border-width) solid var(--color-border-inverse);
     color: var(--color-text-inverse); text-decoration: none;
   }
   .operator-chip__name { white-space: nowrap; color: var(--color-text-inverse); }

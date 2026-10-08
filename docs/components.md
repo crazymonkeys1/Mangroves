@@ -12,7 +12,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `Button` | Perform an action | `variant` (primary, neutral, secondary), `size` (md 52 / sm 44), `fullWidth`, `href?` | `text-body-strong`; radius-control; primary = `action-primary` fill (one per viewport); neutral = `action-neutral`; secondary = `surface-card` + `border-default`; min-height ≥ 44 |
 | `IconButton` | Icon-only action (menu, close, carousel) | `icon`, `label` (required, → aria-label), `size` 44 | 44×44, no border, hover wash `surface-sunken`; menu icon morphs to × |
 | `TextLink` | Navigation inside text or standalone | `href`, `external?` | inherits style; `action-primary` underline 2px, offset 4; hit area ≥ 44 when standalone (`ActionLink` padding) |
-| `Chip` | Compact tag or toggle | `kind` (static, toggle, link), `selected`, `icon?` | `text-caption-strong`; `surface-card` + `border-subtle`; selected = `action-neutral`; radius from `--chip-radius` (control 8; filter contexts set full) |
+| `Chip` | Compact tag or toggle | `kind` (static, tag, toggle, link), `selected`, `icon?` | `text-caption-strong`; `surface-card` + `border-subtle`; selected = `action-neutral`; radius from `--chip-radius` (control 8; filter contexts set full); `tag` = attribute inside a card or row: `surface-page`, no border, radius full, padding 4×8 |
 | `Badge` | Non-interactive label on cards/photos | `tone` (neutral, operator, status), `operator?` | `text-caption-strong`; on photos `surface-card` 94 % |
 | `Eyebrow` | Orientation label | `tone` (brand, secondary, danger, inverse, operator) | `text-eyebrow` |
 | `Field` | Text input | `label` (required), `type`, `inputmode`, `autocomplete`, `required`, `error?` | 52 high (48 in toolbars), 16 px, radius-control, visible label above in `text-caption` |
@@ -39,7 +39,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `LinkRow` | External/internal list row | title `text-body` + meta `text-caption` + ↗ | min-height 44, top rule `border-default`; used in reading lists |
 | `BreadcrumbTrail` | Hierarchy | `TextLink`s + `›` | `text-caption`; `tone: default \| inverse` (on photos); items without `href` render as text (unbuilt routes); `BreadcrumbList` JSON-LD |
 | `PriceLabel` | Price + unit | `text-title` + `text-caption` | "dès 52 €" + "par adulte" |
-| `OperatorChip` | Guide shortcut | `Avatar` 36 + name + rating + star | translucent on dark grounds |
+| `OperatorChip` | Guide shortcut | `Avatar` 36 + name (`text-body`) + rating (strong) + star | outlined (`border-inverse`), transparent, on dark grounds |
 | `ActionTile` | Compact secondary action | `Icon` + one word `text-caption-strong` | 44 min, `surface-inset`; full wording in aria-label |
 | `PhotoCredit` | Image attribution | `text-caption` + `text-shadow-on-photo` | collapses behind ⓘ on small screens |
 | `FilterGroup` | One filter dimension in the sheet | `Eyebrow` + `Chip`s (toggle) | chips 44 high |
@@ -55,7 +55,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `FilterBar` | Find sites | `SearchField`, filters trigger button (count badge) / inline `Chip`s + `Switch`es | 1 line < md → inline ≥ md |
 | `FilterSheet` | All filters | header (`text-title` + close), `SwitchRow`, `FilterGroup`s, sort, sticky CTA | bottom sheet, radius-container top, max 85 vh |
 | `ResultToolbar` | Count, clear, view switch | caption count, `TextLink` "Tout effacer", `SegmentedControl` (grille/liste) | wraps |
-| `SiteCard` | A site in lists | cover + `Badge`s, `text-title` name, caption location (tight: 4 px below the title), caption meta, `Chip`s, `FactGrid` (3), `PriceLabel`, `Button` | `variant`: grid, list, nearby |
+| `SiteCard` | A site in lists | cover + `Badge`s, `text-title` name, caption location (tight: 4 px below the title), caption meta, `Chip`s (`tag`), `FactGrid` (3), `PriceLabel`, `Button` | `variant`: grid, list, nearby |
 | `FactStrip` | Key facts under a hero | `FactGrid` + guide `ActionTile`/CTA | 2×2 under title → overlaps hero ≥ md |
 | `SiteSummary` | "Aperçu" | `SectionHead`, signature (`text-quote`), `text-lead`, tip callout, `FactGrid` "Bon à savoir" | |
 | `PhotoGallery` | Photos + lightbox | grouped images, `PhotoCredit`, Lightbox (`overlay-lightbox`) | swipe |

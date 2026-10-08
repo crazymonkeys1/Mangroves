@@ -59,7 +59,7 @@ export function siteCard(s: Site): SiteCardModel {
         ]
       : [],
     price: o
-      ? { amount: 'dès ' + o.price, unit: 'avec un guide' }
+      ? { amount: 'dès\u00a0' + o.price, unit: 'par adulte' }
       : { amount: s.activities.length ? 'Gratuit' : 'Accès à confirmer', unit: '' },
     cta: o ? 'Voir la sortie' : 'Voir la mangrove',
     rowSide: o ? (both ? 'Gratuit, ou avec Pascal ou Jean-Eudes' : `Gratuit, ou avec ${o.guide} · ${o.name}`) : s.activities.length ? 'Gratuit' : 'Accès à confirmer',

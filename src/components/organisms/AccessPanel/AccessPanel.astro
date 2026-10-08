@@ -36,7 +36,7 @@ const { h2, tiles, tilesEstimated, note, mapUrl, selfText, guideLine, compare } 
     <div class="access-panel__block">
       <Eyebrow tone="secondary" as="h3">Avec un guide</Eyebrow>
       <p class="text-body">{guideLine.text}</p>
-      <a class="access-panel__link text-body-strong" href="#visiter">{guideLine.linkLabel}</a>
+      <a class="access-panel__link text-body" href="#visiter">{guideLine.linkLabel}</a>
     </div>
   )}
 
@@ -79,9 +79,10 @@ const { h2, tiles, tilesEstimated, note, mapUrl, selfText, guideLine, compare } 
   .access-panel__note-body { display: flex; flex-direction: column; gap: var(--space-1); }
   .access-panel__block { display: flex; flex-direction: column; gap: var(--space-2); }
   .access-panel__self-head { display: flex; align-items: center; gap: var(--space-1); }
-  .access-panel__map { width: var(--tap-size-min); height: var(--tap-size-min); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-control); }
+  .access-panel__map { width: var(--tap-size-min); height: var(--tap-size-min); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-control); margin-block: calc(-1 * var(--space-2)); }
   @media (hover: hover) { .access-panel__map:hover { background: var(--color-surface-sunken); } }
-  .access-panel__link { align-self: flex-start; display: inline-flex; align-items: center; min-height: var(--tap-size-min); }
+  /* 44 px target without the extra height: negative margins keep the text 8 px from the paragraph, as in the reference. */
+  .access-panel__link { align-self: flex-start; display: inline-flex; align-items: center; min-height: var(--tap-size-min); margin-block: calc(-1 * var(--space-3)); }
   .access-panel__compare { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-1); }
   .access-panel__columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-3); }
   .access-panel__column { background: var(--color-surface-card); border: var(--border-width) solid var(--color-border-default); border-radius: var(--radius-container); padding: var(--card-padding); display: flex; flex-direction: column; min-width: 0; }

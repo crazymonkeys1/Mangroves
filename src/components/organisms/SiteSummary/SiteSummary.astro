@@ -44,8 +44,8 @@ const { h2, answer, sig, paragraphs, tip, nameStory, knowRows, alert } = Astro.p
           <div class="site-summary__know-row">
             <dt class="site-summary__know-label text-caption"><span class="site-summary__know-icon"><Icon name={k.icon} tone="secondary" /></span>{k.label}</dt>
             <dd class="site-summary__know-value">
-              {k.chips && <span class="site-summary__chips">{k.chips.map((c) => <Chip>{c}</Chip>)}</span>}
-              {k.main && <span class="text-body-strong">{k.main}</span>}
+              {k.chips && <span class="site-summary__chips">{k.chips.map((c) => <Chip kind="tag">{c}</Chip>)}</span>}
+              {k.main && <span class="text-body">{k.main}</span>}
               {k.note && <span class="text-caption">{k.note}</span>}
               {k.estimated && <CautionNote />}
             </dd>
@@ -77,7 +77,7 @@ const { h2, answer, sig, paragraphs, tip, nameStory, knowRows, alert } = Astro.p
   .site-summary__know-label { flex: 0 0 190px; display: flex; align-items: center; gap: var(--space-3); }
   .site-summary__know-icon { width: calc(var(--space-6) - var(--space-1)); height: calc(var(--space-6) - var(--space-1)); border-radius: var(--radius-control); background: var(--color-surface-inset); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .site-summary__know-value { margin: 0; flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: var(--space-1); }
-  .site-summary__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .site-summary__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); --chip-radius: var(--radius-control); }
   .site-summary__alert-items { margin: 0; padding-left: var(--space-5); }
   .site-summary__alert-items li::marker { color: var(--color-action-primary); }
 </style>

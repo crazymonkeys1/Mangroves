@@ -1,7 +1,8 @@
 ---
-// Compact tag (static), filter toggle, or link. Radius comes from --chip-radius (set to full in filter contexts).
+// Compact tag (static), attribute tag inside a card (tag), filter toggle, or link.
+// Radius comes from --chip-radius (static/toggle/link default control, filter contexts set full; tag defaults full).
 import Icon from '../Icon/Icon.astro';
-interface Props { kind?: 'static' | 'toggle' | 'link'; selected?: boolean; icon?: string; href?: string; class?: string; [key: string]: unknown }
+interface Props { kind?: 'static' | 'tag' | 'toggle' | 'link'; selected?: boolean; icon?: string; href?: string; class?: string; [key: string]: unknown }
 const { kind = 'static', selected = false, icon, href, class: className, ...rest } = Astro.props;
 const classes = ['chip', 'text-caption-strong', `chip--${kind}`, className];
 ---
@@ -21,6 +22,8 @@ const classes = ['chip', 'text-caption-strong', `chip--${kind}`, className];
     border: var(--border-width) solid var(--color-border-subtle); border-radius: var(--chip-radius, var(--radius-control));
     text-decoration: none;
   }
+  /* An attribute of the thing it sits in (site card, "Bon à savoir"): quieter, no border. */
+  .chip--tag { padding: var(--space-1) var(--space-2); gap: var(--space-1); background: var(--color-surface-page); border-color: transparent; border-radius: var(--chip-radius, var(--radius-full)); }
   .chip--toggle, .chip--link { min-height: var(--tap-size-min); padding: 0 var(--space-4); cursor: pointer; transition: background-color var(--duration-fast) var(--easing-standard); }
   .chip--link { border-color: var(--color-border-default); }
   .chip--toggle[aria-pressed='true'] { background: var(--color-action-neutral); color: var(--color-action-neutral-text); border-color: var(--color-action-neutral); }
