@@ -40,7 +40,8 @@ const { title, picks } = Astro.props.data;
   .pick-list__item p { margin: 0; }
   .pick-list__heading { margin: 0; display: flex; align-items: baseline; gap: var(--space-3); }
   .pick-list__number { color: var(--color-text-secondary); }
-  .pick-list__heading a { text-decoration: none; }
+  /* 44 px target (rule 5) without changing the layout: the padding is taken back by the negative margin. */
+  .pick-list__heading a { text-decoration: none; padding-block: var(--space-3); margin-block: calc(-1 * var(--space-3)); }
   .pick-list__figure { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); text-align: center; }
   .pick-list__figure img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-container); background: var(--color-surface-sunken); }
   .pick-list__meta { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
