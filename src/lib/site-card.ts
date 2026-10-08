@@ -11,12 +11,9 @@ export interface SiteCardModel {
   image: { src: string; alt: string } | null;
   activity: { icon: string; label: string };
   level: string;
-  guide: { photo: string; label: string } | null;
   tags: { icon: string; label: string }[];
   stats: { label: string; value: string }[];
-  price: { amount: string; unit: string };
   cta: string;
-  rowSide: string;
   /** Values the directory filters read from data-* attributes. */
   filter: {
     island: string;
@@ -49,7 +46,6 @@ export function siteCard(s: Site): SiteCardModel {
     image: img ? { src: img.url, alt: `${img.caption} – ${s.name}` } : null,
     activity: { icon: activityIcon(s.activities), label: activityLabel(s.activities) || 'Visite libre' },
     level: s.difficulty || 'Facile',
-    guide: o ? { photo: o.photo, label: both ? 'avec Pascal ou Jean-Eudes' : 'avec ' + o.guide } : null,
     tags,
     stats: o
       ? [
@@ -58,11 +54,7 @@ export function siteCard(s: Site): SiteCardModel {
           { label: 'Guide', value: both ? 'Pascal / J.-Eudes' : o.guide },
         ]
       : [],
-    price: o
-      ? { amount: 'dès\u00a0' + o.price, unit: 'par adulte' }
-      : { amount: s.activities.length ? 'Gratuit' : 'Accès à confirmer', unit: '' },
     cta: o ? 'Voir la sortie' : 'Voir la mangrove',
-    rowSide: o ? (both ? 'Gratuit, ou avec Pascal ou Jean-Eudes' : `Gratuit, ou avec ${o.guide} · ${o.name}`) : s.activities.length ? 'Gratuit' : 'Accès à confirmer',
     filter: {
       island: filterIsland(s),
       activities: s.activities.join(' '),

@@ -1,7 +1,6 @@
 ---
 // A site in lists. `grid` (cover + facts), `list` (row) and `nearby` (compact row).
 // In the directory, grid/list switch at runtime through [data-view] on the results list.
-import Avatar from '../../atoms/Avatar/Avatar.astro';
 import Badge from '../../atoms/Badge/Badge.astro';
 import Chip from '../../atoms/Chip/Chip.astro';
 import Icon from '../../atoms/Icon/Icon.astro';
@@ -24,7 +23,6 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
         <span class="site-card__placeholder text-caption-strong"><Icon name="leaf" size="nav" />Photos à venir</span>
       )}
       <span class="site-card__badges">
-        {s.guide && <Badge onPhoto class="site-card__guide"><Avatar src={s.guide.photo} size={22} />{s.guide.label}</Badge>}
         <Badge onPhoto class="site-card__activity"><Icon name={s.activity.icon} />{s.activity.label}</Badge>
       </span>
     </span>
@@ -43,9 +41,7 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
         </span>
       )}
       <span class="site-card__footer">
-        <span class="site-card__price"><span class="text-title">{s.price.amount}</span>{s.price.unit && <span class="text-caption">{s.price.unit}</span>}</span>
         <span class="site-card__cta text-caption-strong">{s.cta}</span>
-        <span class="site-card__row-side text-caption-strong">{s.rowSide}</span>
       </span>
     </span>
   </a>
@@ -61,19 +57,17 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
   .site-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .site-card__placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); color: var(--color-text-inverse); }
   .site-card__badges { position: absolute; top: var(--space-3); left: var(--space-3); right: var(--space-3); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-2); }
-  .site-card__badges :global(.site-card__guide) { padding-left: var(--space-1); }
   .site-card__badges :global(.site-card__activity) { margin-left: auto; }
   .site-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
   .site-card__title { margin: 0; }
   .site-card__location { display: flex; align-items: center; gap: var(--space-1); margin-top: calc(-1 * var(--space-2)); }
-  .site-card__list-meta, .site-card__row-side { display: none; }
+  .site-card__list-meta { display: none; }
   .site-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .site-card__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
   .site-card__stat { background: var(--color-surface-page); border-radius: var(--radius-control); padding: var(--space-2) var(--space-3); display: flex; flex-direction: column; min-width: 0; }
   .site-card__stat .text-caption-strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .site-card__footer { margin-top: auto; padding-top: var(--space-1); display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
-  .site-card__price { display: flex; align-items: baseline; gap: var(--space-2); }
-  .site-card__price > * { white-space: nowrap; }
+  /* Price and guide live on the site page (one message per card: what the place is). */
+  .site-card__footer { margin-top: auto; padding-top: var(--space-1); display: flex; justify-content: flex-end; }
   .site-card__cta { padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); background: var(--color-action-neutral); color: var(--color-action-neutral-text); white-space: nowrap; }
 
   /* ---- list (directory view switch) ---- */
@@ -84,14 +78,11 @@ const { site: s, variant = 'grid', headingLevel: H = 'h3' } = Astro.props;
   :global([data-view='list']) .site-card__blurb,
   :global([data-view='list']) .site-card__tags,
   :global([data-view='list']) .site-card__stats,
-  :global([data-view='list']) .site-card__cta,
+  :global([data-view='list']) .site-card__footer,
   :global([data-view='list']) .site-card__placeholder { display: none; }
   :global([data-view='list']) .site-card__list-meta { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); }
   :global([data-view='list']) .site-card__list-meta span { display: inline-flex; align-items: center; gap: var(--space-1); }
   :global([data-view='list']) .site-card__body { gap: var(--space-2); justify-content: center; padding: var(--space-3) var(--space-4); }
-  :global([data-view='list']) .site-card__footer { flex-wrap: wrap; }
-  :global([data-view='list']) .site-card__row-side { display: inline; color: var(--color-text-secondary); }
-  :global([data-view='list']) .site-card__price { order: 2; }
 
   /* ---- nearby ---- */
   .site-card--nearby { align-items: stretch; min-height: 96px; }

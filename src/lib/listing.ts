@@ -47,7 +47,7 @@ export function buildListingPage(kind: Kind, slug: string, siteUrl: string) {
       a: `Oui, l’accès est gratuit. ${opening.howTo}`,
     },
     guided
-      ? { q: 'Quelle sortie guidée choisir ?', a: `En kayak avec ${yalode.guide} (${yalode.name}) depuis Vieux-Bourg, dès ${yalode.price}, ou en bateau avec ${bluelagoon.guide} (${bluelagoon.name}) depuis Sainte-Rose, environ ${bluelagoon.price}.` }
+      ? { q: 'Quelle sortie guidée choisir ?', a: `En kayak avec ${yalode.guide} (${yalode.name}) depuis Vieux-Bourg, dès ${yalode.price}, ou en bateau avec ${bluelagoon.guide} (${bluelagoon.name}) depuis Sainte-Rose, environ ${bluelagoon.price} (tarifs relevés en ${yalode.priceDate}, à confirmer lors de la réservation).` }
       : null,
   ].filter((f): f is { q: string; a: string } => !!f);
   const path = `/${kind}/${slug}`;
@@ -69,7 +69,6 @@ export function buildListingPage(kind: Kind, slug: string, siteUrl: string) {
       crumbs: [{ label: 'Accueil', href: routes.home }, { label: KIND_LABEL[kind] }, { label: def.label }],
     },
     count: `${sites.length} mangrove${plural ? 's' : ''}`,
-    priceDate: yalode.priceDate,
     cards,
     faq: { title: `${def.label} : questions fréquentes`, items: faq },
     jsonLd: [
