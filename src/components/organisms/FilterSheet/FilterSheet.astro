@@ -22,7 +22,7 @@ const { filters } = Astro.props;
     <FilterGroup title="Trier" icon="sort">{filters.sorts.map((o) => <Chip kind="toggle" data-filter="sort" data-value={o.value} selected={o.value === 'pertinence'}>{o.label}</Chip>)}</FilterGroup>
     <FilterGroup title="Ambiance et public">{filters.more.map((o) => <Chip kind="toggle" icon={o.icon} data-filter="more" data-value={o.value}>{o.label}</Chip>)}</FilterGroup>
     <div class="filter-sheet__footer">
-      <Button variant="secondary" data-clear-filters>Effacer</Button>
+      <Button variant="quiet" class="filter-sheet__clear" data-clear-filters>Tout effacer</Button>
       <Button variant="neutral" class="filter-sheet__apply" data-close-filters><span data-apply-label>Voir les mangroves</span></Button>
     </div>
   </div>
@@ -35,4 +35,6 @@ const { filters } = Astro.props;
   .filter-sheet__head { display: flex; justify-content: space-between; align-items: center; }
   .filter-sheet__footer { position: sticky; bottom: 0; display: flex; gap: var(--space-3); padding: var(--space-3) 0 var(--space-5); background: var(--color-surface-page); }
   .filter-sheet__footer :global(.filter-sheet__apply) { flex: 1; }
+  /* A text action: less side padding leaves the apply button room for "Voir N mangroves" on one line. */
+  .filter-sheet__footer :global(.filter-sheet__clear) { padding-inline: var(--space-2); }
 </style>

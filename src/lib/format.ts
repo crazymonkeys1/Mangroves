@@ -14,6 +14,13 @@ export function withArticle(name: string): string {
 export const toArticle = (art: string) =>
   art.replace(/^le /, 'au ').replace(/^les /, 'aux ').replace(/^(la |l')/, 'à $1');
 
+/** "Fondateur de Yalodé · 4,9 ★" → text without the glyph + star flag; components draw the SVG star (rule 9: no text pictograms). */
+export const splitStar = (s = '') => {
+  const text = s.replace(/\s*★/g, '');
+  const i = text.lastIndexOf(' ');
+  return { head: text.slice(0, i + 1), last: text.slice(i + 1), star: s.includes('★') };
+};
+
 export const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 export const frNum = (n: number) => String(n).replace('.', ',');
 

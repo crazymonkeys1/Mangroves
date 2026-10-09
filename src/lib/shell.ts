@@ -1,6 +1,6 @@
 // Data for the page shell (header, footer, "Qui sommes-nous"), shared by every page.
 import { getActivityListings, getArticles, getOperator, getSites } from './data';
-import { isBuilt, linkIfBuilt, routes, slugify, subIsland } from './format';
+import { isBuilt, linkIfBuilt, routes, slugify, subIsland, utm } from './format';
 
 export function shellData() {
   const sites = getSites();
@@ -51,9 +51,9 @@ export function shellData() {
         photo: o.photo,
         credential: o.credential.split(' · ')[0],
         pitch: o.about.pitch,
-        contactUrl: o.contactUrl,
+        contactUrl: utm(o.contactUrl, 'about-us', 'site'),
         profileHref: linkIfBuilt(routes.guide(o.guideSlug)),
-        website: o.about.website,
+        website: utm(o.about.website, 'about-us', 'site'),
         domain: o.about.domain,
       })),
     },

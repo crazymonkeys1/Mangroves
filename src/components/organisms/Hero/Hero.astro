@@ -12,6 +12,7 @@ import OperatorChip from '../../molecules/OperatorChip/OperatorChip.astro';
 import BreadcrumbTrail from '../../molecules/BreadcrumbTrail/BreadcrumbTrail.astro';
 import Avatar from '../../atoms/Avatar/Avatar.astro';
 import Byline from '../../molecules/Byline/Byline.astro';
+import RatingText from '../../molecules/RatingText/RatingText.astro';
 
 interface Slide { src: string; alt: string; caption: string; credit: string }
 interface Props {
@@ -81,7 +82,7 @@ const multi = slides.length > 1;
           <div class="hero__text on-inverse">
             {label && <p class="text-eyebrow">{label}</p>}
             <h1 class="text-display hero__title">{title}</h1>
-            {intro && <p class="text-body">{intro}</p>}
+            {intro && <p class="text-body"><RatingText text={intro} /></p>}
           </div>
           <div class="hero__actions"><slot name="actions" /></div>
         </div>

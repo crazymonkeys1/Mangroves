@@ -54,6 +54,7 @@ export function buildArticlePage(slug: string, siteUrl: string) {
   const more = getArticles().filter((x) => x.slug !== slug).map((x) => ({ href: routes.article(x.slug), title: x.nav, image: x.heroImg }));
 
   return {
+    priceNote: `Tarifs des sorties guidées relevés en ${getOperator('yalode').priceDate}, à confirmer lors de la réservation.`,
     title: a.metaTitle,
     description: truncate(a.metaDescription),
     canonical,
@@ -111,6 +112,7 @@ export function buildIdeasPage(siteUrl: string) {
     href: routes.article(a.slug), image: a.heroImg, category: a.category, title: a.title, brief: a.brief, meta: `Par Pascal & Jean-Eudes · ${a.readTime}`,
   }));
   return {
+    priceNote: `Tarifs des sorties guidées relevés en ${getOperator('yalode').priceDate}, à confirmer lors de la réservation.`,
     title: 'Idées de sorties en mangrove en Guadeloupe',
     description: 'Nos idées pour choisir sa sortie : en famille, en bateau, en kayak, à pied ou pour les oiseaux. Écrits par Pascal et Jean-Eudes, mis à jour régulièrement.',
     canonical,

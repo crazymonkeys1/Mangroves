@@ -76,7 +76,7 @@
   /* ---- Actions ---- */
   --color-action-primary: var(--palette-terracotta-600);   /* THE booking/conversion fill (one per viewport). White text 4.7:1. Also link underlines, bullets, quote rule. Never body-size text on page (4.16:1). */
   --color-action-primary-text: var(--palette-white);
-  --color-action-neutral: var(--palette-forest-900);       /* neutral primary buttons (apply filters, open filters, "Réinitialiser"). */
+  --color-action-neutral: var(--palette-forest-900);       /* neutral primary buttons (apply filters, open filters, "Tout effacer" in the empty state). */
   --color-action-neutral-text: var(--palette-white);
   --color-control-off: var(--palette-cream-400);           /* switch track when off. */
   --color-control-on: var(--palette-forest-900);           /* switch track when on; selected chip fill. */

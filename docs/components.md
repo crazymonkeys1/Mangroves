@@ -39,6 +39,7 @@ Source of the current design: `Mangroves Guadeloupe (Detail landing v12).dc.html
 | `LinkRow` | External/internal list row | title `text-body` + meta `text-caption` + ↗ | min-height 44, top rule `border-default`; used in reading lists |
 | `BreadcrumbTrail` | Hierarchy | `TextLink`s + `›` | `text-caption`; `tone: default \| inverse` (on photos); items without `href` render as text (unbuilt routes); `BreadcrumbList` JSON-LD |
 | `PriceLabel` | Price + unit | `text-title` + `text-caption` | "dès 52 €" + "par adulte" |
+| `RatingText` | Text ending with a rating ("Fondateur de Yalodé · 4,9 ★" in data) | text + `Icon` star (`aria-label` "sur 5") | the ★ glyph becomes the SVG star; number and star never split across lines |
 | `OperatorChip` | Guide shortcut | `Avatar` 36 + name (`text-body`) + rating (strong) + star | outlined (`border-inverse`), transparent, on dark grounds |
 | `ActionTile` | Compact secondary action | `Icon` + one word `text-caption-strong` | 44 min, `surface-inset`; full wording in aria-label |
 | `PhotoCredit` | Image attribution | `text-caption` + `text-shadow-on-photo` | collapses behind ⓘ on small screens |

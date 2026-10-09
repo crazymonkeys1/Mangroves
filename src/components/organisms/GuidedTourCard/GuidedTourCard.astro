@@ -11,6 +11,7 @@ import FeatureList from '../../molecules/FeatureList/FeatureList.astro';
 import PriceLabel from '../../molecules/PriceLabel/PriceLabel.astro';
 import QuoteCard from '../../molecules/QuoteCard/QuoteCard.astro';
 import type { TourModel } from '../../../lib/site-page';
+import RatingText from '../../molecules/RatingText/RatingText.astro';
 interface Props { tour: TourModel }
 const t = Astro.props.tour;
 ---
@@ -20,7 +21,7 @@ const t = Astro.props.tour;
     <div class="tour-card__titles">
       <h3 class="text-title" id={`${t.anchor}-title`}>{t.tourName}</h3>
       <p class="text-body-strong">{t.withLine}</p>
-      <p class="text-caption">{t.meta}</p>
+      <p class="text-caption"><RatingText text={t.meta} /></p>
     </div>
     <PriceLabel amount={t.price} unit={t.priceNote} tone="inverse" align="end" class="tour-card__price" />
   </header>
@@ -62,7 +63,7 @@ const t = Astro.props.tour;
     <Eyebrow tone="secondary" as="h4">{t.aboutLabel}</Eyebrow>
     <div class="tour-card__guide">
       <Avatar src={t.photo} size={64} />
-      <div><p class="text-title">{t.fullName}</p><p class="text-caption">{t.role}</p></div>
+      <div><p class="text-title">{t.fullName}</p><p class="text-caption"><RatingText text={t.role} /></p></div>
     </div>
     <p class="text-body">{t.bio}</p>
     <FactGrid items={t.aboutFacts} min="wide" label={t.aboutLabel} />

@@ -29,7 +29,7 @@ export function buildDirectoryPage(siteUrl: string) {
       activities: [
         { value: 'bateau', label: 'Bateau', icon: 'boat' },
         { value: 'kayak', label: 'Kayak', icon: 'waves' },
-        { value: 'marche', label: 'Marche', icon: 'footprints' },
+        { value: 'marche', label: 'À pied', icon: 'footprints' },
         { value: 'pedalo', label: 'Pédalo', icon: 'waves' },
       ],
       difficulties: [{ value: 'Facile', label: 'Facile' }, { value: 'Modérée', label: 'Modérée' }],

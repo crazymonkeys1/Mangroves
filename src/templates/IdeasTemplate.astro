@@ -19,6 +19,7 @@ const { page, shell } = Astro.props;
       <p class="text-lead">{page.lead}</p>
     </div>
     <ul class="ideas__list">{page.items.map((it) => <li><ArticleCard {...it} headingLevel="h2" /></li>)}</ul>
+    <p class="text-caption">{page.priceNote}</p>
   </div>
   <AboutUsBand data={shell.aboutUs} />
 </PageShell>

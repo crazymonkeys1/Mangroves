@@ -19,7 +19,7 @@ const { page, shell } = Astro.props;
     <Hero variant="article" crumbs={page.hero.crumbs} label={page.hero.category} title={page.hero.title} slides={[page.hero.slide]} byline={{ photos: page.hero.authors, text: page.hero.byline }} />
     <div class="article">
       <ArticleBody data={page.body}>
-        <PickList slot="selection" data={page.selection} />
+        <Fragment slot="selection"><PickList data={page.selection} /><p class="text-caption">{page.priceNote}</p></Fragment>
         <FaqList slot="faq" title={page.faq.title} items={page.faq.items} />
       </ArticleBody>
     </div>

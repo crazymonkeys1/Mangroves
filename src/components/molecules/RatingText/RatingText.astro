@@ -1,0 +1,14 @@
+---
+// Text that may end with a rating written "4,9 ★" in data: the glyph becomes the SVG star (rule 9),
+// kept on the same line as its number. Text without ★ renders unchanged.
+import Icon from '../../atoms/Icon/Icon.astro';
+import { splitStar } from '../../../lib/format';
+interface Props { text?: string }
+const { head, last, star } = splitStar(Astro.props.text);
+---
+{star ? <>{head}<span class="rating-text__end">{last} <Icon name="star" label="sur 5" /></span></> : head + last}
+
+<style>
+  /* inline-flex: the icon renders as a block, which would otherwise break the line before it. */
+  .rating-text__end { display: inline-flex; align-items: center; gap: var(--space-1); white-space: nowrap; }
+</style>
